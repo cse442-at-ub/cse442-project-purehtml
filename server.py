@@ -1,5 +1,4 @@
 from flask import Flask
-from backend import *
 
 session = Flask(__name__)
 
