@@ -3,47 +3,55 @@
 
 <style>
 .button {
-  background-color: #1DB954; /* Green */
+  background-color: #1DB954; 
   border: black;
   border-style: solid;
   color: white;
   padding: 32px 20px;
   text-align: center;
+  text-shadow: 1px 1px 0px #515151;
+  font-weight: bold;
   position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
+  line-height: 0.2em;
   display: inline-block;
   margin: 100px 2px;
   cursor: pointer;
+  font-family: "Helvetica", "Arial", sans-serif; 
 }
 
-.button1 {width: 150px; height: 20px; font-size: 13px;}
+.button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
 </style>
+    
+<script>
+function redirect(string, html)
+{
+    alert(string);
+    window.location=html;
+}
+</script>
 
 <head>
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Team PureHTML</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1>
-
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
         <div id = "header" class = "header">
                 <h1>Team PureHTML</h1>
         </div>
-        <div>
-                <form action = "index.html">
-                        <center>
-                                <label for="username"><a style = "color:black;">Username:</label><br>
-                                <input type = "text" id = "username" value=""><br>
-                                <label for="password"><a style = "color:black;">Password:</label><br>
-                                <input type = "password" id = "password" value=""><br>
-                                <input type="submit" value="Submit">
-                        </center>
-                </form>
-        </div>
+         <div>
+
+                <center>
+                    <label for="username"><a style = "color:black;">Username:</a></label><br>
+                        <input type = "text" id = "username" value=""><br>
+                        <label for="password"><a style = "color:black;">Password:</a></label><br>
+                        <input type = "password" id = "password" value=""><br>
+                        <input type="submit" value="Log In" id = "login" onclick="alert('You have been logged in.'); location.href=location.href">
+                </center>
+                        
+                
+         </div>
          <div>
                 <form action = "result.html">
                         <center>
@@ -52,7 +60,5 @@
                 </form>
         </div>
 </body>
+                                                              
 </html>
-
-
-
