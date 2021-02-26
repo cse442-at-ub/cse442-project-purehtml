@@ -1,84 +1,90 @@
 <!DOCTYPE html>
 <html>
-
+  
+<!-- The 'style' block is basically in-line CSS. -->
+<!-- Look at a CSS wiki to understand what each element does.  I'm sure some are not needed. -->
+  
 <style>
 .button {
-  background-color: #1DB954;
+  background-color: #1DB954; 
   border: black;
   border-style: solid;
   color: white;
   padding: 32px 20px;
   text-align: center;
+  text-shadow: 1px 1px 0px #515151;
+  font-weight: bold;
   position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
+  line-height: 0.2em;
   display: inline-block;
   margin: 100px 2px;
   cursor: pointer;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
+  font-family: "Helvetica", "Arial", sans-serif; 
 }
+  
 
-<!DOCTYPE html>
-<html>
-
-<style>
-.button {
-  background-color: #1DB954; /* Green */
-  border: black;
-  border-style: solid;
-  color: white;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-}
-
-.button1 {width: 150px; height: 20px; font-size: 13px;}
+.button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
 </style>
-
+<!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
+  
+<!-- The header. -->
 <head>
+  
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+        <!-- The page title.  Not to be confused with the text at the top. -->
         <title>Team PureHTML</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1>
-
-
+  
+        <!-- Forcing our page to adjust to the aspect ratio of the device. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 </head>
+  
+<!-- The body.  Basically, where all of the content goes. -->
 <body>
+        <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
         <div id = "header" class = "header">
                 <h1>Team PureHTML</h1>
         </div>
-        <div>
-                <center>
-                        <label for="username"><a style = "color:black;">Username:</label><br>
-                        <input type = "text" id = "username" name = "username" value=""><br>
-                        <label for="password"><a style = "color:black;">Password:</label><br>
-                        <input type="password" id="password" name="password" value=""><br>
-                        <input type="submit" value="Submit">
-                </center>
-        </div>
          <div>
-                <form action = "https://cse.buffalo.edu/~jdkazime/result.html">
+                <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
+                <center>
+                  
+                      <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
+                      <label for="username"><a style = "color:black;">Username:</a></label><br>
+                      <input type = "text" id = "username" value=""><br>
+                      <label for="password"><a style = "color:black;">Password:</a></label><br>
+                      <input type = "password" id = "password" value=""><br>
+                  
+                      <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
+                      <!-- Separating with a semicolon allows for another command to be executed on the same click.  It goes in sequential order. -->
+                      <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
+                      <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
+                      <input type="submit" value="Log In" id = "login" onclick="alert('You have been logged in.'); location.href=location.href">
+                  
+                </center>
+                        
+                
+         </div>
+  
+         <!-- <div> elements are stacked vertically so this will appear under the last <div>. -->
+         <div>
+           
+                <!-- '<form action = "result.html">' redirects to result.html upon completion of the action.  In this case, clicking a button. -->
+                <form action = "result.html">
+                  
                         <center>
+                          
+                                <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                 <button class="button button1"><b>Random Song</b></button><br>
+                          
                         </center>
+                  
                 </form>
+           
         </div>
+  
 </body>
+                                                              
 </html>
-
-
