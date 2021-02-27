@@ -27,26 +27,41 @@
 </style>
 <!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
   
-<!-- The header. -->
+<!-- The headers. -->
 <head>
   
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
         <!-- The page title.  Not to be confused with the text at the top. -->
-        <title>Team PureHTML</title>
+        <title>Team PureHTML: Spotifind</title>
   
         <!-- Forcing our page to adjust to the aspect ratio of the device. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
   
 </head>
+    
+<header>
+
+	<h1 align="center"><a href="index.html">Spotifind</a></h1>
+    
+	<div class="search" id = "search">
+        
+		<form action = "result.html" method = "get">
+            
+			<input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+			<input type="submit" value = "submit">
+            
+		</form>
+        
+	</div>
+    
+</header>
   
 <!-- The body.  Basically, where all of the content goes. -->
 <body>
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
-        <div id = "header" class = "header">
-                <h1>Team PureHTML</h1>
-        </div>
+
          <div>
                 <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
                 <center>
