@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <html>
   
-<!-- The 'style' block is basically in-line CSS. -->
-<!-- Look at a CSS wiki to understand what each element does.  I'm sure some are not needed. -->
-  
-<style>
-.button {
-  background-color: #1DB954; 
-  border: black;
-  border-style: solid;
-  color: white;
-  padding: 32px 20px;
-  text-align: center;
-  text-shadow: 1px 1px 0px #515151;
-  font-weight: bold;
-  position: relative;
-  line-height: 0.2em;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-  font-family: "Helvetica", "Arial", sans-serif; 
-}
-  
-
-.button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
-</style>
 <!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
   
-<!-- The header. -->
+<!-- The headers. -->
 <head>
   
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
         <!-- The page title.  Not to be confused with the text at the top. -->
-        <title>Team PureHTML</title>
+        <title>Team PureHTML: Spotifind</title>
   
         <!-- Forcing our page to adjust to the aspect ratio of the device. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
   
 </head>
+    
+<header>
+
+	<h1 align="center"><a href="index.html">Spotifind</a></h1>
+    
+	<div class="search" id = "search">
+        
+		<form action = "result.html" method = "get">
+            
+			<input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+			<input type="submit" value = "submit">
+            
+		</form>
+        
+	</div>
+    
+</header>
   
 <!-- The body.  Basically, where all of the content goes. -->
 <body>
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
-        <div id = "header" class = "header">
-                <h1>Team PureHTML</h1>
-        </div>
-         <div>
+        <div>
                 <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
                 <center>
                   
@@ -65,26 +55,25 @@
                   
                 </center>
                         
-                
-         </div>
-  
-         <!-- <div> elements are stacked vertically so this will appear under the last <div>. -->
-         <div>
-           
-                <!-- '<form action = "result.html">' redirects to result.html upon completion of the action.  In this case, clicking a button. -->
-                <form action = "result.html">
-                  
-                        <center>
-                          
-                                <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
-                                <button class="button button1"><b>Random Song</b></button><br>
-                          
-                        </center>
-                  
-                </form>
-           
         </div>
-  
+    
+        <div>
+            <center>
+                
+                <h1>About Us:</h1>
+                
+                <p>Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm.</p><br>
+                
+                
+                <h2>The team: </h2>
+                <p>Faizaan: EMAIL</p>
+                <p>Frank: EMAIL</p>
+                <p>Jeremy:  <a href="mailto:jdkazime@buffalo.edu">jdkazime@buffalo.edu</a></p>
+                <!-- href="mailto:" just opens up the email program for that specified email. -->
+                
+            </center>
+        </div>
+    
 </body>
                                                               
 </html>
