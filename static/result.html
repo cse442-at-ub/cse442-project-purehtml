@@ -7,20 +7,45 @@
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Team PureHTML</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+ 
+<!-- This is the header that follows  you around page to page. -->
+<header>
+    
+    <!-- Clicking on this redirects the user to index.html. -->
+	<h1 align="center"><a href="index.html">Spotifind</a></h1>
+    
+	<div class="search" id = "search">
+        
+        <!-- The "method = 'get'" keyword posts the value to the page. -->
+		<form action = "result.html" method = "get">
+            
+			<input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+			<input type="submit" value = "submit">
+            
+		</form>
+        
+	</div>
+    
+</header>
 
 <body>
-
-        <div id = "header" class = "header">
-                <h1>Team PureHTML</h1>
-        </div>
          
         <!-- <p> just creates a new paragraph or more specifically a body of text. -->
         <div id = "pain">
                 <center>
-                        <p> This is where our results will go for the functioning product.  For now, you must suffer by reading this wall of text.  See you soon! </p>
+                        <h1> Results: </h1>
+                        <p id="url"></p>
+                    
+                    
+                        <!-- This J.S. script basically takes the URL and replaces the "url" element with the artist name.  I drop '+' b/c it's used to denote spaces. -->
+                        <script>
+                            var url = window.location.href.split("artist=")[1].replace("+", " ");
+                            document.getElementById("url").innerHTML = 
+                                "The artist you chose: " + url;
+                        </script>
                 </center>
         </div>
 
