@@ -1,62 +1,104 @@
 <!DOCTYPE html>
 <html>
-
-<style>
-.button {
-  background-color: #1DB954;
-  border: black;
-  border-style: solid;
-  color: white;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-}
-
-.button1 {width: 150px; height: 20px; font-size: 13px;}
-</style>
-
+  
+<!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
+  
+<!-- The headers. -->
 <head>
+  
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Team PureHTML</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1>
-</head>
-<body>
-        <div id = "header" class = "header">
-                <h1>SpotiFind</h1>
-        </div>
-        <div>
-                <center>
-                        <label for="username"><a style = "color:black;">Username:</label><br>
-                        <input type = "text" id = "username" name = "username" value=""><br>
-                        <label for="password"><a style = "color:black;">Password:</label><br>
-                        <input type="password" id="password" name="password" value=""><br>
-                        <input type="submit" value="Submit">
-                </center>
-        </div>
-         <div>
-                <form action = "https://cse.buffalo.edu/~jdkazime/result.html">
-                <center>
-                        <button class="button button1"><b>Random Song</b></button></form><br>
-                <form action = "statistics.html">
-                        <button class="button button1"><b>Statistics</b></button></form><br>
+  
+        <!-- The page title.  Not to be confused with the text at the top. -->
+        <title>Team PureHTML: Spotifind</title>
+  
+        <!-- Forcing our page to adjust to the aspect ratio of the device. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+</head>
+
+<style>
+  h1{
+    font-family: 'Bebas Neue', cursive;
+  }
+  h2{
+    font-family: 'Bebas Neue', cursive;
+  }
+  p{
+    font-family: 'Bebas Neue', cursive;
+  }
+  label{
+    font-family: 'Bebas Neue', cursive;
+  }
+
+</style>
+    
+<header>
+
+  <h1 align="center"><a href="index.html"><img src="logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
+    
+  <div class="search" id = "search">
+        
+    <form action = "result.html" method = "get">
+      <center>      
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="submit" value = "submit">
+      </center>      
+    </form>
+        
+  </div>
+    
+</header>
+  
+<!-- The body.  Basically, where all of the content goes. -->
+<body style="background-color: #77d94c">
+        <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
+          
+        <span style="float:right"> 
+
+
+
+                <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
+                <center>
+                  
+                      <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
+                      
+                      <label for="username"><a style = "color:black;">Username:</a></label><br>
+                      <input type = "text" id = "username" value=""><br>
+                      <label for="password"><a style = "color:black;">Password:</a></label><br>
+                      <input type = "password" id = "password" value=""><br>
+                    
+                  
+                      <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
+                      <!-- Separating with a semicolon allows for another command to be executed on the same click.  It goes in sequential order. -->
+                      <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
+                      <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
+                      <input type="submit" value="Log In" id = "login" onclick="alert('You have been logged in.'); location.href=location.href">
+                  
                 </center>
-        </div>                
+                        
+        </span>
+    
+        <div style='float:left;  width:30%'>
+            <center>
+                
+                <h1>About Us:</h1>
+                
+                <p>Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm.</p><br>
+         </div>       
+         <div style='float :right; width:30% '>      
+                <h2>The team: </h2>
+                <p>Faizaan: <a href="mailto:marshad2@buffalo.edu">marshad2@buffalo.edu</a></p>
+                <p>Frank: EMAIL</p>
+                <p>Jeremy:  <a href="mailto:jdkazime@buffalo.edu">jdkazime@buffalo.edu</a></p>
+                <!-- href="mailto:" just opens up the email program for that specified email. -->
+                
+            </center>
+        </div>
+    
 </body>
+                                                              
 </html>
