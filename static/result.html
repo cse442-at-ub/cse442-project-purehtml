@@ -35,29 +35,47 @@ font-family: "Helvetica", "Arial", sans-serif;
         <title>Team PureHTML</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
 </head>
+<style>
+  h1{
+    font-family: 'Bebas Neue', cursive;
+  }
+  script{
+    font-family: 'Bebas Neue', cursive;
+  }
+  p{
+    font-family: 'Bebas Neue', cursive;
+  }
+  b{
+    font-family: 'Bebas Neue', cursive;
+  }
+  </style>
  
 <!-- This is the header that follows  you around page to page. -->
 <header>
     
     <!-- Clicking on this redirects the user to index.html. -->
-	<h1 align="center"><a href="index.html">Spotifind</a></h1>
+  <h1 align="center"><a href="index.html"><img src="logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
     
-	<div class="search" id = "search">
+  <div class="search" id = "search">
         
         <!-- The "method = 'get'" keyword posts the value to the page. -->
-		<form action = "result.html" method = "get">
+    <form action = "result.html" method = "get">
             
-			<input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
-			<input type="submit" value = "submit">
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="submit" value = "submit">
             
-		</form>
+    </form>
         
-	</div>
+  </div>
     
 </header>
 
-<body>
+<body style="background-color: #77d94c">
+
          
         <!-- <p> just creates a new paragraph or more specifically a body of text. -->
         <div id = "pain">
@@ -80,6 +98,9 @@ font-family: "Helvetica", "Arial", sans-serif;
          <div>
            
                 <!-- '<form action = "result.html">' redirects to result.html upon completion of the action.  In this case, clicking a button. -->
+
+                    <div style='float:left;  width:30%'>
+
                 <form action = "random.html">
                   
                         <center>
@@ -89,12 +110,21 @@ font-family: "Helvetica", "Arial", sans-serif;
                           
                         </center>
                   
-                </form>
-             
-        </div>
+
+                </form></div>
+                <div style='float:right;  width:30%'>
+                <form action = "statistics.html">
+                    <center>
+                          
+                                <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                <button class="button button1"><b>Statistics</b></button><br>
+                          
+                        </center>
+                  
+                </form></div>
+</div>
            
 
 </body>
 
 </html>
-

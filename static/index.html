@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   
@@ -14,38 +15,63 @@
   
         <!-- Forcing our page to adjust to the aspect ratio of the device. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   
 </head>
+
+<style>
+  h1{
+    font-family: 'Bebas Neue', cursive;
+  }
+  h2{
+    font-family: 'Bebas Neue', cursive;
+  }
+  p{
+    font-family: 'Bebas Neue', cursive;
+  }
+  label{
+    font-family: 'Bebas Neue', cursive;
+  }
+
+</style>
     
 <header>
 
-	<h1 align="center"><a href="index.html">Spotifind</a></h1>
+  <h1 align="center"><a href="index.html"><img src="logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
     
-	<div class="search" id = "search">
+  <div class="search" id = "search">
         
-		<form action = "result.html" method = "get">
-            
-			<input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
-			<input type="submit" value = "submit">
-            
-		</form>
+    <form action = "result.html" method = "get">
+      <center>      
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="submit" value = "submit">
+      </center>      
+    </form>
         
-	</div>
+  </div>
     
 </header>
   
 <!-- The body.  Basically, where all of the content goes. -->
-<body>
+<body style="background-color: #77d94c">
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
-        <div>
+          
+        <span style="float:right"> 
+
+
+
                 <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
                 <center>
                   
                       <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
+                      
                       <label for="username"><a style = "color:black;">Username:</a></label><br>
                       <input type = "text" id = "username" value=""><br>
                       <label for="password"><a style = "color:black;">Password:</a></label><br>
                       <input type = "password" id = "password" value=""><br>
+                    
                   
                       <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
                       <!-- Separating with a semicolon allows for another command to be executed on the same click.  It goes in sequential order. -->
@@ -55,18 +81,18 @@
                   
                 </center>
                         
-        </div>
+        </span>
     
-        <div>
+        <div style='float:left;  width:30%'>
             <center>
                 
                 <h1>About Us:</h1>
                 
                 <p>Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm.</p><br>
-                
-                
+         </div>       
+         <div style='float :right; width:30% '>      
                 <h2>The team: </h2>
-                <p>Faizaan: EMAIL</p>
+                <p>Faizaan: <a href="mailto:marshad2@buffalo.edu">marshad2@buffalo.edu</a></p>
                 <p>Frank: EMAIL</p>
                 <p>Jeremy:  <a href="mailto:jdkazime@buffalo.edu">jdkazime@buffalo.edu</a></p>
                 <!-- href="mailto:" just opens up the email program for that specified email. -->
@@ -77,3 +103,4 @@
 </body>
                                                               
 </html>
+
