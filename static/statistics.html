@@ -1,69 +1,55 @@
 <!DOCTYPE html>
-<html>
-
-<style>
-.button {
-  background-color: #1DB954;
-  border: black;
-  border-style: solid;
-  color: white;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-}
-
-<!DOCTYPE html>
-<html>
-
-<style>
-.button {
-  background-color: #1DB954; /* Green */
-  border: black;
-  border-style: solid;
-  color: white;
-  padding: 32px 20px;
-  text-align: center;
-  position: relative;
-  vertical-align: middle;
-  line-height: 0.4em;
-  text-decoration: none;
-  display: inline-block;
-  margin: 100px 2px;
-  cursor: pointer;
-}
-
-.button1 {width: 150px; height: 20px; font-size: 13px;}
-</style>
 
 <head>
+  
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Team PureHTML</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1>
+  
+        <!-- The page title.  Not to be confused with the text at the top. -->
+        <title>Team PureHTML: Spotifind</title>
+  
+        <!-- Forcing our page to adjust to the aspect ratio of the device. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
 </head>
-<body>
-        <div id = "header" class = "header">
-                <h1>SpotiFind</h1>
-                <h2>Artist Statistics</h2>
+<style>
+  h1{
+    font-family: 'Bebas Neue', cursive;
+  }
+  h2{
+    font-family: 'Bebas Neue', cursive;
+  }
+  </style>
+
+<header>
+
+  <h1 align="center"><a href="index.html"><img src="logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
+    
+  <div class="search" id = "search">
         
-</body>
+    <form action = "result.html" method = "get">
+      <center>      
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="submit" value = "submit">
+      </center>      
+    </form>
+        
+  </div>
+    
+</header>
+
+<body style="background-color: #77d94c">
+
+  <center>
+    <h1>Artist Statistics</h1>
+    <h2>Name:</h2>
+    <h2>Monthly Listeners:</h2>
+    <h2>Genre:</h2>
+  </center>
+
 </html>
 
 
