@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-  
+
 <!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
-  
+
 <!-- The headers. -->
 <head>
-  
+
         <meta charset = "utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
         <!-- The page title.  Not to be confused with the text at the top. -->
         <title>Team PureHTML: Spotifind</title>
-  
+
         <!-- Forcing our page to adjust to the aspect ratio of the device. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  
+
 </head>
 
 <style>
@@ -49,37 +49,37 @@
    border-right: 0;
    border-bottom: 0;
   }
-    
+
   .column {
   float: left;
   text-align: center;
   width: 33.333%;
   }
-    
+
   .row:after {
   content: "";
   display: table;
   clear: both;
   }
 </style>
-    
+
 <header>
 
   <h1 align="center"><a href="index.html"><img src="media/logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
-    
+
   <div class="search" id = "search">
-        
+
     <form action = "result.html" method = "get">
-      <center>      
+      <center>
       <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
       <input type="submit" value = "submit">
-      </center>      
+      </center>
     </form>
-        
+
   </div>
-    
+
 </header>
-  
+
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
@@ -94,21 +94,21 @@
                 <h1>Tutorial:</h1>
                      <video style='border: 2px solid #000;' width="410" height="230" controls>
                           <source src="media/tutorial.mp4" type="video/mp4">
-                    </video> 
+                    </video>
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Our Vision:</h1>
-                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.  
+                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.
                         The way that we do this is by creating a k-nearest neighbors recommender algorithm where the criteria of being a neighbor is whether or not two artists have collaborated on a song.
                         Artists are ranked relative to each other according to the number of songs collaborated on.  Those that collaborate most will be the first chosen by our algorithm.
                 </p>
-             
+
             </div>
-        </div> 
+        </div>
         <br>
         <br>
-    
-         <div> 
+
+         <form action = "php/register.php" method = "post">
 
 
 
@@ -118,29 +118,31 @@
                   <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
 
                   <label for="username"><a style = "color:black;">Username:</a></label><br>
-                  <input type = "text" id = "username" value=""><br>
+                  <input type = "text" name = "username" id = "username" value=""><br>
                   <label for="password"><a style = "color:black;">Password:</a></label><br>
-                  <input type = "password" id = "password" value=""><br>
+                  <input type = "password" name = "password" id = "password" value=""><br>
 
 
                   <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
                   <!-- Separating with a semicolon allows for another command to be executed on the same click.  It goes in sequential order. -->
                   <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
                   <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
-                  <input type="submit" value="Register" id = "register" onclick="alert('You have been registered.'); location.href=location.href">
+
+                    <input type="submit" value="Register" id = "register" onclick="alert('You have been registered.'); location.href=location.href">
+
                   <input type="submit" value="Log In" id = "login" onclick="alert('You have been logged in.'); location.href=location.href"><br>
                   <input type="submit" value="Forgot Password?" id = "forgot" onclick="alert('Unfortunate!'); location.href=location.href">
-                
 
-            </center>
+             </center>
+            </form>
 
-        </div>
         <br><br><br><br>
-    
+
         <div class="footer">
             <p>Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a></p>
         </div>
-    
+
 </body>
-                                                              
+
 </html>
+
