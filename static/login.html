@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-<!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
-
 <!-- The headers. -->
 <head>
 
@@ -61,6 +58,34 @@
   display: table;
   clear: both;
   }
+    
+    
+.button {
+background-color: #1DB954; 
+border: black;
+border-style: solid;
+color: white;
+padding: 32px 20px;
+text-align: center;
+text-shadow: 1px 1px 0px #515151;
+font-weight: bold;
+position: relative;
+line-height: 0.2em;
+display: inline-block;
+margin: 2px 2px;
+cursor: pointer;
+font-family: "Helvetica", "Arial", sans-serif; 
+}
+
+.wrapper {
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
 </style>
 
 <header>
@@ -82,31 +107,33 @@
 
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
-        <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
+   <div>
 
-        <br>
-         <div class="row">
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>About Us:</h1>
-                    <p>We are a website dedicated to helping music lovers find new artists and new music. Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm. This project is a part of a software engineering course.</p>
-            </div>
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>Tutorial:</h1>
-                     <video style='border: 2px solid #000;' width="410" height="230" controls>
-                          <source src="media/tutorial.mp4" type="video/mp4">
-                    </video>
-            </div>
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>Our Vision:</h1>
-                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.
-                        The way that we do this is by creating a k-nearest neighbors recommender algorithm where the criteria of being a neighbor is whether or not two artists have collaborated on a song.
-                        Artists are ranked relative to each other according to the number of songs collaborated on.  Those that collaborate most will be the first chosen by our algorithm.
-                </p>
+       
+                <br><br><br>
+            <form action = "existing.html">
+                <center>
 
-            </div>
-        </div>
+                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                        <button class="button button1"><b>Existing User</b></button><br>
+
+                </center>
+            </form>
+        
+            <form action = "new.html">
+                <center>
+
+                            <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                            <button class="button button1"><b>New User</b></button><br>
+
+                </center>
+            </form>
+                  
+        
+     </div> 
     
-        <div class="footer">
+    
+    <div class="footer">
             <p>
                 <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
                     Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
@@ -117,9 +144,6 @@
                     <a href="login.html"> Log In </a>
                 </span>
             </p>
-        </div>
-
+    </div>
 </body>
-
 </html>
-
