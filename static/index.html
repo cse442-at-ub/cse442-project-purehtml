@@ -118,9 +118,9 @@
                   <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
 
                   <label for="username"><a style = "color:black;">Username:</a></label><br>
-                  <input type = "text" name = "username" id = "username" value=""><br>
+                  <input type = "text" name = "username" id = "username" value="" minlength = 6 maxlength = 12><br>
                   <label for="password"><a style = "color:black;">Password:</a></label><br>
-                  <input type = "password" name = "password" id = "password" value=""><br>
+                  <input type = "password" name = "password" id = "password" value="" minlength = 6 maxlength = 20><br>
 
 
                   <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
@@ -139,7 +139,16 @@
         <br><br><br><br>
 
         <div class="footer">
-            <p>Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a></p>
+            <p>
+                <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
+                    Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
+                </span>
+        
+                
+                <span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>
+                    <a href="login.html"> Log In </a>
+                </span>
+            </p>
         </div>
 
 </body>
