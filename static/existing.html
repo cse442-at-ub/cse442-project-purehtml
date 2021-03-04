@@ -82,31 +82,33 @@
 
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
-        <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
+    <br><br><br>
+    <form action = "index.html">
 
-        <br>
-         <div class="row">
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>About Us:</h1>
-                    <p>We are a website dedicated to helping music lovers find new artists and new music. Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm. This project is a part of a software engineering course.</p>
-            </div>
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>Tutorial:</h1>
-                     <video style='border: 2px solid #000;' width="410" height="230" controls>
-                          <source src="media/tutorial.mp4" type="video/mp4">
-                    </video>
-            </div>
-            <div class="column" style="min-width: 400px; margin: 0 auto;">
-                <h1>Our Vision:</h1>
-                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.
-                        The way that we do this is by creating a k-nearest neighbors recommender algorithm where the criteria of being a neighbor is whether or not two artists have collaborated on a song.
-                        Artists are ranked relative to each other according to the number of songs collaborated on.  Those that collaborate most will be the first chosen by our algorithm.
-                </p>
 
-            </div>
-        </div>
+
+                <!-- <center> horizontally centers the element, but not vertically.  Probably because elements scroll up/down, not left/right -->
+                <center>
+
+                      <!-- This is the username/password field.  The type determines whether or not the passwords are shown or not. -->
+
+                      <label for="username"><a style = "color:black;">Username:</a></label><br>
+                      <input type = "text" name = "username" id = "username" value="" minlength = 6 maxlength = 12><br>
+                      <label for="password"><a style = "color:black;">Password:</a></label><br>
+                      <input type = "password" name = "password" id = "password" value="" minlength = 6 maxlength = 20><br>
+
+
+                      <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
+                      <!-- Separating with a semicolon allows for another command to be executed on the same click.  It goes in sequential order. -->
+                      <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
+                      <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
+
+                        <input type="submit" value="Log In" id = "login">
+
+                 </center>
+    </form>
     
-        <div class="footer">
+    <div class="footer">
             <p>
                 <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
                     Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
@@ -117,9 +119,7 @@
                     <a href="login.html"> Log In </a>
                 </span>
             </p>
-        </div>
-
+    </div>
+    
 </body>
-
 </html>
-
