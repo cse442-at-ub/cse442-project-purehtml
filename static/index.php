@@ -75,7 +75,7 @@ $_SESSION["test"] = "Session test!";
 
   <div class="search" id = "search">
 
-    <form action = "result.php" method = "get">
+    <form action = "php/set_artist.php" method = "post">
       <center>
       <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
       <input type="submit" value = "submit">
@@ -111,14 +111,14 @@ $_SESSION["test"] = "Session test!";
 
             </div>
         </div>
-
+    
         <div class="footer">
             <p>
                 <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
                     Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
                 </span>
-
-
+        
+                
                 <span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>
                     <a href="login.php"> Log In </a>
                 </span>
@@ -128,3 +128,5 @@ $_SESSION["test"] = "Session test!";
 </body>
 
 </html>
+
+
