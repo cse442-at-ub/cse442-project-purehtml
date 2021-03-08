@@ -30,7 +30,9 @@ echo $test;
         echo "<script>alert('Incorrect username length!\nLength should be between 6-20 characters');</script>"
     }
 
-    if(strlen($pass) < 6 || strlen($pass))
+    if(strlen($pass) < 6 || strlen($pass) > 20){
+        echo "<script>alert('Incorrect password length!\nLength should be between 6-20 characters');</script>"
+    }
 
     $bool_user = ($reduced_user == $user);
     $bool_pass = ($reduced_pass == $pass);
