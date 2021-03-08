@@ -1,0 +1,132 @@
+<?php
+// Start the session
+session_start();
+$_SESSION["test"] = "Session test!";
+?>
+
+<!DOCTYPE html>
+<html>
+
+<!-- Creating an instance of the '.button' class named .button1 with parameters so that it can be used generically -->
+
+<!-- The headers. -->
+<head>
+
+        <meta charset = "utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- The page title.  Not to be confused with the text at the top. -->
+        <title>Team PureHTML: Spotifind</title>
+
+        <!-- Forcing our page to adjust to the aspect ratio of the device. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+  h1{
+    font-family: 'Bebas Neue', cursive;
+  }
+  h2{
+    font-family: 'Bebas Neue', cursive;
+  }
+  p{
+    font-family: 'Bebas Neue', cursive;
+  }
+  label{
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: black;
+   text-align: left;
+   background: white;
+   font-family: 'Bebas Neue', cursive;
+   padding-left: 10px;
+   border: 2px solid black;
+   border-left: 0;
+   border-right: 0;
+   border-bottom: 0;
+  }
+
+  .column {
+  float: left;
+  text-align: center;
+  width: 33.333%;
+  }
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+</style>
+
+<header>
+
+  <h1 align="center"><a href="index.php"><img src="media/logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
+
+  <div class="search" id = "search">
+
+    <form action = "php/set_artist.php" method = "post">
+      <center>
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="submit" value = "submit">
+      </center>
+    </form>
+
+  </div>
+
+</header>
+
+<!-- The body.  Basically, where all of the content goes. -->
+<body style="background-color: #77d94c">
+        <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
+
+        <br>
+         <div class="row">
+            <div class="column" style="min-width: 400px; margin: 0 auto;">
+                <h1>About Us:</h1>
+                    <p>We are a website dedicated to helping music lovers find new artists and new music. Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm. This project is a part of a software engineering course.</p>
+            </div>
+            <div class="column" style="min-width: 400px; margin: 0 auto;">
+                <h1>Tutorial:</h1>
+                     <video style='border: 2px solid #000;' width="410" height="230" controls>
+                          <source src="media/tutorial.mp4" type="video/mp4">
+                    </video>
+            </div>
+            <div class="column" style="min-width: 400px; margin: 0 auto;">
+                <h1>Our Vision:</h1>
+                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.
+                        The way that we do this is by creating a k-nearest neighbors recommender algorithm where the criteria of being a neighbor is whether or not two artists have collaborated on a song.
+                        Artists are ranked relative to each other according to the number of songs collaborated on.  Those that collaborate most will be the first chosen by our algorithm.
+                </p>
+
+            </div>
+        </div>
+    
+        <div class="footer">
+            <p>
+                <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
+                    Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
+                </span>
+        
+                
+                <span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>
+                    <a href="login.php"> Log In </a>
+                </span>
+            </p>
+        </div>
+
+</body>
+
+</html>
+
+
