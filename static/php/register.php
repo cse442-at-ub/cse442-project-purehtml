@@ -26,6 +26,10 @@ echo $test;
     $pass = $_POST['password'];
     $reduced_pass = preg_replace("/[^a-zA-Z0-9]+/", "", $pass);
 
+    if(strlen($user) < 6 || strlen($user) > 20){
+        echo "<script>alert('Incorrect username length!\nLength should be between 6-20 characters');</script>"
+    }
+
     $bool_user = ($reduced_user == $user);
     $bool_pass = ($reduced_pass == $pass);
     $bool = ($bool_user and $bool_pass);
