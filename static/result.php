@@ -11,7 +11,7 @@ session_start();
 
 <style>
 .button {
-background-color: #1DB954;
+background-color: #1DB954; 
 border: black;
 border-style: solid;
 color: white;
@@ -24,15 +24,15 @@ line-height: 0.2em;
 display: inline-block;
 margin: 100px 2px;
 cursor: pointer;
-font-family: "Helvetica", "Arial", sans-serif;
+font-family: "Helvetica", "Arial", sans-serif; 
 }
 
 
 .button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
 </style>
 <!-- Basically all of this was explained in index.html. -->
-
-
+    
+    
 <head>
 
         <meta charset = "utf-8" />
@@ -57,7 +57,7 @@ font-family: "Helvetica", "Arial", sans-serif;
   b{
     font-family: 'Bebas Neue', cursive;
   }
-
+    
 .footer {
    position: fixed;
    left: 0;
@@ -74,95 +74,83 @@ font-family: "Helvetica", "Arial", sans-serif;
    border-bottom: 0;
   }
 </style>
-
+ 
 <!-- This is the header that follows  you around page to page. -->
 <header>
-
+    
     <!-- Clicking on this redirects the user to index.html. -->
   <h1 align="center"><a href="index.php"><img src="media/logo.png" alt="SpotiFind" width="128" height="128"></a></h1>
-
+    
   <div class="search" id = "search">
-     <center>
+     <center>  
         <!-- The "method = 'get'" keyword posts the value to the page. -->
-    <form action = "result.html" method = "get">
-
+    <form action = "php/set_artist.php" method = "post">
+            
       <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
       <input type="submit" value = "submit">
-
+       
     </form>
-
-         </center>
-
+         
+         </center> 
+        
   </div>
-
+    
 </header>
 
 <body style="background-color: #77d94c">
-        <?php
-                session_start();
-                 print "<h1>Hello User, </h1> <p>{$_SESSION["test"]}</p>"
-        ?>
-
-        <!-- <p> just creates a new paragraph or more specifically a body of text. -->
-        <div id = "pain">
-                <center>
-                        <h1> Results: </h1>
-                        <p id="url"></p>
-
-
-                        <!-- This J.S. script basically takes the URL and replaces the "url" element with the artist name.  I drop '+' b/c it's used to denote spaces. -->
-                        <script>
-                            var url = window.location.href.split("artist=")[1].replace("+", " ");
-                            document.getElementById("url").innerHTML =
-                                "The artist you chose: " + url;
-                        </script>
-                </center>
+	<div>
+		<center>
+			<?php
+		 		print "<h1>Hello User, you searched: </h1> <p>{$_SESSION["search"]}</p>"
+			?>
+		</center>
         </div>
-
-
+        <!-- <p> just creates a new paragraph or more specifically a body of text. -->
+    
+  
          <!-- <div> elements are stacked vertically so this will appear under the last <div>. -->
          <div>
-
+           
                 <!-- '<form action = "result.php">' redirects to result.html upon completion of the action.  In this case, clicking a button. -->
 
                     <div style='float:left;  width:30%'>
 
                 <form action = "random.php">
-
+                  
                         <center>
-
+                          
                                 <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                 <button class="button button1"><b>Random Song</b></button><br>
-
+                          
                         </center>
-
+                  
 
                 </form></div>
                 <div style='float:right;  width:30%'>
                 <form action = "statistics.php">
                     <center>
-
+                          
                                 <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                 <button class="button button1"><b>Statistics</b></button><br>
-
+                          
                         </center>
-
+                  
                 </form>
              </div>
         </div>
-
+    
          <div class="footer">
             <p>
                 <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
                     Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
                 </span>
-
-
+        
+                
                 <span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>
                     <a href="login.php"> Log In </a>
                 </span>
             </p>
-    </div>
+    </div>     
 
 </body>
 
