@@ -39,6 +39,9 @@ echo $test;
     if(str_contains($pass, "/[a-z]/") == False){
         echo "<script>alert('Password is weak!\nShould contain at least one uppercase, one lowercase, and one numerical value');</script>"
     }
+    if(str_contains($pass, "/[0-9]/") == False){
+        
+    }
 
     $bool_user = ($reduced_user == $user);
     $bool_pass = ($reduced_pass == $pass);
