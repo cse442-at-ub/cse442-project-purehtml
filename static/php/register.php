@@ -33,6 +33,9 @@ echo $test;
     if(strlen($pass) < 6 || strlen($pass) > 20){
         echo "<script>alert('Incorrect password length!\nLength should be between 6-20 characters');</script>"
     }
+    if(str_contains($pass, "/[A-Z]/") == False){
+        echo "<script>alert('Password is weak!\nShould contain at least one uppercase, one lowercase, and one numerical value');</script>"
+    }
 
     $bool_user = ($reduced_user == $user);
     $bool_pass = ($reduced_pass == $pass);
