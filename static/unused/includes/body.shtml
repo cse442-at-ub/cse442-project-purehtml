@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>body title</title>
+</head>
+<!--#include virtual="header.shtml" -->
+<body>
+  This is the body of my Server Side Includes HTML!
+  Includes a header and a footer!!
+
+</body>
+
+<!--#include virtual="footer.shtml" -->
+
+
+</html>
