@@ -1,4 +1,3 @@
-<html>
 <?php
 // Start the session
 session_start();
@@ -7,9 +6,6 @@ session_start();
 
 // Set the location of the text file.
 $path = '../data/log.txt';
-$test = $_SESSION["username"];
-
-echo $test;
 
 // A boolean check to make sure that the fields have values.
  if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -31,38 +27,37 @@ echo $test;
     $bool = ($bool_user and $bool_pass);
 
     if ($bool == True){
-   	 // Declare a Boolean to see if the user already exists.
-   	 $exists = False;
-   	 foreach($users as $line) {
-       	 	$current_user = explode(":", $line)[0];
+         // Declare a Boolean to see if the user already exists.
+         $exists = False;
+         foreach($users as $line) {
+                $current_user = explode(":", $line)[0];
 
-       	 	if ($current_user == $user)
-          {
-            $current_pass = explode(":", $line)[1];
-            if($current_pass == $pass)
-            {
-              $exists = True;
-            }
+                if ($current_user == $user){
+                 $current_pass = explode(":", $line)[1];
+                 if($current_pass == $pass)
+                 {
+                         $exists = True;
+                 }
 
-       		}
+                }
 
-    	}
+        }
 
-    	if ($exists == False){
+        if ($exists == False){
 
-        	echo "<script>alert('No Such User//BadUserPass');</script>";
+                echo "<script>alert('Bad username or password.');</script>";
 
-    	}
+        }
 
-    	else{
+        else{
 
-        	echo "<script>alert('User exists, logged in.');</script>";
-          $_SESSION["username"]=$user;
-    	}
+                echo "<script>alert('User exists, logged in.');</script>";
+                 $_SESSION["username"]=$user;
+        }
     }
     else{
-	 echo "<script>alert('Username and password  must be alphanumeric.');</script>";
-	}
+         echo "<script>alert('Username and password  must be alphanumeric.');</script>";
+        }
 
     // Close the file.
     fclose($file);
@@ -70,5 +65,8 @@ echo $test;
  }
 
 ?>
+<html>
+
 <script> location.href = '../index.php'; </script>
+
 </html>
