@@ -88,7 +88,7 @@ session_start();
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
     <br><br><br>
-    <form action = "index.php">
+    <form action = "php/login.php">
 
 
 
@@ -112,19 +112,19 @@ session_start();
 
                  </center>
     </form>
-    
+
     <div class="footer">
             <p>
                 <span style = "float:left; padding-left:10px; padding-bottom: 10px; font-size: 30px";>
                     Contact Us:  <a href="mailto:marshad2@buffalo.edu">Faizaan</a> | <a href="mailto:frankbai@buffalo.edu">Frank</a> | <a href="mailto:jdkazime@buffalo.edu">Jeremy</a>
                 </span>
-        
-                
+
+
                 <span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>
                     <a href="login.php"> Log In </a>
                 </span>
             </p>
     </div>
-    
+
 </body>
 </html>
