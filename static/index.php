@@ -32,6 +32,16 @@ $_SESSION["test"] = "Session test!";
 
             </div>
         </div>
+	<br><br>
+	<div>
+		<center>
+		<?php
+                	if ($_SESSION["username"] != ""){
+                        	echo "<h1>Welcome, " . $_SESSION["username"] . "!</h1>";
+                	}
+       		 ?>
+		</center>
+	</div>
 
 <?php include "footer.php"; ?>
 
