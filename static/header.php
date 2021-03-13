@@ -69,7 +69,7 @@ echo '
 
     <form action = "php/set_artist.php" method = "post">
       <center>
-      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist">
+      <input type="text" placeholder="Search an artist" id = "search_entry" name = "artist" required maxlength = "20">
       <input type="submit" value = "submit">
       </center>
     </form>
