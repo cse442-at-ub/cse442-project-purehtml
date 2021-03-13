@@ -36,8 +36,13 @@ font-family: "Helvetica", "Arial", sans-serif;
 	<div>
 		<center>
 			<?php
-		 		print "<h1>Hello User, you searched: </h1> <p>{$_SESSION["search"]}</p>"
-			?>
+                                if ($_SESSION["username"] != ""){
+                                        print "<h1>{$_SESSION["username"]}, you searched: </h1> <p>{$_SESSION["search"]}</p>";
+                                }
+                                else{
+                                        print "<h1>You searched: </h1> <p>{$_SESSION["search"]}</p>";
+                                }
+                        ?>
 		</center>
         </div>
         <!-- <p> just creates a new paragraph or more specifically a body of text. -->
