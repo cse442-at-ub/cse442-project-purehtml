@@ -50,7 +50,7 @@ font-family: "Helvetica", "Arial", sans-serif;
 
                     <div style='float:left;  width:30%'>
 
-                <form action = "random.php">
+                <form action = "php/get_random.php">
 
                         <center>
 
