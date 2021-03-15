@@ -10,7 +10,12 @@ session_start();
 
     <center>
         <h1>Random Song:</h1>
-        <p>This is where the song would go, if we had code!</p>
+        <?php
+
+                print "<p>{$_SESSION["random_track"]}</p>";
+
+        ?>
+
      </center>
 
 

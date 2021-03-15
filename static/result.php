@@ -33,17 +33,19 @@ font-family: "Helvetica", "Arial", sans-serif;
 <?php include "header.php"; ?>
 
 <body style="background-color: #77d94c">
-	<div>
-		<center>
-			<?php
+        <div>
+                <center>
+                        <?php
+
                                 if ($_SESSION["username"] != ""){
-                                        print "<h1>{$_SESSION["username"]}, you searched: </h1> <p>{$_SESSION["search"]}</p>";
-                                }
-                                else{
                                         print "<h1>You searched: </h1> <p>{$_SESSION["search"]}</p>";
                                 }
-                        ?>
-		</center>
+
+                                else{
+                                        print "<h1>{$_SESSION["username"]}, you searched: </h1> <h2>{$_SESSION["search"]}</h2>";
+                                }
+                         ?>
+                </center>
         </div>
         <!-- <p> just creates a new paragraph or more specifically a body of text. -->
 
@@ -55,7 +57,7 @@ font-family: "Helvetica", "Arial", sans-serif;
 
                     <div style='float:left;  width:30%'>
 
-                <form action = "random.php">
+                <form action = "php/get_random.php">
 
                         <center>
 
@@ -78,6 +80,8 @@ font-family: "Helvetica", "Arial", sans-serif;
                 </form>
              </div>
         </div>
+
+        <div><center><p>Wrong artist? Did you enter their name correctly?</p> </center></div>
 
 <?php include "footer.php"; ?>
 
