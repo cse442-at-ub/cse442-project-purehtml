@@ -28,19 +28,24 @@ echo $test;
 
     if(strlen($user) < 6 || strlen($user) > 20){
         echo "<script>alert('Incorrect username length!\nLength should be between 6-20 characters');</script>"
+        exit(0);
     }
 
     if(strlen($pass) < 6 || strlen($pass) > 20){
         echo "<script>alert('Incorrect password length!\nLength should be between 6-20 characters');</script>"
+        exit(0);
     }
     if(str_contains($pass, "/[A-Z]/") == False){
         echo "<script>alert('Password is weak!\nShould contain at least one uppercase, one lowercase, and one numerical value');</script>"
+        exit(0);
     }
     if(str_contains($pass, "/[a-z]/") == False){
         echo "<script>alert('Password is weak!\nShould contain at least one uppercase, one lowercase, and one numerical value');</script>"
+        exit(0);
     }
     if(str_contains($pass, "/[0-9]/") == False){
         echo "<script>alert('Password is weak!\nShould contain at least one uppercase, one lowercase, and one numerical value');</script>"
+        exit(0);
     }
 
     $bool_user = ($reduced_user == $user);
