@@ -9,7 +9,7 @@ session_start();
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
     <br><br><br>
-    <form action = "php/login.php">
+    <form action = "php/login.php" method = "post">
 
 
 
