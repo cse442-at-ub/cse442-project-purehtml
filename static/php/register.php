@@ -79,7 +79,7 @@ echo $test;
     	else{
         
         	echo "<script>alert('User already exists.');</script>";
-                
+            exit(0);    
     	}
     }
     else{
