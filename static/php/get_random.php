@@ -10,14 +10,10 @@ include '../../spotify/get_songs.php';
 
 $artist = $_SESSION["search"] or die("Welp!");
 
-$creds = getCredentials();
-$client_id = $creds[0];
-$client_secret = $creds[1];
+$token = $_SESSION["token"];
+$tracks = $_SESSION["artist_tracks"];
 
-$token = get_authenicated($client_id, $client_secret);
-
-$top_tracks = get_top_artists($artist, $token);
-$id = get_artist_id($top_tracks);
+$id = get_artist_id($tracks, $token) or "Invalid search.";
 $albums = get_all_albums($id, $token);
 $tracks = get_all_tracks($albums, $token);
 
