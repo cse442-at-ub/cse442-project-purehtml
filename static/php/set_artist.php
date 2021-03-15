@@ -22,7 +22,8 @@ include '../../spotify/get_songs.php';
     $top_match = $tracks[0]['artists'][0]['name'] or "Artist Not Found";
 
     $_SESSION['search'] = $top_match;
-
+ 
+    $_SESSION['token'] = $token;
     $_SESSION['artist_tracks'] = $tracks;
  }
 
