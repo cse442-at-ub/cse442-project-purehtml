@@ -58,7 +58,7 @@ echo $test;
    	 foreach($users as $line) {
        	 	$current_user = explode(":", $line)[0];
             
-       	 	if ($current_user == $user){
+       	 	if (strtolower($current_user) == strtolower($user)){
             		$exists = True;
        			 }
 
@@ -78,7 +78,8 @@ echo $test;
     
     	else{
         
-        	echo "<script>alert('User already exists.');</script>";    
+        	echo "<script>alert('User already exists.');</script>";
+                
     	}
     }
     else{
