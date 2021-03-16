@@ -11,9 +11,9 @@ session_start();
     <center>
         <h1>Random Song:</h1>
         <?php
-
-                print "<p>{$_SESSION["random_track"]}</p>";
-
+                print "<iframe src='https://open.spotify.com/embed/track/{$_SESSION["random_track"]}'
+                        width='300' height='380' frameborder='0' style='border: 5px solid black;'
+                        allowtransparency='true' allow='encrypted-media'></iframe>";
         ?>
 
      </center>
