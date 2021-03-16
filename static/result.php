@@ -45,6 +45,17 @@ font-family: "Helvetica", "Arial", sans-serif;
                                         print "<h1>{$_SESSION["username"]}, you searched: </h1> <h2>{$_SESSION["search"]}</h2>";
                                 }
                          ?>
+                        
+                         <?php
+                                 $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or die("hi");
+                                 $url = get_artist_image($id[0], $_SESSION['token'])["url"];
+                                 if ($url != ""){
+
+                                        print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
+
+                                                }
+                         ?>
+
                 </center>
         </div>
         <!-- <p> just creates a new paragraph or more specifically a body of text. -->
