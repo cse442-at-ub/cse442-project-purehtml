@@ -21,13 +21,28 @@ function get_top_artists($artist, $token)
     return $tracks;
 }
 
-function get_artist_id($tracks)
+function get_artist_id($input, $tracks)
 {
+    // A dictionary storing k.v. pairs
+    // of (artist) -> (similarity)
+    $similarity = array();
+    $artists = array();
+    foreach($tracks as $track){
+        foreach($track['artists'] as $artist){
 
-    $top_track = $tracks[0];
-    return $top_track['artists'][0]['id'];
+            // Returns similarity as an integer (sim) and percentage (perc)
+            $sim = similar_text($artist["name"], $input, $perc);
+            $similarity[$artist["id"]] = $perc;
+            $artists[$artist["id"]] = $artist["name"];
+         }
+    }
 
+    # Returns the id of the maximum similarity.
+    $most_similar = array_search(max($similarity), $similarity);
+
+    return array($most_similar, $artists[$most_similar]);
 }
+
 
 function get_all_albums($id, $token)
 {
