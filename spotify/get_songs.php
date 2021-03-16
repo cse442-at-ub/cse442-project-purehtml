@@ -31,7 +31,7 @@ function get_artist_id($input, $tracks)
         foreach($track['artists'] as $artist){
 
             // Returns similarity as an integer (sim) and percentage (perc)
-            $sim = similar_text($artist["name"], $input, $perc);
+            $sim = similar_text(strtolower($artist["name"]), strtolower($input), $perc);
             $similarity[$artist["id"]] = $perc;
             $artists[$artist["id"]] = $artist["name"];
          }
