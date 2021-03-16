@@ -13,7 +13,7 @@ $artist = $_SESSION["search"] or die("Welp!");
 $token = $_SESSION["token"];
 $tracks = $_SESSION["artist_tracks"];
 
-$id = get_artist_id($tracks, $token) or "Invalid search.";
+$id = get_artist_id($artist, $tracks)[0] or "Invalid search.";
 $albums = get_all_albums($id, $token);
 $tracks = get_all_tracks($albums, $token);
 
@@ -25,3 +25,4 @@ $_SESSION['random_track'] = $random_track['id'];
 
 <script> location.href = '../random.php'; </script>
 </html>
+
