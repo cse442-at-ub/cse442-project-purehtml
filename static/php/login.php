@@ -32,7 +32,7 @@ $path = '../data/log.txt';
          foreach($users as $line) {
                 $current_user = explode(":", $line)[0];
 
-                if ($current_user == $user){
+                if (strtolower($current_user) == strtolower($user)){
                  $current_pass = explode(":", $line)[1];
                  if($current_pass == $pass)
                  {
