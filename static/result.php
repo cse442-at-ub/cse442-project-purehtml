@@ -13,14 +13,15 @@ background-color: #1DB954;
 border: black;
 border-style: solid;
 color: white;
-padding: 32px 20px;
+padding-top: 20px;
+margin: 5px;
 text-align: center;
 text-shadow: 1px 1px 0px #515151;
 font-weight: bold;
 position: relative;
-line-height: 0.2em;
+line-height: 1;
+padding-bottom: 35px;
 display: inline-block;
-margin: 100px 2px;
 cursor: pointer;
 font-family: "Helvetica", "Arial", sans-serif;
 }
@@ -84,7 +85,7 @@ font-family: "Helvetica", "Arial", sans-serif;
 
 
 
-                                                print "<h1>Most Similar Artists:</h1>:";
+                                                print "<h1>Most Similar Artists:</h1>";
 
                                                 for ($k = 1; $k <= 10; $k++){
                                                         print "<h2>{$k}: result goes here Sprint #3!</h2>";
