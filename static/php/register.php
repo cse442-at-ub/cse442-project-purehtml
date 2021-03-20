@@ -7,9 +7,6 @@ session_start();
 
 // Set the location of the text file.
 $path = '../data/log.txt';
-$test = $_SESSION["username"];
-
-echo $test;
 
 // A boolean check to make sure that the fields have values.
  if (isset($_POST['username']) && isset($_POST['password'])) {
