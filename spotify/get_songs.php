@@ -4,10 +4,11 @@ include 'call_spotify.php';
 
 function get_top_artists($artist, $token)
 {
+    $no_spec_artist = preg_replace("/[^a-zA-Z0-9]+/", "", $artist);
 
     $headers  = ['Content-Type: application/json',
                 'Authorization: Bearer '.$token];
-    $url      = "https://api.spotify.com/v1/search?q=".replace_spaces($artist)."&type=track&limit=50";
+    $url      = "https://api.spotify.com/v1/search?q=".replace_spaces($no_spec_artist)."&type=track&limit=50";
     $options  = create_options($headers, $url);
 
     $features = call_spotify($options);
@@ -21,17 +22,19 @@ function get_top_artists($artist, $token)
     return $tracks;
 }
 
+
 function get_artist_id($input, $tracks)
 {
     // A dictionary storing k.v. pairs
     // of (artist) -> (similarity)
+    $no_spec_input = preg_replace("/[^a-zA-Z0-9]+/", "", $input);
     $similarity = array();
     $artists = array();
     foreach($tracks as $track){
         foreach($track['artists'] as $artist){
 
             // Returns similarity as an integer (sim) and percentage (perc)
-            $sim = similar_text(strtolower($artist["name"]), strtolower($input), $perc);
+            $sim = similar_text(strtolower($artist["name"]), strtolower($no_spec_input), $perc);
             $similarity[$artist["id"]] = $perc;
             $artists[$artist["id"]] = $artist["name"];
          }
