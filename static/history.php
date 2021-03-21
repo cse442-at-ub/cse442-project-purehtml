@@ -41,30 +41,28 @@ font-family: "Helvetica", "Arial", sans-serif;
                 <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <center>
                                 <?php
-                                //print "<h1>Here are your recent searches, $_SESSION['username']</h1>";
                                 
                                 $file = 'data/history.json';
                                 $json = file_get_contents($file) or die('No Open!');
                                 $dict = json_decode($json, true);
-                                $searches = $dict[$_SESSION['username']];
-                                //$user_history = json_decode('data/history.json');
+                                
                                 
                                 if (array_key_exists($_SESSION['username'], $dict) == False){
                                         print("<h1>No Search History Found</h1>");
                                 }
 
                                 else{
-                                        $history = dict[$_SESSION['username']];
-                                        if(sizeof(history) == 0){
+                                        $history = $dict[$_SESSION['username']];
+                                        
+                                        if(sizeof($history) == 0){
                                                 print("<h1>No Search History Found</h1>");
                                         }
-                                        //if($dict[$_SESSION['username']] != ""){
-                                        //print("<h1>Here are your recent searches, {$dict[$_SESSION['username']]}</h1>");
+                                        
                                         
                                         else{
-                                                print("<h1>Here are your recent searches</h1>");
-                                                for($k = 1; $k <= 10; $k++){
-                                                        print("<h2>{$k}: </h2>");
+                                                print("<h1>Recent searches</h1>");
+                                                for($k = 1; $k <= sizeof($history); $k++){
+                                                        print("<h2>{$k}: {$history[$k - 1]} </h2>");
 
                                                 }
                                         }
@@ -73,7 +71,7 @@ font-family: "Helvetica", "Arial", sans-serif;
                                 
 
                                 
-                                ?>
+                                ?><br><br><br><br>
                         </center>
 
                 </div>
