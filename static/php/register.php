@@ -23,6 +23,43 @@ $path = '../data/log.txt';
     $pass = $_POST['password'];
     $reduced_pass = preg_replace("/[^a-zA-Z0-9]+/", "", $pass);
 
+    if(strlen($user) < 6 || strlen($user) > 20){
+        echo "<script>alert('Incorrect username length!Length should be between 6-20 characters');</script>";
+        echo "<script>location.href = '../new.php'</script>";
+        exit(0);
+        
+        
+    }
+
+    if(strlen($pass) < 6 || strlen($pass) > 20){
+        echo "<script>alert('Incorrect password length!Length should be between 6-20 characters');</script>";
+       echo "<script>location.href = '../new.php'</script>";
+        exit(0);
+        
+    }
+
+    if(preg_match('~[A-Z]+~', $pass) == False){
+        echo "<script>alert('Password is weak!Should contain at least one uppercase, one lowercase, and one numerical value');</script>";
+        echo "<script>location.href = '../new.php'</script>";
+        exit(0);
+        
+    }
+
+    if(preg_match('~[a-z]+~', $pass) == False){
+        echo "<script>alert('Password is weak!Should contain at least one uppercase, one lowercase, and one numerical value');</script>";
+        echo "<script>location.href = '../new.php'</script>";
+        exit(0);
+        
+    }
+    
+    
+    if(preg_match('~[0-9]+~', $pass) == False){
+        echo "<script>alert('Password is weak!Should contain at least one uppercase, one lowercase, and one numerical value');</script>";
+        echo "<script>location.href = '../new.php'</script>";
+        exit(0);
+    }
+    
+
     $bool_user = ($reduced_user == $user);
     $bool_pass = ($reduced_pass == $pass);
     $bool = ($bool_user and $bool_pass);
@@ -33,7 +70,7 @@ $path = '../data/log.txt';
    	 foreach($users as $line) {
        	 	$current_user = explode(":", $line)[0];
             
-       	 	if ($current_user == $user){
+       	 	if (strtolower($current_user) == strtolower($user)){
             		$exists = True;
        			 }
 
@@ -47,17 +84,23 @@ $path = '../data/log.txt';
         	// Write to file.
         	fwrite($file, $data);
         
-        	echo "<script>alert('You have been registered.');</script>"; 
+        	echo "<script>alert('You have been registered.');</script>";
+            
         
     	}
     
     	else{
         
-        	echo "<script>alert('User already exists.');</script>";    
+        	echo "<script>alert('User already exists.');</script>";
+            echo "<script>location.href = '../new.php'</script>";
+            exit(0);
+              
     	}
     }
     else{
 	 echo "<script>alert('Username and password  must be alphanumeric.');</script>";
+     echo "<script>location.href = '../new.php'</script>";
+        exit(0);
 	}
 
     // Close the file.

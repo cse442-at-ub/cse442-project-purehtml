@@ -94,4 +94,21 @@ function get_all_tracks($albums, $token)
     return $songs;
 }
 
+
+function get_artist_image($id, $token)
+{
+    $headers  = ['Content-Type: application/json',
+                'Authorization: Bearer '.$token];
+
+    $url      = "https://api.spotify.com/v1/artists/{$id}";
+    $options  = create_options($headers, $url);
+
+    $features = call_spotify($options);
+    $data = json_decode(json_encode($features), true);
+
+    $image = $data["images"][0];
+    return $image;
+}
+
+
 ?>
