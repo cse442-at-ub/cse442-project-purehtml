@@ -7,6 +7,7 @@ $_SESSION["test"] = "Session test!";
 
 <?php include "header.php"; ?>
 
+
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
@@ -15,7 +16,11 @@ $_SESSION["test"] = "Session test!";
          <div class="row">
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>About Us:</h1>
-                    <p>We are a website dedicated to helping music lovers find new artists and new music. Team PureHTML is a group of 3 undergraduates working on Spotifind, a user friendly Spotify recommender algorithm. This project is a part of a software engineering course.</p>
+                    <ul>
+                        <h2>We are a website dedicated to helping music lovers find new artists and new music.</h2><br>
+                        <h2>Spotifind is a Spotify recommender algorithm developed by Team PureHTML.</h2><br>
+                        <h2>Team PureHTML is a group of 3 undergraduates for a software engineering course.</h2>
+                    </ul>
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Tutorial:</h1>
@@ -25,23 +30,24 @@ $_SESSION["test"] = "Session test!";
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Our Vision:</h1>
-                    <p>The goal of Spotifind is to introduce new music to our users, while providing new information to them in the form of random songs and statistics for that particular artist.
-                        The way that we do this is by creating a k-nearest neighbors recommender algorithm where the criteria of being a neighbor is whether or not two artists have collaborated on a song.
-                        Artists are ranked relative to each other according to the number of songs collaborated on.  Those that collaborate most will be the first chosen by our algorithm.
-                </p>
+                    <ul>
+                        <h2>The goal of Spotifind is to introduce new music to our users via a k-NN algorithm.</h2><br>
+                        <h2>Artists are ranked according to their degree of collaboration.</h2><br>
+                        <h2>Random songs and statistics are also provided for the user's curiosity.</h2>
+                    </ul>
 
             </div>
         </div>
-	<br><br>
-	<div>
-		<center>
-		<?php
-                	if ($_SESSION["username"] != ""){
-                        	echo "<h1>Welcome, " . $_SESSION["username"] . "!</h1>";
-                	}
-       		 ?>
-		</center>
-	</div>
+        <br><br>
+        <div>
+                <center>
+                <?php
+                        if ($_SESSION["username"] != ""){
+                                echo "<h1>Welcome, " . $_SESSION["username"] . "!</h1>";
+                        }
+                 ?>
+                </center>
+        </div>
 
 <?php include "footer.php"; ?>
 

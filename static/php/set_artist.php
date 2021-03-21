@@ -3,7 +3,7 @@
 // Start the session
 session_start();
 ?>
- 
+
 <?php
 
 include '../../spotify/get_songs.php';
@@ -14,6 +14,13 @@ include '../../spotify/get_songs.php';
 
     $current_artist = $_POST['artist'];
 
+    $len = strlen(trim($current_artist));
+    if ($len == 0){
+        echo "<script>alert('You must have a valid search!');</script>";
+        echo "<script> location.href = location.href; </script>";
+    }
+
+    else{
 
     $_SESSION['search'] = $current_artist;
 
@@ -24,10 +31,10 @@ include '../../spotify/get_songs.php';
     $token = get_authenicated($client_id, $client_secret);
 
     $tracks = get_top_artists($current_artist, $token);
-    $top_match = $tracks[0]['artists'][0]['name'] or "Artist Not Found";
+    $top_match = get_artist_id($current_artist, $tracks)[1];
 
     $_SESSION['search'] = $top_match;
-   
+
     $user = $_SESSION["username"];
     if ($user != ""){
 
@@ -51,7 +58,7 @@ include '../../spotify/get_songs.php';
 
     $_SESSION['token'] = $token;
     $_SESSION['artist_tracks'] = $tracks;
-
+    }
  }
 
 ?>
