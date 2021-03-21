@@ -49,14 +49,20 @@ font-family: "Helvetica", "Arial", sans-serif;
                                 $searches = $dict[$_SESSION['username']];
                                 //$user_history = json_decode('data/history.json');
                                 
-                                if (array_key_exists($searches, $dict) == False){
+                                if (array_key_exists($_SESSION['username'], $dict) == False){
                                         print("<h1>No Search History Found</h1>");
                                 }
 
                                 else{
+                                        if(dict[$_SESSION['username']] == ""){
+                                                print("<h1>No Search History Found</h1>");
+                                        }
                                         //if($dict[$_SESSION['username']] != ""){
                                         //print("<h1>Here are your recent searches, {$dict[$_SESSION['username']]}</h1>");
-                                        print("<h1> Hi!</h1>");
+                                        
+                                        else{
+                                                print("<h1>Here are your recent searches</h1>");
+                                        }
                                 }
 
                                 
