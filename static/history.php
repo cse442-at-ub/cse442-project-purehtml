@@ -54,7 +54,8 @@ font-family: "Helvetica", "Arial", sans-serif;
                                 }
 
                                 else{
-                                        if(dict[$_SESSION['username']] == ""){
+                                        $history = dict[$_SESSION['username']];
+                                        if(sizeof(history) == 0){
                                                 print("<h1>No Search History Found</h1>");
                                         }
                                         //if($dict[$_SESSION['username']] != ""){
