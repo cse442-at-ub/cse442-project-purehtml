@@ -7,6 +7,7 @@ $_SESSION["test"] = "Session test!";
 
 <?php include "header.php"; ?>
 
+
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
