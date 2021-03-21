@@ -63,22 +63,19 @@ font-family: "Helvetica", "Arial", sans-serif;
                                         
                                         else{
                                                 print("<h1>Here are your recent searches</h1>");
+                                                for($k = 1; $k <= 10; $k++){
+                                                        print("<h2>{$k}: </h2>");
+
+                                                }
                                         }
                                 }
 
                                 
 
-                                //print $searches;
+                                
                                 ?>
-
-                                <?php
-                                                //for ($k = 1; $k <= 10; $k++){
-                                                    //    print "<h2>{$k}: result goes here Sprint #3!</h2>";
-                                              //  }
-                                        //}
-                                ?>
-
                         </center>
+
                 </div>
                 <!-- <p> just creates a new paragraph or more specifically a body of text. -->
 </div>
@@ -87,5 +84,6 @@ font-family: "Helvetica", "Arial", sans-serif;
 <?php include "footer.php"; ?>
 
 </body>
+
 
 </html>
