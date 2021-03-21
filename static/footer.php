@@ -22,9 +22,9 @@ if ($_SESSION["username"] == ""){
 }
 else{
 
-        $log_session = $log_session . '<a href="history.php"> History </a>';
+        $log_session = $log_session . '<a href="history.php"> History</a>';
         $log_session = $log_session . "<a> | </a>";
-        $log_session = $log_session . '<a href="php/logout.php"> Log Out </a>';
+        $log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
 
 }
 
