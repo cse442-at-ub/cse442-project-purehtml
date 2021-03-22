@@ -1,0 +1,82 @@
+  h1{
+    font-family: "Bebas Neue", cursive;
+  }
+
+  h2{
+    font-family: "Bebas Neue", cursive;
+  }
+
+  p{
+    font-family: "Bebas Neue", cursive;
+  }
+
+  label{
+    font-family: "Bebas Neue", cursive;
+  }
+
+  .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: black;
+   text-align: left;
+   background: white;
+   font-family: "Bebas Neue", cursive;
+   padding-left: 10px;
+   border: 2px solid black;
+   border-left: 0;
+   border-right: 0;
+   border-bottom: 0;
+  }
+
+  .column {
+  float: left;
+  text-align: center;
+  width: 33.333%;
+  }
+
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+
+
+  .button {
+background-color: #1DB954;
+border: black;
+border-style: solid;
+color: white;
+padding-top: 20px;
+margin: 5px;
+text-align: center;
+text-shadow: 1px 1px 0px #515151;
+font-weight: bold;
+position: relative;
+line-height: 1;
+padding-bottom: 35px;
+display: inline-block;
+cursor: pointer;
+font-family: "Bebas Neue", cursive;
+}
+
+
+  .button1 {width: 150px; height: 20px; font-size: 17px; font-family: "Bebas Neue", cursive;}
+
+  #submit {
+ width: 200px;
+ height: 60px;
+ border: none;
+ margin: 0;
+ font-size: 25px;
+ padding: 0;
+ background-color: transparent;
+ display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  cursor: pointer;
+}

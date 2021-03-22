@@ -10,13 +10,27 @@ session_start();
 
     <center>
         <h1>Random Song:</h1>
+
+                        <form action = "php/get_random.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Shuffle</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+                </div>
         <?php
-
-                print "<p>{$_SESSION["random_track"]}</p>";
-
+                print "<iframe src='https://open.spotify.com/embed/track/{$_SESSION["random_track"]}'
+                        width='300' height='380' frameborder='0' style='border: 5px solid black;'
+                        allowtransparency='true' allow='encrypted-media'></iframe>";
         ?>
 
-     </center>
+     </center><br><br><br><br><br>
 
 
 

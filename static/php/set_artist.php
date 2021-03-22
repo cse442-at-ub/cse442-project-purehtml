@@ -3,17 +3,35 @@
 // Start the session
 session_start();
 ?>
- 
+
 <?php
 
 include '../../spotify/get_songs.php';
 // Set the working artist.
 
 // A boolean check to make sure that the fields have values.
+
  if (isset($_POST['artist'])) {
 
-    $current_artist = $_POST['artist'];
+    if ($_POST['artist'] == "0"){
+       $current_artist = "0";
+    }
+    else{
+         $current_artist = $_POST['artist'] or die("I tried:(");
+    }
 
+    $current_artist = preg_replace("/[^a-z0-9]/i", "", $current_artist);
+    $temp_string = $current_artist[0];
+    $current_artist = preg_replace("/[0-9]+/", "", $temp_string) . substr($current_artist, -strlen($current_artist) + 1);
+
+    $len = strlen(trim($current_artist));
+
+    if ($len == 0){
+        echo "<script>alert('You must have a valid search!');</script>";
+        echo "<script> location.href = '../index.php'; </script>";
+    }
+
+    else{
 
     $_SESSION['search'] = $current_artist;
 
@@ -24,10 +42,11 @@ include '../../spotify/get_songs.php';
     $token = get_authenicated($client_id, $client_secret);
 
     $tracks = get_top_artists($current_artist, $token);
-    $top_match = $tracks[0]['artists'][0]['name'] or "Artist Not Found";
+    $top_match = get_artist_id($current_artist, $tracks)[1];
 
+    if ($top_match != ""){
     $_SESSION['search'] = $top_match;
-   
+
     $user = $_SESSION["username"];
     if ($user != ""){
 
@@ -43,6 +62,11 @@ include '../../spotify/get_songs.php';
 
         $array = $dict[$user];
         $array[] = $top_match;
+
+        while (count($array) > 10){
+                array_shift($array);
+        }
+
         $dict[$user] = $array;
 
         $new_json = json_encode($dict);
@@ -51,9 +75,9 @@ include '../../spotify/get_songs.php';
 
     $_SESSION['token'] = $token;
     $_SESSION['artist_tracks'] = $tracks;
-
+    echo "<script> location.href = '../result.php'; </script>";
+    }
+    }
  }
 
 ?>
-<script> location.href = '../result.php'; </script>
-</html>
