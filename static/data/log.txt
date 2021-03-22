@@ -1,1 +1,1 @@
-.purehtml:PureHTML0
+purehtml:PureHTML0
