@@ -5,7 +5,7 @@ session_start();
 
 <?php
 
-$footer = "";
+$footer = "<style>.footer{height: 80px; z-index: 0; position: fixed;} </style>";
 
 $footer = $footer . '<div class="footer">
                         <p>
