@@ -4,7 +4,7 @@ include 'call_spotify.php';
 
 function get_top_artists($artist, $token)
 {
-    $no_spec_artist = preg_replace("/[^a-zA-Z0-9]+/", "", $artist);
+    $no_spec_artist = preg_replace("/[^a-zA-Z0-9 ]+/", "", $artist);
 
     $headers  = ['Content-Type: application/json',
                 'Authorization: Bearer '.$token];
@@ -27,7 +27,7 @@ function get_artist_id($input, $tracks)
 {
     // A dictionary storing k.v. pairs
     // of (artist) -> (similarity)
-    $no_spec_input = preg_replace("/[^a-zA-Z0-9]+/", "", $input);
+    $no_spec_input = preg_replace("/[^a-zA-Z0-9 ]+/", "", $input);
     $similarity = array();
     $artists = array();
     foreach($tracks as $track){
