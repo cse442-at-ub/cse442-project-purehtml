@@ -5,7 +5,18 @@ session_start();
 
 <?php
 
-$footer = "<style>.footer{height: 80px; z-index: 0; position: fixed;} </style>";
+$footer = "<style> #page-container {
+  position: relative;
+  min-height: 25vh;
+}#footer {
+  position: absolute;
+  left: -5;
+  bottom: -10;
+  right: 0;
+  width: 100%;
+  height: 6rem;           
+} </style>";
+
 
 $footer = $footer . '<div class="footer">
                         <p>
