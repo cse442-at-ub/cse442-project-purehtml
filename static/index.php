@@ -48,7 +48,7 @@ $_SESSION["test"] = "Session test!";
                  ?>
                 </center>
         </div>
-
+<br><br><br>
 <?php include "footer.php"; ?>
 
 </body>
