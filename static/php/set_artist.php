@@ -20,9 +20,12 @@ include '../../spotify/get_songs.php';
          $current_artist = $_POST['artist'] or die("I tried:(");
     }
 
-    $current_artist = preg_replace("/[^a-z0-9]/i", "", $current_artist);
-    $temp_string = $current_artist[0];
-    $current_artist = preg_replace("/[0-9]+/", "", $temp_string) . substr($current_artist, -strlen($current_artist) + 1);
+    $current_artist = str_replace('$', 'S', $current_artist);
+    $current_artist = str_replace(':', '', $current_artist);
+
+    $current_artist = preg_replace("/[^a-z0-9 ]/i", "", $current_artist);
+
+    //$current_artist = preg_replace("/[0-9]+/", "", $temp_string) . substr($current_artist, -strlen($current_artist) + 1);
 
     $len = strlen(trim($current_artist));
 
@@ -33,21 +36,22 @@ include '../../spotify/get_songs.php';
 
     else{
 
-    $_SESSION['search'] = $current_artist;
-
     $credentials = getCredentials();
 
     $client_id = $credentials[0];
     $client_secret = $credentials[1];
+
     $token = get_authenicated($client_id, $client_secret);
 
     $tracks = get_top_artists($current_artist, $token);
+
     $top_match = get_artist_id($current_artist, $tracks)[1];
 
     if ($top_match != ""){
     $_SESSION['search'] = $top_match;
 
     $user = $_SESSION["username"];
+
     if ($user != ""){
 
         // MAKE SURE THAT THE FILE HAS {} IN IT IF EMPTY, + CHMOD 777
@@ -71,6 +75,7 @@ include '../../spotify/get_songs.php';
 
         $new_json = json_encode($dict);
         file_put_contents($file, $new_json);
+
     }
 
     $_SESSION['token'] = $token;
