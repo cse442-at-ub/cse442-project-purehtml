@@ -47,7 +47,7 @@ session_start();
 
                                                 for($k = 1; $k <= sizeof($history); $k++){
                                                         $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
-                                                        $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$k}: {$history[$k - 1]}'>";
+                                                        $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$history[$k - 1]}'>";
                                                         $artist_string = $artist_string . "</form>";
 
                                                         print $artist_string;
