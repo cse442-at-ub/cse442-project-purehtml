@@ -83,6 +83,11 @@ include '../../spotify/get_songs.php';
     echo "<script> location.href = '../result.php'; </script>";
     }
     }
+  
+    $_SESSION['artist_tracks'] = array();
+    $_SESSION['search'] = "";
+    echo "<script> location.href = '../result.php'; </script>";
+
  }
 
 ?>
