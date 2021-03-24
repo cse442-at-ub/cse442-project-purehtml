@@ -5,6 +5,7 @@ session_start();
 
 <html>
 <?php include "header.php"; ?>
+<?php include "php/calculate_statistics.php"; ?>
 
 <body style="background-color: #77d94c">
    <div>
@@ -19,6 +20,11 @@ session_start();
    	 <h2>Genre:</h2>
   	</center>
    </div>
+   
+   <?php
+     $results = get_song_length($_SESSION['artist_tracks']);
+     echo var_dump($results);
+   ?>
 <?php include "footer.php"; ?>
 </body>
 
