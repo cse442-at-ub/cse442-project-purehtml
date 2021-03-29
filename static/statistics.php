@@ -17,7 +17,10 @@ session_start();
           ?>
 
    	 <h2>Monthly Listeners:</h2>
-   	 <h2>Genre:</h2>
+   	 <?php
+                $info = get_artist_info($_SESSION['artist_id'], $_SESSION['token']);
+                print "<h2>Genre: {$info['genres'][0]}</h2>";
+        ?>
   	</center>
    </div>
    
