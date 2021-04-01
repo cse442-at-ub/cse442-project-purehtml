@@ -33,6 +33,7 @@ session_start();
                 }
 
                 print "<h2>Followers: {$better_followers}</h2>";
+                print "<h2>Popularity: {$info['popularity']}/100</h2>";
                 print "<h2>Genre: {$info['genres'][0]}</h2>";
          ?>
   	</center>
