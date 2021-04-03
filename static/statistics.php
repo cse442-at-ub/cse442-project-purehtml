@@ -17,18 +17,18 @@ session_start();
 
                         <form action = "result.php">
 
-                                <center>
+                                
 
                                         <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                         <button class="button button1"><b>Back</b></button><br>
 
-                                </center>
+                               
 
 
                         </form>
 
                 </div>
-   <div>
+   <div class="column" style="min-width: 400px; margin: 0 auto;">
   	<center>
    	 <h1>Artist Statistics</h1>
 
