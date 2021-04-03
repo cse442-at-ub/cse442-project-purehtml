@@ -73,24 +73,32 @@ font-family: "Helvetica", "Arial", sans-serif;
                                 }
                                 ?>
 
-                                <?php
+                                 <?php
                                         $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or die("hi");
                                         $url = get_artist_image($id[0], $_SESSION['token'])["url"];
+                                        $_SESSION['artist_id'] = $id[0];
+
                                         if ($url != ""){
                                                 print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
+
+                                        $artist_stack = get_adjacency_list();
+                                        $artist_keys = array_keys($artist_stack);
 
                                         if ($_SESSION["search"] != ""){
 
 
 
-                                                print "<h1>Most Similar Artists:</h1>:";
+                                                print "<h1>Most Similar Artists:</h1>";
 
                                                 for ($k = 1; $k <= 10; $k++){
-                                                        print "<h2>{$k}: result goes here Sprint #3!</h2>";
+                                                        $name = $artist_keys[$k - 1];
+                                                        $split_name = explode(":::", $name);
+                                                        print "<h2>{$k}: {$split_name[1]}</h2>";
                                                 }
                                         }
                                 ?>
+
 
                         </center>
                 </div>
