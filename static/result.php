@@ -85,18 +85,27 @@ font-family: "Helvetica", "Arial", sans-serif;
                                         $artist_stack = get_adjacency_list();
                                         $artist_keys = array_keys($artist_stack);
 
-                                        if ($_SESSION["search"] != ""){
+                                         if ($_SESSION["search"] != ""){
 
 
+                                                if (count($artist_keys) == 0){
+                                                    print "<h1>No recommendations possible!</h1>";
 
+                                                }
+
+                                                else{
                                                 print "<h1>Most Similar Artists:</h1>";
 
                                                 for ($k = 1; $k <= 10; $k++){
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
+                                                        if (count($split_name) == 2){
                                                         print "<h2>{$k}: {$split_name[1]}</h2>";
+                                                        }
+                                                }
                                                 }
                                         }
+
                                 ?>
 
 
