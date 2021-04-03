@@ -10,7 +10,7 @@ session_start();
 
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php"; include "../spotify/get_songs.php";?>
+<?php include "header.php"; include "spotify/get_songs.php";?>
 
 <body style="background-color: #77d94c">
         <div class="row">

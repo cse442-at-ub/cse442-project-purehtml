@@ -6,7 +6,7 @@ session_start();
 
 <?php
 
-include '../../spotify/get_songs.php';
+include '../spotify/get_songs.php';
 // Set the working artist.
 
 // A boolean check to make sure that the fields have values.
