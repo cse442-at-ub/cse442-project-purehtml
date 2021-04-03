@@ -10,13 +10,28 @@ session_start();
 
     <center>
         <h1>Random Song:</h1>
-
+              <div>
                         <form action = "php/get_random.php">
 
                                 <center>
 
                                         <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                         <button class="button button1"><b>Shuffle</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+                </div>
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "result.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back to Results</b></button><br>
 
                                 </center>
 
