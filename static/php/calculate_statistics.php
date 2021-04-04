@@ -38,4 +38,13 @@ session_start();
        return $collabs;
     }
 
+    function average_length(array $lengths){ //In Seconds
+      $number = count($lengths);
+      $avg = 0;
+      for($k = 0; $k < 50; $k++){
+        $avg += $lengths[$k];
+      }
+      $avg_length = $avg / $number;
+      return $avg_length;
+    }
 ?>
