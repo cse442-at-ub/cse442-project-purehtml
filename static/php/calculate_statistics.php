@@ -45,6 +45,8 @@ session_start();
         $avg += $lengths[$k];
       }
       $avg_length = $avg / $number;
-      return $avg_length;
+      return gmdate("H:i:s", $avg_length);
     }
+
+
 ?>
