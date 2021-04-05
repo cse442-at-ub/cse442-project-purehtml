@@ -30,7 +30,7 @@ font-family: "Helvetica", "Arial", sans-serif;
 </style>
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php"; include "../spotify/get_songs.php";?>
+<?php include "header.php"; include "../spotify/get_songs.php"; include "php/algorithm.php";?>
 
 <body style="background-color: #77d94c">
         <div class="row">
@@ -74,15 +74,16 @@ font-family: "Helvetica", "Arial", sans-serif;
                                 ?>
 
                                  <?php
-                                        $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or die("hi");
-                                        $url = get_artist_image($id[0], $_SESSION['token'])["url"];
+                                        $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or print("oh no!");
+                                        $url = get_artist_image($id[0], $_SESSION['token'])["url"] or die("hi");
                                         $_SESSION['artist_id'] = $id[0];
 
                                         if ($url != ""){
                                                 print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
 
-                                        $artist_stack = get_adjacency_list();
+                                        $artist_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
+                                        //print var_dump($_SESSION['search']);
                                         $artist_keys = array_keys($artist_stack);
 
                                          if ($_SESSION["search"] != ""){
@@ -96,14 +97,20 @@ font-family: "Helvetica", "Arial", sans-serif;
                                                 else{
                                                 print "<h1>Most Similar Artists:</h1>";
 
-                                                for ($k = 1; $k <= 10; $k++){
+                                                for($k = 1; $k <= 10; $k++){
+                                                        $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
                                                         if (count($split_name) == 2){
-                                                        print "<h2>{$k}: {$split_name[1]}</h2>";
-                                                        }
+                                                                 $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
+                                                                 $artist_string = $artist_string . "</form>";
+
+                                                                print $artist_string;
+
+                                                                 }
+
                                                 }
-                                                }
+                                             }
                                         }
 
                                 ?>
