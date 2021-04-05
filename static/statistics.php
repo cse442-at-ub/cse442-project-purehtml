@@ -33,11 +33,13 @@ session_start();
                 $collaborations = get_collaborations($_SESSION['artist_tracks']);
                 $results = get_song_length($_SESSION['artist_tracks']);
                 $number = average_length($results, $_SESSION['artist_tracks']);
+                $percentage = percentage_collaborations($_SESSION['artist_tracks']);
                 
 
                 print "<h2>Total Followers: {$followers}</h2>";
                 print "<h2>Popularity: {$info['popularity']}/100</h2>";
                 print "<h2>Total Collaborations: {$collaborations}</h2>";
+                print "<h2>Percentage Collaborations: {$percentage}%</h2>";
                 print "<h2>Genre: {$info['genres'][0]}</h2>";
                 print "<h2>Average Song Length: {$number}</h2>";
 
@@ -53,7 +55,7 @@ session_start();
                       }
                   ?>
                 </div>
-              </div>
+              </div><br><br><br><br><br><br>
    <?php
      //$results = get_song_length($_SESSION['artist_tracks']);
      //echo var_dump($results);

@@ -41,11 +41,25 @@ session_start();
     function average_length(array $lengths){ //In Seconds
       $number = count($lengths);
       $avg = 0;
-      for($k = 0; $k < 50; $k++){
+      for($k = 0; $k < $number; $k++){
         $avg += $lengths[$k];
       }
       $avg_length = $avg / $number;
       return gmdate("H:i:s", $avg_length);
+    }
+
+    function percentage_collaborations($tracks){
+      $collabs = 0;
+      $number = count($tracks);
+      foreach($tracks as $track){
+        if(count($track['artists']) > 1){
+          $collabs++;
+        }
+      }
+      
+      $percentage = ($collabs / $number) * 100;
+
+      return $percentage;
     }
 
 
