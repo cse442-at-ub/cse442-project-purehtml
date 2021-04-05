@@ -41,7 +41,7 @@ session_start();
                }
             }
             arsort($artist_weights);
-            $artist_weights;
+            return $artist_weights;
         }
 
  ?>
