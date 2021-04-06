@@ -8,25 +8,26 @@ session_start();
 <!-- Look at a CSS wiki to understand what each element does.  I'm sure some are not needed. -->
 
 <style>
-.button {
+ .button {
 background-color: #1DB954;
 border: black;
 border-style: solid;
 color: white;
-padding: 32px 20px;
+padding-top: 20px;
+margin: 5px;
 text-align: center;
 text-shadow: 1px 1px 0px #515151;
 font-weight: bold;
 position: relative;
-line-height: 0.2em;
+line-height: 1;
+padding-bottom: 35px;
 display: inline-block;
-margin: 100px 2px;
 cursor: pointer;
-font-family: "Helvetica", "Arial", sans-serif;
+font-family: "Bebas Neue", cursive;
 }
 
 
-.button1 {width: 150px; height: 20px; font-size: 17px; font-family: inherit;}
+  .button1 {width: 150px; height: 20px; font-size: 17px; font-family: "Bebas Neue", cursive;}
 </style>
 <!-- Basically all of this was explained in index.html. -->
 
@@ -107,7 +108,8 @@ font-family: "Helvetica", "Arial", sans-serif;
 
                                                                 print $artist_string;
 
-                                                                 }
+                                                            }
+
 
                                                 }
                                              }

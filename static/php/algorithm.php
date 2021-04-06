@@ -4,7 +4,7 @@ session_start();
 ?>
 <?php
 
-include "../../spotify/get_songs.php";
+//include "../../spotify/get_songs.php";
 
        function get_stack(){
 
