@@ -12,17 +12,15 @@ $_SESSION["test"] = "Session test!";
 <body style="background-color: #77d94c">
         <!-- Creating a new header (not to be confused with head) ... <h1> means header.  Giving it an id allows us to scrape via J.S. -->
 
-         <br>
+        <br>
          <div class="row">
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>About Us:</h1>
-		    
                     <ul>
-                        <li><p>We are a website dedicated to helping music lovers find new artists and new music.</p></li>
-                        <li><p>Spotifind is a Spotify recommender algorithm developed by Team PureHTML.</p></li>
-                        <li><p>Team PureHTML is a group of 3 undergraduates for a software engineering course.</p></li>
+                        <h2>We are a website dedicated to helping music lovers find new artists and new music.</h2><br>
+                        <h2>Spotifind is a Spotify recommender algorithm developed by Team PureHTML.</h2><br>
+                        <h2>Team PureHTML is a group of 3 undergraduates for a software engineering course.</h2>
                     </ul>
-		    
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Tutorial:</h1>
@@ -32,26 +30,25 @@ $_SESSION["test"] = "Session test!";
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Our Vision:</h1>
-		    
                     <ul>
-                        <li><p>The goal of Spotifind is to introduce new music to our users via a k-NN algorithm.</p></li>
-                        <li><p>Artists are ranked according to their degree of collaboration.</p></li>
-                        <li><p>Random songs and statistics are also provided for the user's curiosity.</p></li>
+                        <h2>The goal of Spotifind is to introduce new music to our users via a k-NN algorithm.</h2><br>
+                        <h2>Artists are ranked according to their degree of collaboration.</h2><br>
+                        <h2>Random songs and statistics are also provided for the user's curiosity.</h2>
                     </ul>
 
             </div>
         </div>
         <br><br>
-	<div>
-		<center>
-		<?php
-                	if ($_SESSION["username"] != ""){
-                        	echo "<h1>Welcome, " . $_SESSION["username"] . "!</h1>";
-                	}
-       		 ?>
-		</center>
-	</div>
-
+        <div>
+                <center>
+                <?php
+                        if ($_SESSION["username"] != ""){
+                                echo "<h1>Welcome, " . $_SESSION["username"] . "!</h1>";
+                        }
+                 ?>
+                </center>
+        </div>
+<br><br><br>
 <?php include "footer.php"; ?>
 
 </body>
