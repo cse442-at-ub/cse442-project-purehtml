@@ -30,8 +30,8 @@ session_start();
                 
                 
                 $followers = get_followers($info);
-                $collaborations = get_collaborations($_SESSION['artist_tracks']);
-                $results = get_song_length($_SESSION['artist_tracks']);
+                $collaborations = get_collaborations($_SESSION['all_tracks']);
+                $results = get_song_length($_SESSION['all_tracks']);
       
                 $max_length = max($results);
                 $max_in_hms = gmdate("H:i:s", $max_length);
@@ -39,9 +39,9 @@ session_start();
                 $min_length = min($results);
                 $min_in_hms = gmdate("H:i:s", $min_length);
       
-                $number = average_length($results, $_SESSION['artist_tracks']);
-                $percentage = percentage_collaborations($_SESSION['artist_tracks']);
-                
+                $number = average_length($results, $_SESSION['all_tracks']);
+                $percentage = percentage_collaborations($_SESSION['all_tracks']);
+                $percentage = round($percentage, 2);
 
                 print "<h2>Total Followers: {$followers}</h2>";
                 print "<h2>Popularity: {$info['popularity']}/100</h2>";
