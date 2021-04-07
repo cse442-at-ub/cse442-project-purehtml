@@ -61,7 +61,7 @@ font-family: "Bebas Neue", cursive;
                         <center>
                                 <?php
                                 if ($_SESSION["search"] == ""){
-                                        print "<h1>No results found.</h1>";
+                                        print "<h1>No results found.</h1><br><h1>The algorithm could not find the artist.</h1>";
                                 }
                                 else{
 
@@ -93,12 +93,11 @@ font-family: "Bebas Neue", cursive;
                                         $artist_stack = merge_weights($_SESSION['search'], $temp_stack, $bfs_results);
                                         arsort($artist_stack);
                                         $artist_keys = array_keys($artist_stack);
-
                                          if ($_SESSION["search"] != ""){
 
 
                                                 if (count($artist_keys) == 0){
-                                                    print "<h1>No recommendations possible!</h1>";
+                                                    print "<h1>No recommendations possible!</h1><br><h1>The algorithm could not find collaborations.</h1>";
 
                                                 }
 
@@ -122,7 +121,7 @@ font-family: "Bebas Neue", cursive;
                                              }
                                         }
 
-                                ?>
+                                 ?>
 
 
                         </center>
