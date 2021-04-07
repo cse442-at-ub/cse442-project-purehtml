@@ -84,12 +84,15 @@ font-family: "Bebas Neue", cursive;
                                                 print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
 
-                                        $artist_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
-                                        //print var_dump($_SESSION['search']);
-                                        $artist_keys = array_keys($artist_stack);
+                                        $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
+
                                         $starting_stack = get_stack();
                                         $starting_stack = array_slice($starting_stack, 0, 10);
                                         $bfs_results = bfs($starting_stack);
+
+                                        $artist_stack = merge_weights($_SESSION['search'], $temp_stack, $bfs_results);
+                                        arsort($artist_stack);
+                                        $artist_keys = array_keys($artist_stack);
 
                                          if ($_SESSION["search"] != ""){
 
