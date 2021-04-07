@@ -1,5 +1,8 @@
 <?php
 
+ob_implicit_flush(true);
+ob_end_flush();
+
 echo '
 <!-- The headers. -->
 <head>
