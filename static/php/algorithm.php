@@ -78,5 +78,32 @@ session_start();
        return $weights;
     }
 
+       function merge_weights($input, $weights_1, $weights_2){
+                $keys = array_keys($weights_2);
+                $other_keys = array_keys($weights_1);
+                $final_weights = $weights_1;
+                foreach($keys as $tkey){
+                     $temp_weights = $weights_2[$tkey];
+                     $temp_keys = array_keys($temp_weights);
+
+                     foreach($temp_keys as $key){
+                     $split_weight = explode(":::", $key);
+
+                     $new_weight = $input . ":::" . $split_weight[1];
+
+                     if (in_array(strtolower($new_weight), $other_keys) == False){
+
+                           $final_weights[$new_weight] = 0;
+                     }
+                     $final_weights[$new_weight] += 1;
+                     }
+
+                }
+
+               return $final_weights;
+
+           }
+
+
 
  ?>
