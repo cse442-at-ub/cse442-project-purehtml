@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -39,8 +38,8 @@ session_start();
                         $artist_tuple = $input .  ':::' . $artist['name'];
                         if (($artist['name'] != $input)){
 
-                             if (in_array($artist['name'], $artist_stack) == False){
-                                $artist_stack[] = $artist['name'];
+                             if (in_array(strtolower($artist['name']), $artist_stack) == False){
+                                $artist_stack[] = strtolower($artist['name']);
                                 $artist_weights[$artist_tuple] = 0;
                                }
 
