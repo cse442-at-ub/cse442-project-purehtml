@@ -7,7 +7,29 @@ session_start();
 <!-- The 'style' block is basically in-line CSS. -->
 <!-- Look at a CSS wiki to understand what each element does.  I'm sure some are not needed. -->
 
+<style>
+ .button {
+background-color: #1DB954;
+border: black;
+border-style: solid;
+color: white;
+padding-top: 20px;
+margin: 5px;
+text-align: center;
+text-shadow: 1px 1px 0px #515151;
+font-weight: bold;
+position: relative;
+line-height: 1;
+padding-bottom: 35px;
+display: inline-block;
+cursor: pointer;
+font-family: "Bebas Neue", cursive;
+}
 
+#submit{font-family: "Bebas Neue", cursive; width: 250px;}
+
+  .button1 {width: 150px; height: 20px; font-size: 17px; font-family: "Bebas Neue", cursive;}
+</style>
 <!-- Basically all of this was explained in index.html. -->
 
 <?php include "header.php"; include "../spotify/get_songs.php"; include "php/algorithm.php";?>
@@ -65,6 +87,9 @@ session_start();
                                         $artist_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
                                         //print var_dump($_SESSION['search']);
                                         $artist_keys = array_keys($artist_stack);
+                                        $starting_stack = get_stack();
+                                        $starting_stack = array_slice($starting_stack, 0, 10);
+                                        $bfs_results = bfs($starting_stack);
 
                                          if ($_SESSION["search"] != ""){
 
