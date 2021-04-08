@@ -15,13 +15,27 @@ session_start();
           </center>
 
      </div>
+     
+     <div>
+       <br>
+       <?php
+         if(isset($_SESSION["username"]))
+         {
+             $name = $_SESSION['username'];
+             echo "<center><h3>Welcome, $name </h3></center>";
+
+         }
+
+
+       ?>
+     </div>
+
      <?php
         $log_session = '<a href="history.php"> History</a>';
         $log_session = $log_session . "<a> | </a>";
         $log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
         print $log_session;
       ?>
-
 
     <?php include "footer.php"; ?>
 </body>
