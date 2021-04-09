@@ -11,7 +11,7 @@ session_start();
 <body style="background-color: #77d94c">
      <div>
           <center>
-          <h1>User Page Soon</h1>
+          <h1>User Page</h1>
           </center>
 
      </div>
@@ -22,13 +22,20 @@ session_start();
          if(isset($_SESSION["username"]))
          {
              $name = $_SESSION['username'];
-             echo "<center><h3>Welcome, $name </h3></center>";
+             echo "<center><h2>Welcome, $name </h2></center>";
 
          }
 
 
        ?>
      </div>
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "php/delaccount.php">
+                                <center>
+                                        <button class="button button1"><b>Delete User</b></button><br>
+                                </center>      
+                        </form>
+                </div>
 
      <?php
         $log_session = '<a href="history.php"> History</a>';
