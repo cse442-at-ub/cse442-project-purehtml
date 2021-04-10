@@ -15,7 +15,7 @@ session_start();
           </center>
 
      </div>
-     
+
      <div>
        <br>
        <?php
@@ -28,6 +28,22 @@ session_start();
 
 
        ?>
+     </div>
+     <div>
+       <table>
+       <?php
+        if(isset($_SESSION['bookmarks']))
+        {
+          foreach($_SESSION['bookmarks'] as $song)
+          {
+            echo "<tr><td>".$song."</td></tr>";
+
+          }
+
+        }
+
+        ?>
+      </table>
      </div>
 
      <?php
