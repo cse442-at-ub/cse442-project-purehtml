@@ -31,7 +31,7 @@ session_start();
                       <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
                       <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
 
-                        <input type="submit" value="Submit" id = "submit">
+                        <input type="submit" value="Submit" id = "register">
 
                  </center>
     </form>
