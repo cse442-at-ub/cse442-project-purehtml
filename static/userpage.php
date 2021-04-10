@@ -16,7 +16,7 @@ session_start();
           </center>
 
      </div>
-     
+
      <div>
        <center>
        <?php
@@ -34,6 +34,7 @@ session_start();
 
 
        ?>
+
        </center>
     </div>
     <div class="row">
@@ -44,6 +45,26 @@ session_start();
                                 </center>      
                         </form>
                 </div>
+
+     </div>
+     
+     <div>
+       <table>
+       <?php
+        if(isset($_SESSION['bookmarks']))
+        {
+          foreach($_SESSION['bookmarks'] as $song)
+          {
+            echo "<tr><td>".$song."</td></tr>";
+
+          }
+
+        }
+
+        ?>
+      </table>
+     </div>
+
 
      <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <form action = "history.php">
