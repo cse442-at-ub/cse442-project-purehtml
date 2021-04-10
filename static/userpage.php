@@ -22,8 +22,11 @@ session_start();
        <?php
          if(isset($_SESSION["username"]))
          {
-             $dir = "data/profile_pics/placeholder.png";
              $name = $_SESSION['username'];
+             $dir = "data/profile_pics/" .$name. ".png";
+             if(file_exists($dir) == false){
+                $dir = "data/profile_pics/placeholder.png";
+             }
              print "<img src='{$dir}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
              echo "<center><h2>Welcome, $name </h2></center>";
 
@@ -66,14 +69,6 @@ session_start();
                         </form>
                 </div><br><br><br><br><br><br>
             </div><br><br><br><br><br>
-
-
-     <?php
-        //$log_session = '<a href="history.php"> History</a>';
-        //$log_session = $log_session . "<a> | </a>";
-        //$log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
-        //print $log_session;
-      ?>
 
     <?php include "footer.php"; ?>
 </body>
