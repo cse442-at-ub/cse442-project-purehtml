@@ -29,7 +29,8 @@ $path = '../data/log.txt';
     $file = fopen($path, "w+");
     flock($file, LOCK_EX);
     foreach($output as $line) {
-      fwrite($file, $line);
+      fwrite($file, $line."\n");
+
     }
     flock($file, LOCK_UN);
     fclose($file);

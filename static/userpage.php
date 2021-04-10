@@ -28,20 +28,37 @@ session_start();
 
 
        ?>
-     </div>
+    </div>
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "edituser.php">
+                                <center>
+                                        <button class="button button1"><b>Change Password</b></button><br>
+                                </center>      
+                        </form>
+                </div>
+
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "history.php">
+                                <center>
+                                        <button class="button button1"><b>History</b></button><br>
+                                </center>      
+                        </form>
+                </div> 
+                </div>
+     
      <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <form action = "php/delaccount.php">
                                 <center>
                                         <button class="button button1"><b>Delete User</b></button><br>
                                 </center>      
                         </form>
-                </div>
+                </div>  
 
      <?php
-        $log_session = '<a href="history.php"> History</a>';
-        $log_session = $log_session . "<a> | </a>";
-        $log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
-        print $log_session;
+        //$log_session = '<a href="history.php"> History</a>';
+        //$log_session = $log_session . "<a> | </a>";
+        //$log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
+        //print $log_session;
       ?>
 
     <?php include "footer.php"; ?>

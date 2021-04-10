@@ -23,6 +23,8 @@ if ($_SESSION["username"] == ""){
 else{
 
         $log_session = $log_session . '<a href="userpage.php">'.$username.'</a>';
+        $log_session = $log_session . "<a> | </a>";
+        $log_session = $log_session . '<a href="php/logout.php"> Log Out </a>';
 }
 
 $footer = $footer . $log_session . '
