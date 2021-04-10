@@ -10,7 +10,7 @@ session_start();
 
     <center>
         <h1>Random Song:</h1>
-
+              <div>
                         <form action = "php/get_random.php">
 
                                 <center>
@@ -23,6 +23,19 @@ session_start();
 
                         </form>
 
+                </div>
+                <div>
+                  <form action="php/addbookmark.php">
+                    <center>
+                        <?php
+                        if(isset($_SESSION['username']))
+                        {
+                          echo "<button class='button'>Bookmark Song</button>";
+                        }
+
+                         ?>
+                    </center>
+                  </form>
                 </div>
         <?php
                 print "<iframe src='https://open.spotify.com/embed/track/{$_SESSION["random_track"]}'
