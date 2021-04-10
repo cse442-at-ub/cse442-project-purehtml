@@ -11,28 +11,33 @@ session_start();
 <body style="background-color: #77d94c">
      <div>
           <center>
-          <h1>User Page</h1>
+          <h1>My Profile</h1>
+
           </center>
 
      </div>
      
      <div>
-       <br>
+       <center>
        <?php
          if(isset($_SESSION["username"]))
          {
+             $dir = "data/profile_pics/placeholder.png";
              $name = $_SESSION['username'];
+             print "<img src='{$dir}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
              echo "<center><h2>Welcome, $name </h2></center>";
 
          }
 
 
        ?>
+       </center>
     </div>
+    <div class="row">
      <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "edituser.php">
+                        <form action = "editpp.php">
                                 <center>
-                                        <button class="button button1"><b>Change Password</b></button><br>
+                                        <button class="button button1"><b>Change Profile Picture</b></button><br>
                                 </center>      
                         </form>
                 </div>
@@ -44,7 +49,7 @@ session_start();
                                 </center>      
                         </form>
                 </div> 
-                </div>
+                
      
      <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <form action = "php/delaccount.php">
@@ -52,7 +57,16 @@ session_start();
                                         <button class="button button1"><b>Delete User</b></button><br>
                                 </center>      
                         </form>
-                </div>  
+                </div>
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "edituser.php">
+                                <center>
+                                        <button class="button button1"><b>Change Password</b></button><br>
+                                </center>      
+                        </form>
+                </div><br><br><br><br><br><br>
+            </div><br><br><br><br><br>
+
 
      <?php
         //$log_session = '<a href="history.php"> History</a>';
