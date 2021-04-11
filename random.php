@@ -24,6 +24,7 @@ session_start();
                         </form>
 
                 </div>
+
                 <div>
                   <form action="php/addbookmark.php">
                     <center>
@@ -36,6 +37,22 @@ session_start();
                          ?>
                     </center>
                   </form>
+
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "result.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back to Results</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
                 </div>
         <?php
                 print "<iframe src='https://open.spotify.com/embed/track/{$_SESSION["random_track"]}'

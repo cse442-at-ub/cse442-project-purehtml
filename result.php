@@ -32,7 +32,8 @@ font-family: "Bebas Neue", cursive;
 </style>
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php"; include "../spotify/get_songs.php"; include "php/algorithm.php";?>
+<?php include "header.php"; include "spotify/get_songs.php"; include "php/algorithm.php";?>
+
 
 <body style="background-color: #77d94c">
         <div class="row">
