@@ -21,6 +21,8 @@ $random_idx = array_rand($tracks);
 $random_track = $tracks[$random_idx];
 
 $_SESSION['random_track'] = $random_track['id'];
+$_SESSION['random_title'] = $random_track['name'];
+
 ?>
 
 <script> location.href = '../random.php'; </script>

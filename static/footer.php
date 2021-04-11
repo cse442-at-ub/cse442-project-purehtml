@@ -5,18 +5,7 @@ session_start();
 
 <?php
 
-$footer = "<style> #page-container {
-  position: relative;
-  min-height: 25vh;
-}#footer {
-  position: absolute;
-  left: -5;
-  bottom: -10;
-  right: 0;
-  width: 100%;
-  height: 6rem;           
-} </style>";
-
+$footer = "";
 
 $footer = $footer . '<div class="footer">
                         <p>
@@ -25,7 +14,7 @@ $footer = $footer . '<div class="footer">
                         </span>';
 
 $log_session = '<span style = "float:right; padding-right:30px; padding-bottom: 10px; font-size: 30px";>';
-
+$username = $_SESSION["username"];
 if ($_SESSION["username"] == ""){
 
         $log_session = $log_session . '<a href="login.php"> Log In </a>';
@@ -33,10 +22,9 @@ if ($_SESSION["username"] == ""){
 }
 else{
 
-        $log_session = $log_session . '<a href="history.php"> History</a>';
+        $log_session = $log_session . '<a href="userpage.php">'.$username.'</a>';
         $log_session = $log_session . "<a> | </a>";
-        $log_session = $log_session . '<a href="php/logout.php">Log Out </a>';
-
+        $log_session = $log_session . '<a href="php/logout.php"> Log Out </a>';
 }
 
 $footer = $footer . $log_session . '
