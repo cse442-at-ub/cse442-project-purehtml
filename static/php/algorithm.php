@@ -1,10 +1,9 @@
-
 <?php
 session_start();
 ?>
 <?php
 
-include "../../spotify/get_songs.php";
+//include "../../spotify/get_songs.php";
 
        function get_stack(){
 
@@ -30,24 +29,44 @@ include "../../spotify/get_songs.php";
        }
 
        function get_adjacency_list($all_tracks, $input){
+            $all_tracks = array_slice($all_tracks, 0, 20);
             $artist_stack = array();
             $artist_weights = array();
+            $genre_weights = array();
             foreach($all_tracks as $track){
                 $lead_artist = $track['artists'][0]['name'];
+                $artists_genre = get_artist_info($track['artists'][0]['id'], $_SESSION['token'])['genres'];
+                //print var_dump($artists_genre);
                 if ($lead_artist == $input){
                 foreach($track['artists'] as $artist){
                         $artist_tuple = $input .  ':::' . $artist['name'];
+                        //$genre_tuple = $input . ':::' . $artist['genres'];
                         if (($artist['name'] != $input)){
 
-                             if (in_array($artist['name'], $artist_stack) == False){
-                                $artist_stack[] = $artist['name'];
+                             if (in_array(strtolower($artist['name']), $artist_stack) == False){
+                                $artist_stack[] = strtolower($artist['name']);
                                 $artist_weights[$artist_tuple] = 0;
                                }
+
+                               $temp_genre = get_artist_info($artist['id'], $_SESSION['token'])['genres'];
+                               foreach($temp_genre as $genre){
+                                   if(in_array(strtolower($artist_tuple), $genre_weights)){
+                                    $genre_weights[$artist_tuple] = 1;
+                                   }
+
+                                    if (in_array($genre, $artists_genre)){
+                                        $genre_weights[$artist_tuple] += 1;
+                                            }
 
                              $artist_weights[$artist_tuple] += 1;
                          }
                }
               }
+            }
+          }
+          //print var_dump($genre_weights);
+            foreach($artist_weights[$artist_tuple] as $key){
+              $artist_weights[$key] *= $genre_weights[$key];
             }
             arsort($artist_weights);
             return $artist_weights;
@@ -78,6 +97,39 @@ include "../../spotify/get_songs.php";
 
        return $weights;
     }
+
+       function merge_weights($input, $weights_1, $weights_2){
+         $keys = array_keys($weights_2);
+         $other_keys = array_keys($weights_1);
+         $final_weights = $weights_1;
+         foreach($keys as $tkey){
+              $temp_weights = $weights_2[$tkey];
+              $temp_keys = array_keys($temp_weights);
+              if (empty($temp_weights) == False){
+              foreach($temp_keys as $key){
+              $split_weight = explode(":::", $key);
+
+              $new_weight = $input . ":::" . $split_weight[1];
+
+              if (in_array(strtolower($new_weight), $other_keys) == False){
+
+                    $final_weights[$new_weight] = 0;
+              }
+              $final_weights[$new_weight] += 1;
+              }
+              }
+              else{
+               $rkey = $input . ":::" . $tkey;
+               unset($final_weights[$rkey]);
+             }
+
+         }
+
+        return $final_weights;
+
+    }
+
+
 
 
  ?>
