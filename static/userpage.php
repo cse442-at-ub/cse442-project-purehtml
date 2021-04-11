@@ -46,16 +46,8 @@ session_start();
                         </form>
                 </div>
 
-     </div>
 
-
-     <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "edituser.php">
-                                <center>
-                                        <button class="button button1"><b>Change Password</b></button><br>
-                                </center>      
-                        </form>
-                </div> 
+     
                 
      
      <div class="column" style="min-width: 400px; margin: 0 auto;">
@@ -65,6 +57,7 @@ session_start();
                                 </center>      
                         </form>
                 </div>
+
                 <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <form action = "bookmarks.php">
                                 <center>
@@ -73,17 +66,21 @@ session_start();
                         </form>
                 </div>
 
-     </div>
+<div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "edituser.php">
+                                <center>
+                                        <button class="button button1"><b>Change Password</b></button><br>
+                                </center>      
+                        </form>
+                </div> 
 
-
-     <div class="column" style="min-width: 400px; margin: 0 auto;">
+     <div class="column" style="min-width: 400px; margin: 0 auto; float:right;">
                         <form action = "history.php">
                                 <center>
                                         <button class="button button1"><b>History</b></button><br>
                                 </center>
                         </form>
-                </div>
-<br><br><br><br><br><br>
+                </div><br><br><br><br><br><br>
             </div><br><br><br><br><br>
 
     <?php include "footer.php"; ?>
