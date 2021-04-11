@@ -14,18 +14,20 @@ if(isset($_SESSION['random_track'])&&isset($_SESSION['username']))
 
   $dict = json_decode($data, true);
 
-  if (array_key_exists($_SESSION['username'], $dict))
+  if (array_key_exists($_SESSION['username'], $dict) == false)
   {
-    if (array_key_exists("bookmarks",$dict[$_SESSION['username']]))
-    {
-
-      array_push($dict[$_SESSION['username']],$_SESSION['random_track']);
-
-    }
+    $dict[$_SESSION['username']] = array();   
   }
 
+  $bookmarks = $dict[$_SESSION['username']];
+  $bookmarks[] = $_SESSION['random_title'] . " by " . $_SESSION['search'];
+  //print var_dump($_SESSION['random_title']);
+  $dict[$_SESSION['username']] = $bookmarks;
   $new_json = json_encode($dict);
-  file_put_contents($file, $new_json);
+  
+
+  file_put_contents($path, $new_json);
+
 
 }
 
