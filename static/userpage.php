@@ -47,29 +47,12 @@ session_start();
                 </div>
 
      </div>
-     
-     <div>
-       <table>
-       <?php
-        if(isset($_SESSION['bookmarks']))
-        {
-          foreach($_SESSION['bookmarks'] as $song)
-          {
-            echo "<tr><td>".$song."</td></tr>";
-
-          }
-
-        }
-
-        ?>
-      </table>
-     </div>
 
 
      <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "history.php">
+                        <form action = "edituser.php">
                                 <center>
-                                        <button class="button button1"><b>History</b></button><br>
+                                        <button class="button button1"><b>Change Password</b></button><br>
                                 </center>      
                         </form>
                 </div> 
@@ -83,12 +66,24 @@ session_start();
                         </form>
                 </div>
                 <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "edituser.php">
+                        <form action = "bookmarks.php">
                                 <center>
-                                        <button class="button button1"><b>Change Password</b></button><br>
-                                </center>      
+                                        <button class="button button1"><b>Bookmarks</b></button><br>
+                                </center>
                         </form>
-                </div><br><br><br><br><br><br>
+                </div>
+
+     </div>
+
+
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
+                        <form action = "history.php">
+                                <center>
+                                        <button class="button button1"><b>History</b></button><br>
+                                </center>
+                        </form>
+                </div>
+<br><br><br><br><br><br>
             </div><br><br><br><br><br>
 
     <?php include "footer.php"; ?>
