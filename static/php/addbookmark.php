@@ -20,12 +20,19 @@ if(isset($_SESSION['random_track'])&&isset($_SESSION['username']))
   }
 
   $bookmarks = $dict[$_SESSION['username']];
-  $bookmarks[] = $_SESSION['random_title'] . " by " . $_SESSION['search'];
-  //print var_dump($_SESSION['random_title']);
+  $title = $_SESSION['random_title'] . " by " . $_SESSION['search'];
+  if (in_array($title, $bookmarks) == false){
+	$bookmarks[] = $title;
+  }
+  
+  while (count($bookmarks) > 10){
+	array_shift($bookmarks);
+  }
+
   $dict[$_SESSION['username']] = $bookmarks;
   $new_json = json_encode($dict);
   
-
+	
   file_put_contents($path, $new_json);
 
 
