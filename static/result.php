@@ -109,9 +109,17 @@ font-family: "Bebas Neue", cursive;
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
                                                         if (count($split_name) == 2){
+                                                            if ($split_name[0] != $split_name[1]){
+
+
+
                                                                  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
                                                                  $artist_string = $artist_string . "</form>";
-
+                                                             }
+                                                            else{
+                                                                
+                                                                $k -= 1;
+                                                            }
                                                                 print $artist_string;
 
                                                             }
