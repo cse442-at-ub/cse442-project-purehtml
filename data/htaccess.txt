@@ -1,0 +1,15 @@
+<files "log.txt">
+deny from all
+</files>
+
+<files "history.json">
+deny from all
+</files>
+
+<files "bookmarks.json">
+deny from all
+</files>
+
+<files "credentials.txt"> 
+deny from all
+</files>

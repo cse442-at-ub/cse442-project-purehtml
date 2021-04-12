@@ -53,6 +53,23 @@ $path = '../data/log.txt';
 
                 echo "<script>alert('User exists, logged in.');</script>";
                  $_SESSION["username"]=$user;
+                 //Bookmark Check and Add
+                  $bookmfile = '../data/booksmarks.json';
+                  $json = file_get_contents($bookmfile) or die('No Open!');
+                  $dict = json_decode($json, true);
+                  if (array_key_exists($user, $dict) == False){
+                         $array = array();
+                          $dict[$user] = array("bookmarks"=>$array);
+                  }
+                  if (array_key_exists("bookmarks",$dict[$user]))
+                  {
+                  $bookmarks = $dict[$user]["bookmarks"];
+                  $_SESSION["bookmarks"] = $bookmarks;
+
+                  }
+
+                  $new_json = json_encode($dict);
+                  file_put_contents($file, $new_json);
         }
     }
     else{
