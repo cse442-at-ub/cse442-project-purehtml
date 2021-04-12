@@ -26,5 +26,13 @@ function create_table($username, $password){
   		echo "Error creating table: " . $conn->error;
 	}
 }
+function query_username($connection, $username)
+{
+	$prepared = $connection->prepare("SELECT username FROM Users WHERE username = ?");
+	$prepared->bind_param("s",$username);
+	$prepared->execute();
+	$result = $prepared->get_result();
+	return $result;
+}
 
 ?>
