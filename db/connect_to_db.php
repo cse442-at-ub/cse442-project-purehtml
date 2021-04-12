@@ -15,4 +15,16 @@ function connect($username, $password)
   return $conn;
   
 }
+function create_table($username, $password){
+	$sql = "CREATE TABLE Users (
+	username VARCHAR(20) NOT NULL
+	)";
+	if (connect($username, $password)->query($sql) === TRUE) {
+  		echo "Users created successfully";
+	}
+ 	else {
+  		echo "Error creating table: " . $conn->error;
+	}
+}
+
 ?>
