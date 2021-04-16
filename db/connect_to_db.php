@@ -15,24 +15,41 @@ function connect($username, $password)
   return $conn;
   
 }
-function create_table($username, $password){
+function create_table($conn){
 	$sql = "CREATE TABLE Users (
-	username VARCHAR(20) NOT NULL
+	username VARCHAR(20) NOT NULL,
+        password VARCHAR(20) NOT NULL,
+        email VARCHAR(20) NOT NULL
 	)";
-	if (connect($username, $password)->query($sql) === TRUE) {
-  		echo "Users created successfully";
+	if ($conn->query($sql) === TRUE) {
+  		echo "Users created successfully\n";
 	}
  	else {
   		echo "Error creating table: " . $conn->error;
 	}
 }
-function query_username($connection, $username)
+
+function add_user($conn, $user, $pass, $email){
+	$sql = 'INSERT INTO Users (username, password, email)
+		VALUES (?, ?, ?);';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $user, $pass, $email);
+	
+	if ($stmt->execute() === TRUE) {
+                echo "User added to Users successfully\n";
+        }
+	else {
+              	echo "Error creating table: " . $conn->error;
+        }
+
+}
+function query_username($conn, $username)
 {
-	$prepared = $connection->prepare("SELECT username FROM Users WHERE username = ?");
+	$prepared = $conn->prepare("SELECT * FROM Users WHERE username = ?");
 	$prepared->bind_param("s",$username);
 	$prepared->execute();
 	$result = $prepared->get_result();
-	return $result;
+	return $result->fetch_array(MYSQLI_NUM);
 }
 
 ?>
