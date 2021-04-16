@@ -23,6 +23,9 @@ session_start();
                       <input type = "text" name = "username" id = "username" value="" minlength = 6 maxlength = 12><br>
                       <label for="password"><a style = "color:black;">Password:</a></label><br>
                       <input type = "password" name = "password" id = "password" value="" minlength = 6 maxlength = 20><br>
+                      <label for="email">Email:</label><br>
+                      <input type="email" id="email" name="email"><br>	
+	             
 
 
                       <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
