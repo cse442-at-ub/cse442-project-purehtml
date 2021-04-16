@@ -32,7 +32,8 @@ font-family: "Bebas Neue", cursive;
 </style>
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php"; include "../spotify/get_songs.php"; include "php/algorithm.php";?>
+<?php include "header.php"; include "spotify/get_songs.php"; include "php/algorithm.php";?>
+
 
 <body style="background-color: #77d94c">
         <div class="row">
@@ -109,9 +110,17 @@ font-family: "Bebas Neue", cursive;
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
                                                         if (count($split_name) == 2){
+                                                            if ($split_name[0] != $split_name[1]){
+
+
+
                                                                  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
                                                                  $artist_string = $artist_string . "</form>";
-
+                                                             }
+                                                            else{
+                                                                
+                                                                $k -= 1;
+                                                            }
                                                                 print $artist_string;
 
                                                             }

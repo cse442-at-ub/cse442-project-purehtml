@@ -35,6 +35,11 @@ $path = '../data/log.txt';
     flock($file, LOCK_UN);
     fclose($file);
 
+    $user = $_SESSION['username'];
+    $dir = '../data/profile_pics/';
+    $loc = $dir . $user . '.png';
+    unlink($loc);
+
     $_SESSION = array();
 
   }

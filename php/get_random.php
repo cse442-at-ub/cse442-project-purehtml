@@ -6,7 +6,7 @@ session_start();
 
 <?php
 
-include '../../spotify/get_songs.php';
+include '../spotify/get_songs.php';
 
 $artist = $_SESSION["search"] or die("Welp!");
 
@@ -27,4 +27,3 @@ $_SESSION['random_title'] = $random_track['name'];
 
 <script> location.href = '../random.php'; </script>
 </html>
-

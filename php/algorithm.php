@@ -29,13 +29,18 @@ session_start();
        }
 
        function get_adjacency_list($all_tracks, $input){
+            $all_tracks = array_slice($all_tracks, 0, 20);
             $artist_stack = array();
             $artist_weights = array();
+            $genre_weights = array();
             foreach($all_tracks as $track){
                 $lead_artist = $track['artists'][0]['name'];
+                $artists_genre = get_artist_info($track['artists'][0]['id'], $_SESSION['token'])['genres'];
+                //print var_dump($artists_genre);
                 if ($lead_artist == $input){
                 foreach($track['artists'] as $artist){
                         $artist_tuple = $input .  ':::' . $artist['name'];
+                        //$genre_tuple = $input . ':::' . $artist['genres'];
                         if (($artist['name'] != $input)){
 
                              if (in_array(strtolower($artist['name']), $artist_stack) == False){
@@ -43,10 +48,25 @@ session_start();
                                 $artist_weights[$artist_tuple] = 0;
                                }
 
+                               $temp_genre = get_artist_info($artist['id'], $_SESSION['token'])['genres'];
+                               foreach($temp_genre as $genre){
+                                   if(in_array(strtolower($artist_tuple), $genre_weights)){
+                                    $genre_weights[$artist_tuple] = 1;
+                                   }
+
+                                    if (in_array($genre, $artists_genre)){
+                                        $genre_weights[$artist_tuple] += 1;
+                                            }
+
                              $artist_weights[$artist_tuple] += 1;
                          }
                }
               }
+            }
+          }
+          //print var_dump($genre_weights);
+            foreach($artist_weights[$artist_tuple] as $key){
+              $artist_weights[$key] *= $genre_weights[$key];
             }
             arsort($artist_weights);
             return $artist_weights;
