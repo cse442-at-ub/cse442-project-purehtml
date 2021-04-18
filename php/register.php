@@ -5,8 +5,8 @@ session_start();
 ?>
 <?php
 include "../db/connect_to_db.php";
-$u = "jdkazime";
-$p = "50181732";
+$u = "";
+$p = "";
 
 $conn = connect($u, $p);
 
