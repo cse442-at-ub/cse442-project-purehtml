@@ -5,8 +5,8 @@ session_start();
 ?>
 <?php
 include "../db/connect_to_db.php";
-$u = "USER";
-$p = "PASS";
+$u = "jdkazime";
+$p = "50181732";
 
 $conn = connect($u, $p);
 
@@ -75,7 +75,7 @@ $conn = connect($u, $p);
     	
     
     	if ($exists == False){
-                add_user($conn, strtolower($user), strtolower($pass), strtolower($email));
+                add_user($conn, $user, $pass, $email);
         
         	echo "<script>alert('You have been registered.');</script>";
             
