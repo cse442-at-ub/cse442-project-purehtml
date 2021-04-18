@@ -95,6 +95,7 @@ $conn = connect($u, $p);
      echo "<script>location.href = '../new.php'</script>";
         exit(0);
 	}
+   $conn->close();
 
  }
 

@@ -4,6 +4,11 @@
 session_start();
 ?>
 <?php
+include "../db/connect_to_db.php";
+$u = "";
+$p = "";
+
+$conn = connect($u, $p);
 
 // Set the location of the text file.
 $path = '../data/log.txt';
@@ -12,28 +17,10 @@ $path = '../data/log.txt';
  if (isset($_SESSION['username']))
  {
 
-    $data = file_get_contents($path) or die("cant open");
-    $users = explode("\n", $data);
-    $output = array();
-   	foreach($users as $line)
-    {
-      $current_user = explode(":", $line)[0];
-
-      if (strtolower($current_user) != strtolower($_SESSION['username']))
-      {
-            		$output[] = $line;
-                echo "FOUND";
-      }
-
-    }
-    $file = fopen($path, "w+");
-    flock($file, LOCK_EX);
-    foreach($output as $line) {
-      fwrite($file, $line."\n");
-
-    }
-    flock($file, LOCK_UN);
-    fclose($file);
+    $qry = "DELETE FROM Users WHERE username = ?;";
+    $stmt = $conn->prepare($qry);
+    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->execute();
 
     $user = $_SESSION['username'];
     $dir = '../data/profile_pics/';
@@ -41,6 +28,7 @@ $path = '../data/log.txt';
     unlink($loc);
 
     $_SESSION = array();
+    $conn->close();
 
   }
   else{

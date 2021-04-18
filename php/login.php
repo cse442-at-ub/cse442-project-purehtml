@@ -4,8 +4,8 @@ session_start();
 ?>
 <?php
 include "../db/connect_to_db.php";
-$u = "";
-$p = "";
+$u = "jdkazime";
+$p = "50181732";
 
 $conn = connect($u, $p);
 
@@ -51,6 +51,7 @@ $conn = connect($u, $p);
 			echo "<script>alert('Wrong password!');</script>";
                 }
         }
+        $conn->close();
     }
     else{
          echo "<script>alert('Username and password  must be alphanumeric.');</script>";
