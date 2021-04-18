@@ -5,13 +5,8 @@ session_start();
 ?>
 <?php
 include "../db/connect_to_db.php";
-$u = "";
-$p = "";
 
-$conn = connect($u, $p);
-
-// Set the location of the text file.
-$path = '../data/log.txt';
+$conn = connect();
 
 // A boolean check to make sure that the fields have values.
  if (isset($_SESSION['username']))

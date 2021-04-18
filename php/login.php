@@ -4,10 +4,8 @@ session_start();
 ?>
 <?php
 include "../db/connect_to_db.php";
-$u = "";
-$p = "";
 
-$conn = connect($u, $p);
+$conn = connect();
 
 // A boolean check to make sure that the fields have values.
  if (isset($_POST['username']) && isset($_POST['password'])) {

@@ -1,8 +1,17 @@
 <?php
 
-function connect($username, $password)
+function get_db_credentials(){
+	$myfile = file_get_contents("../db/db_credentials.txt");
+        $contents = explode(":", $myfile);
+        return $contents; 
+}
+
+function connect()
 {
-  
+  $credentials = get_db_credentials();
+  $username = trim($credentials[0]);
+  $password = trim($credentials[1]);
+
   $servername = "oceanus";
   $table = $username . "_db";
 
@@ -15,6 +24,8 @@ function connect($username, $password)
   return $conn;
   
 }
+
+connect();
 function create_table($conn){
 	$sql = "CREATE TABLE Users (
 	username VARCHAR(20) NOT NULL,
@@ -52,4 +63,7 @@ function query_username($conn, $username)
 	return $result->fetch_array(MYSQLI_NUM);
 }
 
+$user = "jdkazime";
+$pass = "50181732";
+connect($user, $pass);
 ?>
