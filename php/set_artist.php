@@ -52,6 +52,18 @@ include '../spotify/get_songs.php';
      $id_artist = get_artist_id($current_artist, $tracks);
      $top_match = $id_artist[1];
 
+     //Code for Saving matches for "what people are searching"
+     if($top_match != "")
+     {
+       $wpsData = file_get_contents("../data/wps.json");
+       $temp = json_decode($wpsData);
+       array_push($temp,$top_match);
+       $jsonforfile = json_encode($temp);
+       file_put_contents("../data/wps.json",$jsonforfile);
+
+     }
+
+
      // If there's a result for that search.
      if ($top_match != ""){
        $_SESSION['search'] = $top_match;
