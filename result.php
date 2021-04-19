@@ -61,6 +61,7 @@ font-family: "Bebas Neue", cursive;
                 <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <center>
                                 <?php
+                                $html_tag = '';
                                 if ($_SESSION["search"] == ""){
                                         print "<h1>No results found.</h1><br><h1>The algorithm could not find the artist.</h1>";
                                 }
@@ -104,8 +105,9 @@ font-family: "Bebas Neue", cursive;
 
                                                 else{
                                                 print "<h1>Most Similar Artists:</h1>";
-
+                                                
                                                 for($k = 1; $k <= 10; $k++){
+                                                        
                                                         $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
@@ -121,7 +123,11 @@ font-family: "Bebas Neue", cursive;
                                                                 
                                                                 $k -= 1;
                                                             }
-                                                                print $artist_string;
+
+                                                                $html_tag .= '<div class="column">'.$artist_string.'</div>';
+                                                                echo $html_tag;
+                                                                $html_tag = '';
+                                                                
 
                                                             }
 
