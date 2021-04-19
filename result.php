@@ -62,6 +62,7 @@ font-family: "Bebas Neue", cursive;
                         <center>
                                 <?php
                                 $html_tag = '';
+                                $html_img = '';
                                 if ($_SESSION["search"] == ""){
                                         print "<h1>No results found.</h1><br><h1>The algorithm could not find the artist.</h1>";
                                 }
@@ -111,10 +112,15 @@ font-family: "Bebas Neue", cursive;
                                                         $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
                                                         $name = $artist_keys[$k - 1];
                                                         $split_name = explode(":::", $name);
+
                                                         if (count($split_name) == 2){
                                                             if ($split_name[0] != $split_name[1]){
 
+                                                                $tracks = get_top_artists($split_name[1], $_SESSION['token']);
+                                                                $id_artist = get_artist_id($split_name[1], $tracks);
+                                                                $top_match = $id_artist[1];
 
+                                                                $art_img = get_artist_image($id_artist[0], $_SESSION['token'])["url"];
 
                                                                  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
                                                                  $artist_string = $artist_string . "</form>";
@@ -124,9 +130,12 @@ font-family: "Bebas Neue", cursive;
                                                                 $k -= 1;
                                                             }
 
-                                                                $html_tag .= '<div class="column">'.$artist_string.'</div>';
+                                                                
+                                                                $html_tag .= '<div class="column">' . "<img src='{$art_img}' width = '200' height = '200' style = 'border: 5px solid black;'></img>".$artist_string.'</div>';
+                                                                
                                                                 echo $html_tag;
                                                                 $html_tag = '';
+                                                                $html_img = '';
                                                                 
 
                                                             }
