@@ -86,6 +86,26 @@ font-family: "Bebas Neue", cursive;
                                         if ($url != ""){
                                                 print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
+                                    ?>
+                                    </center>
+                </div>
+
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "statistics.php">
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Statistics</b></button><br>
+
+                                </center>
+
+                        </form>
+                </div>
+
+                 </div>  
+        
+                                    <?php
 
                                         $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
 
@@ -105,7 +125,9 @@ font-family: "Bebas Neue", cursive;
                                                 }
 
                                                 else{
-                                                print "<h1>Most Similar Artists:</h1>";
+                                                print "<center><h1>Most Similar Artists:</h1></center>";
+
+                                                $i = 0;
                                                 
                                                 for($k = 1; $k <= 10; $k++){
                                                         
@@ -129,13 +151,31 @@ font-family: "Bebas Neue", cursive;
                                                                 
                                                                 $k -= 1;
                                                             }
+                                                                $html = '';
+                                                                /*$totalItemPerLine = 5;
+                                                                $totalItem = 10;
+                                                                if($i % $totalItemPerLine == 0)
+                                                                {
+                                                                    $html .= '<div class="row1">'; // OPEN ROW
+                                                                }*/
 
+                                                                    $html .= '<div class="row">'.'<div class="column"'.'style="min-width: 400px; margin: 0 auto;">'.'<center>'."<img src='{$art_img}' width = '150' height = '150' style = 'border: 5px solid black;'></img>".$artist_string.'<center>'.'</div>';
+
+                                                                /*if($i % $totalItemPerLine == ($totalItemPerLine-1  ))
+                                                                {
+                                                                    $html .= '</div>'; // CLOSE ROW
+                                                                }*/
+                                                                    
+
+                                                                echo $html;
+                                                                $i++;
+                                                                $html = '';
                                                                 
-                                                                $html_tag .= '<div class="column">' . "<img src='{$art_img}' width = '200' height = '200' style = 'border: 5px solid black;'></img>".$artist_string.'</div>';
+                                                                /*$html_tag .= '<div class="column">' . "<img src='{$art_img}' width = '200' height = '200' style = 'border: 5px solid black;'></img>".$artist_string.'</div>';
                                                                 
                                                                 echo $html_tag;
                                                                 $html_tag = '';
-                                                                $html_img = '';
+                                                                $html_img = '';*/
                                                                 
 
                                                             }
@@ -146,25 +186,12 @@ font-family: "Bebas Neue", cursive;
                                         }
 
                                  ?>
-
-
-                        </center>
-                </div>
+                                    </div>
+                                    <br><br><br>
+                        
                 <!-- <p> just creates a new paragraph or more specifically a body of text. -->
 
-                <div class="column" style="min-width: 400px; margin: 0 auto;">
-
-                        <form action = "statistics.php">
-                                <center>
-
-                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
-                                        <button class="button button1"><b>Statistics</b></button><br>
-
-                                </center>
-
-                        </form>
-                </div>
-        </div>
+             
 
         <div><center><p>Wrong artist? Did you enter their name correctly?</p> </center></div>
         <br><br><br>
