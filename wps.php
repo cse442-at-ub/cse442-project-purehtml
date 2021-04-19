@@ -42,7 +42,23 @@ session_start();
   }
   print "</center>";
 
+  
+  print "<center><h3>Least Searched Artists:</h3>";
+  $revsorted = asort($counted);
+  $artist_keys = array_keys($counted);
+  for($k = 1; $k <= 10; $k++)
+  {
+        $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
+        $name = $artist_keys[$k - 1];
+        $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$name'>";
+        $artist_string = $artist_string . "</form>";
+        print $artist_string;
+
   }
+  print "</center>";
+
+  }
+
 
 
 
