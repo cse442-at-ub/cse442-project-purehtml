@@ -10,7 +10,7 @@ session_start();
 <body style="background-color: #77d94c">
     <br><br><br>
     <center>
-    <form action = "php/login.php" method = "post">
+    <form action = "php/resetpass.php" method = "post">
 
 
 
@@ -21,8 +21,8 @@ session_start();
 
                       <label for="username"><a style = "color:black;">Username:</a></label><br>
                       <input type = "text" name = "username" id = "username" value="" minlength = 6 maxlength = 12><br>
-                      <label for="password"><a style = "color:black;">Password:</a></label><br>
-                      <input type = "password" name = "password" id = "password" value="" minlength = 6 maxlength = 20><br>
+                      <label for="email"><a style = "color:black;">Email:</a></label><br>
+                      <input type = "text" name = "email" id = "email" value="" minlength = 6 maxlength = 30><br>
 
                       
                       <!-- 'onclick' does something once the button has been clicked.  In this case, it shows a pop up saying that you have been logged in. -->
@@ -30,23 +30,10 @@ session_start();
                       <!-- This one basically refreshes the page and empties the text boxes.  It would be cool to destruct the fields as well for the symbolism. -->
                       <!-- 'location.href' is the current page so you're just reassigning it to itself.  You could also do 'location.href = result.html' -->
 
-                        <input type="submit" value="Log In" id = "login">
+                        <input type="submit" value="Submit" id = "login">
                       </form>
+        </center>
 
-                        <form action = "forgotpass.php">
-
-                                
-
-                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
-                                        <input type="submit" value="Forgot Password?" id = "login">
-
-                               
-
-
-                        </form>
-
-
-                 </center>
     
 
 <?php include "footer.php"; ?>
