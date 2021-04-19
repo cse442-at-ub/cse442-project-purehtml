@@ -65,9 +65,10 @@ $conn = connect();
    	 // Declare a Boolean to see if the user already exists.
    	 $exists = False;
    	 $qry = query_username($conn, $user);
-         print is_null($qry);
-         if (is_null($qry) == False){
-	    $exists = True;
+     $qry_e = query_email($conn, $email);
+         //print is_null($qry_e);
+         if (is_null($qry) == False || is_null($qry_e) == False){
+	           $exists = True;
          }
 
     	

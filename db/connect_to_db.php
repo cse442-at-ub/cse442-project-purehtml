@@ -63,7 +63,18 @@ function query_username($conn, $username)
 	return $result->fetch_array(MYSQLI_NUM);
 }
 
+function query_email($conn, $email)
+{
+  $prepared = $conn->prepare("SELECT * FROM Users WHERE email = ?");
+  $prepared->bind_param("s",$email);
+  $prepared->execute();
+  $result = $prepared->get_result();
+  return $result->fetch_array(MYSQLI_NUM);
+}
+
 $user = "jdkazime";
 $pass = "50181732";
 connect($user, $pass);
 ?>
+
+
