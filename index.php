@@ -27,6 +27,17 @@ $_SESSION["test"] = "Session test!";
                      <video style='border: 2px solid #000;' width="410" height="230" controls>
                           <source src="media/tutorial.mp4" type="video/mp4">
                     </video>
+                    <form action = "wps.php">
+
+                            <center>
+
+                                    <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                    <button class="button button1"><b>See What People are Searching!</b></button><br>
+
+                            </center>
+
+
+                    </form>
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Our Vision:</h1>
