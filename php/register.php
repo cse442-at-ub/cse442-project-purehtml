@@ -74,7 +74,7 @@ $conn = connect();
     	
     
     	if ($exists == False){
-                add_user($conn, $user, $pass, $email);
+                add_user($conn, $user, $pass, $email, date("F j, Y"));
         
         	echo "<script>alert('You have been registered.');</script>";
             

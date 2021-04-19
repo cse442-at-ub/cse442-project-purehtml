@@ -17,10 +17,6 @@ function connect()
 
   $conn = new mysqli($servername, $username, $password, $table);
 
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
   return $conn;
   
 }
@@ -30,27 +26,27 @@ function create_table($conn){
 	$sql = "CREATE TABLE Users (
 	username VARCHAR(20) NOT NULL,
         password VARCHAR(20) NOT NULL,
-        email VARCHAR(20) NOT NULL
-	)";
+        email VARCHAR(50) NOT NULL,
+	date VARCHAR(20) NOT NULL)";
 	if ($conn->query($sql) === TRUE) {
-  		echo "Users created successfully\n";
+  		//echo "Users created successfully\n";
 	}
  	else {
-  		echo "Error creating table: " . $conn->error;
+  		//echo "Error creating table: " . $conn->error;
 	}
 }
 
-function add_user($conn, $user, $pass, $email){
-	$sql = 'INSERT INTO Users (username, password, email)
-		VALUES (?, ?, ?);';
+function add_user($conn, $user, $pass, $email, $date){
+	$sql = 'INSERT INTO Users (username, password, email, date)
+		VALUES (?, ?, ?, ?);';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $user, $pass, $email);
+        $stmt->bind_param("ssss", $user, $pass, $email, $date);
 	
 	if ($stmt->execute() === TRUE) {
-                echo "User added to Users successfully\n";
+                //echo "User added to Users successfully\n";
         }
 	else {
-              	echo "Error creating table: " . $conn->error;
+              	//echo "Error creating table: " . $conn->error;
         }
 
 }
@@ -72,9 +68,6 @@ function query_email($conn, $email)
   return $result->fetch_array(MYSQLI_NUM);
 }
 
-$user = "jdkazime";
-$pass = "50181732";
-connect($user, $pass);
 ?>
 
 
