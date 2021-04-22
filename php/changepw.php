@@ -6,7 +6,7 @@ session_start();
 <?php
 include "../db/connect_to_db.php";
 
-$conn = connect();
+$conn = connect('../db/db_credentials.txt');
 	
 $user = $_POST['username'];
 $reduced_user = preg_replace("/[^a-zA-Z0-9]+/", "", $user);

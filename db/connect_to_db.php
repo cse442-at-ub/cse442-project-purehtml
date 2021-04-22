@@ -1,14 +1,14 @@
 <?php
 
-function get_db_credentials(){
-	$myfile = file_get_contents("../db/db_credentials.txt");
+function get_db_credentials($path){
+	$myfile = file_get_contents($path);
         $contents = explode(":", $myfile);
         return $contents; 
 }
 
-function connect()
+function connect($path)
 {
-  $credentials = get_db_credentials();
+  $credentials = get_db_credentials($path);
   $username = trim($credentials[0]);
   $password = trim($credentials[1]);
 
@@ -21,7 +21,6 @@ function connect()
   
 }
 
-connect();
 function create_table($conn){
 	$sql = "CREATE TABLE Users (
 	username VARCHAR(20) NOT NULL,

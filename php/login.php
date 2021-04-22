@@ -5,7 +5,7 @@ session_start();
 <?php
 include "../db/connect_to_db.php";
 
-$conn = connect();
+$conn = connect('../db/db_credentials.txt');
 
 // A boolean check to make sure that the fields have values.
  if (isset($_POST['username']) && isset($_POST['password'])) {
