@@ -10,6 +10,10 @@ session_start();
 include '../spotify/get_songs.php';
 // Set the working artist.
 
+
+include "../db/connect_to_db.php";
+
+$conn = connect('../db/db_credentials.txt');
 // A boolean check to make sure that the fields have values.
 
 
@@ -59,23 +63,32 @@ include '../spotify/get_songs.php';
 
        // Is the user logged in?
        if ($user != ""){
-           // MAKE SURE THAT THE FILE HAS {} IN IT IF EMPTY, + CHMOD 777
-           $file = '../data/history.json';
-           $json = file_get_contents($file) or die('No Open!');
-           $dict = json_decode($json, true);
-           // Does the user exists?
-           if (array_key_exists($user, $dict) == False){
-                   $dict[$user] = array();
-           }
-           $array = $dict[$user];
-           $array[] = $top_match;
-           // Get rid of results more than 10 for space constraints.
-           while (count($array) > 10){
-                   array_shift($array);
-           }
-           $dict[$user] = $array;
-           $new_json = json_encode($dict);
-           file_put_contents($file, $new_json);
+  		$stmt = $conn->prepare("SELECT * FROM History WHERE username = ?");
+                $stmt->bind_param("s", $user);
+                $stmt->execute();
+		$result = $stmt->get_result();
+                $qry = $result -> fetch_array(MYSQLI_NUM);
+
+                if (is_null($qry) == True){
+			$sql = "INSERT INTO History (username, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10)
+			VALUES (?, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.');";
+       			 $stmt = $conn->prepare($sql);
+                         $stmt->bind_param("s", $user);
+                         $stmt->execute();
+                }
+
+                $arr = array_slice($qry, 1, 12);
+                array_shift($arr);
+                $arr[] = $top_match;
+		$sql = "UPDATE History SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE username = ?;";
+ 		
+		$stmt = $conn->prepare($sql);
+               	$arr[] = $user;
+                $types = str_repeat("s", count($arr)); 
+                
+		$stmt->bind_param($types, ...$arr);
+		$stmt->execute();
+                
        }
 
        // Get the stuff to make random better.
