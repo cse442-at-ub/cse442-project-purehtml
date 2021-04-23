@@ -2,6 +2,9 @@
 session_start();
 ?>
 <?php
+//include "db/connect_to_db.php";
+
+//$conn = connect('db/db_credentials.txt');
 
 //include "../../spotify/get_songs.php";
 
@@ -29,6 +32,11 @@ session_start();
        }
 
        function get_adjacency_list($all_tracks, $input){
+            
+
+            $conn = connect('db/db_credentials.txt');
+            
+	    
             $all_tracks = array_slice($all_tracks, 0, 20);
             $artist_stack = array();
             $artist_weights = array();
@@ -36,19 +44,40 @@ session_start();
             foreach($all_tracks as $track){
                 $lead_artist = $track['artists'][0]['name'];
                 $artists_genre = get_artist_info($track['artists'][0]['id'], $_SESSION['token'])['genres'];
-                //print var_dump($artists_genre);
+                
                 if ($lead_artist == $input){
                 foreach($track['artists'] as $artist){
                         $artist_tuple = $input .  ':::' . $artist['name'];
-                        //$genre_tuple = $input . ':::' . $artist['genres'];
+                      
                         if (($artist['name'] != $input)){
-
+                                   
                              if (in_array(strtolower($artist['name']), $artist_stack) == False){
                                 $artist_stack[] = strtolower($artist['name']);
                                 $artist_weights[$artist_tuple] = 0;
                                }
-
-                               $temp_genre = get_artist_info($artist['id'], $_SESSION['token'])['genres'];
+			       	       
+                               $temp_info = get_artist_info($artist['id'], $_SESSION['token']);
+			       $sql = "SELECT * FROM Artists WHERE name = ?;";
+              			
+			       $stmt = $conn -> prepare($sql);
+                               
+                               
+                               $stmt->bind_param("s", $temp_info['name']);
+                               
+			
+                               $stmt->execute();
+                               $result = $stmt->get_result();
+                               $qry = $result->fetch_array(MYSQLI_NUM);
+                               
+                               if (is_null($qry) == True){
+			 	 $sql = "INSERT INTO Artists (name, img) VALUES (?, ?);";
+				 $stmt = $conn->prepare($sql);
+                                 $stmt->bind_param("ss", $temp_info['name'], $temp_info['images'][0]['url']);
+                                 $stmt->execute();
+                               }
+			       
+                               $temp_genre = $temp_info['genres'];
+			       
                                foreach($temp_genre as $genre){
                                    if(in_array(strtolower($artist_tuple), $genre_weights)){
                                     $genre_weights[$artist_tuple] = 1;
