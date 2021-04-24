@@ -111,6 +111,15 @@ font-family: "Bebas Neue", cursive;
         
                                     <?php
 				        $conn = connect('db/db_credentials.txt');
+
+					$sql = "SELECT * FROM Artists WHERE name = ?;";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->bind_param("s", $_SESSION['search']);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+                                        $qry = $result -> fetch_array(MYSQLI_NUM);
+					if (is_null($qry) == True){
+                                        
                                         $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
 					
                                         $starting_stack = get_stack();
@@ -137,18 +146,25 @@ font-family: "Bebas Neue", cursive;
                                  		$stmt->bind_param("ss", $_SESSION['search'], $_SESSION['img']);
                                 		$stmt->execute();
 					}
-					$sql = "UPDATE Artists SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE name = ?;";
+						$sql = "UPDATE Artists SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE name = ?;";
  		
-					$stmt = $conn->prepare($sql);
-                                        while(count($arr_slice) < 10){
-					   $arr_slice[] = "NULL";
+						$stmt = $conn->prepare($sql);
+                                        	while(count($arr_slice) < 10){
+					   		$arr_slice[] = "NULL";
+                                        	}
+                                        
+               					$arr_slice[] = $_SESSION['search'];
+                				$types = str_repeat("s", count($arr_slice)); 
+                                        
+						$stmt->bind_param($types, ...$arr_slice);
+						$stmt->execute();
                                         }
-                                        
-               				$arr_slice[] = $_SESSION['search'];
-                			$types = str_repeat("s", count($arr_slice)); 
-                                        
-					$stmt->bind_param($types, ...$arr_slice);
-					$stmt->execute();
+
+                                        else{
+                                         $artist_keys = array_slice($qry, 2, 12);
+                                         $artist_keys = array_diff($artist_keys, array("NULL"));
+                                        }
+
                                          if ($_SESSION["search"] != ""){
 
 
