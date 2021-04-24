@@ -98,6 +98,8 @@ font-family: "Bebas Neue", cursive;
 
 #loading-image {
   position: fixed;
+  max-width:35%;
+  height:35%;
   top: 50%;
   left: 50%;
   z-index: 100;
