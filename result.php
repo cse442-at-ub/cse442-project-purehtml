@@ -104,7 +104,10 @@ font-family: "Bebas Neue", cursive;
                         </form>
                 </div>
 
-                 </div>  
+                 </div>
+                 <div id="loading">
+  <img id="loading-image" src="media/loading.gif" alt="Loading..." />
+                </div>
         
                                     <?php
 				        $conn = connect('db/db_credentials.txt');
@@ -150,7 +153,7 @@ font-family: "Bebas Neue", cursive;
 
 
                                                 if (count($artist_keys) == 0){
-                                                    print "<h1>No recommendations possible!</h1><br><h1>The algorithm could not find collaborations.</h1>";
+                                                    print "<center><h1>No recommendations possible!</h1><br><h1>The algorithm could not find collaborations.</h1></center>";
 
                                                 }
 
@@ -196,6 +199,7 @@ font-family: "Bebas Neue", cursive;
                                                                     $html .= '</div>'; // CLOSE ROW
                                                                 }*/
                                                                     
+                                                                    
 
                                                                 echo $html;
                                                                 $i++;
@@ -216,6 +220,9 @@ font-family: "Bebas Neue", cursive;
                                         }
 
                                  ?>
+                                <script>
+                                    document.getElementById("loading").style.visibility = "hidden";
+                                </script>
                                     </div>
                                     <br><br><br>
                         
