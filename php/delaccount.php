@@ -4,36 +4,32 @@
 session_start();
 ?>
 <?php
+include "../db/connect_to_db.php";
 
-// Set the location of the text file.
-$path = '../data/log.txt';
+$conn = connect('../db/db_credentials.txt');
 
 // A boolean check to make sure that the fields have values.
  if (isset($_SESSION['username']))
  {
 
-    $data = file_get_contents($path) or die("cant open");
-    $users = explode("\n", $data);
-    $output = array();
-   	foreach($users as $line)
-    {
-      $current_user = explode(":", $line)[0];
+    $qry = "DELETE FROM Users WHERE username = ?;";
+    $stmt = $conn->prepare($qry);
+    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->execute();
 
-      if (strtolower($current_user) != strtolower($_SESSION['username']))
-      {
-            		$output[] = $line;
-                echo "FOUND";
-      }
+    $stmt = $conn->prepare("SELECT * FROM History WHERE username = ?");
+    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->execute();
 
+    $result = $stmt->get_result();
+    $qry = $result -> fetch_array(MYSQLI_NUM);
+    if (is_null($qry) == False){
+	$sql = "DELETE FROM History WHERE username = ?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $_SESSION['username']);
+        $stmt->execute(); 
     }
-    $file = fopen($path, "w+");
-    flock($file, LOCK_EX);
-    foreach($output as $line) {
-      fwrite($file, $line."\n");
 
-    }
-    flock($file, LOCK_UN);
-    fclose($file);
 
     $user = $_SESSION['username'];
     $dir = '../data/profile_pics/';
@@ -41,6 +37,7 @@ $path = '../data/log.txt';
     unlink($loc);
 
     $_SESSION = array();
+    $conn->close();
 
   }
   else{
