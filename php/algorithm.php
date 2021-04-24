@@ -70,9 +70,9 @@ session_start();
                                $qry = $result->fetch_array(MYSQLI_NUM);
                                
                                if (is_null($qry) == True){
-			 	 $sql = "INSERT INTO Artists (name, img) VALUES (?, ?);";
+			 	 $sql = "INSERT INTO Artists (name, img, id, i1) VALUES (?, ?, ?, '.');";
 				 $stmt = $conn->prepare($sql);
-                                 $stmt->bind_param("ss", $temp_info['name'], $temp_info['images'][0]['url']);
+                                 $stmt->bind_param("sss", $temp_info['name'], $temp_info['images'][0]['url'], $temp_info['id']);
                                  $stmt->execute();
                                }
 			       

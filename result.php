@@ -1,3 +1,4 @@
+
 <?php
 // Start the session
 session_start();
@@ -106,69 +107,70 @@ font-family: "Bebas Neue", cursive;
 
                  </div>
                  <div id="loading">
+                 
   <img id="loading-image" src="media/loading.gif" alt="Loading..." />
+                
                 </div>
         
                                     <?php
-				        $conn = connect('db/db_credentials.txt');
+                                                $conn = connect('db/db_credentials.txt');
 
-					$sql = "SELECT * FROM Artists WHERE name = ?;";
-                                        $stmt = $conn->prepare($sql);
-                                        $stmt->bind_param("s", $_SESSION['search']);
-                                        $stmt->execute();
-                                        $result = $stmt->get_result();
-                                        $qry = $result -> fetch_array(MYSQLI_NUM);
-					if (is_null($qry) == True){
-                                        
-                                        $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
-					
-                                        $starting_stack = get_stack();
-                                        $starting_stack = array_slice($starting_stack, 0, 10);
-                                        $bfs_results = bfs($starting_stack);
-					
-                                        $artist_stack = merge_weights($_SESSION['search'], $temp_stack, $bfs_results);
-                                        arsort($artist_stack);
-                                        $artist_keys = array_keys($artist_stack);
-                                        $arr_slice = array_slice($artist_keys, 0, 10);
-                                        
+                                                $sql = "SELECT * FROM Artists WHERE name = ?;";
+                                                $stmt = $conn->prepare($sql);
+                                                $stmt->bind_param("s", $_SESSION['search']);
+                                                $stmt->execute();
+                                                $result = $stmt->get_result();
+                                                $qry = $result -> fetch_array(MYSQLI_NUM);
 
-					$sql = "SELECT * FROM Artists WHERE name = ?;";
-                                        $stmt = $conn->prepare($sql);
-                                        $stmt->bind_param("s", $_SESSION['search']);
-                                        $stmt->execute();
-                                        $result = $stmt->get_result();
-                			$qry = $result -> fetch_array(MYSQLI_NUM);
-                                        
-                                        if (is_null($qry) == True){
-						$sql = "INSERT INTO Artists (name, img) VALUES (?, ?);";
-                                		$stmt = $conn->prepare($sql);
-                                                
-                                 		$stmt->bind_param("ss", $_SESSION['search'], $_SESSION['img']);
-                                		$stmt->execute();
-					}
-						$sql = "UPDATE Artists SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE name = ?;";
- 		
-						$stmt = $conn->prepare($sql);
-                                        	while(count($arr_slice) < 10){
-					   		$arr_slice[] = "NULL";
-                                        	}
-                                        
-               					$arr_slice[] = $_SESSION['search'];
-                				$types = str_repeat("s", count($arr_slice)); 
-                                        
-						$stmt->bind_param($types, ...$arr_slice);
-						$stmt->execute();
-                                        }
+                                                if (is_null($qry) == True or $qry[2] == "."){
 
-                                        else{
-                                         $artist_keys = array_slice($qry, 2, 12);
-                                         $artist_keys = array_diff($artist_keys, array("NULL"));
-                                        }
+                                                      
+                                                  $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
+                    
+                                                  $starting_stack = get_stack();
+                                                  $starting_stack = array_slice($starting_stack, 0, 10);
+                                                  $bfs_results = bfs($starting_stack);
+                    
+                                                  $artist_stack = merge_weights($_SESSION['search'], $temp_stack, $bfs_results);
+                                                  arsort($artist_stack);
+                                                  $artist_keys = array_keys($artist_stack);
+                                                  $arr_slice = array_slice($artist_keys, 0, 10);
+                                                                                
 
+                                            
+                                                                                
+                                                  if (is_null($qry) == True){                              
+                                                  $sql = "INSERT INTO Artists (name, img, id) VALUES (?, ?, ?);";
+                                                  $stmt = $conn->prepare($sql);
+                                                              
+                                                  $stmt->bind_param("sss", $_SESSION['search'], $_SESSION['img'], $_SESSION['artist_id']);
+                                                  $stmt->execute();
+                                                  }
+                                                  $sql = "UPDATE Artists SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ?, id = ? WHERE name = ?;";
+                                            
+                                                  $stmt = $conn->prepare($sql);
+                                                  while(count($arr_slice) < 10){
+                                                    $arr_slice[] = "NULL";
+                                                  }
+
+                                                  $arr_slice[] = $_SESSION['artist_id'];                              
+                                                  $arr_slice[] = $_SESSION['search'];
+                                                  
+                                                  $types = str_repeat("s", count($arr_slice)); 
+                                                                                
+                                                  $stmt->bind_param($types, ...$arr_slice);
+                                                  $stmt->execute();
+                                                }
+                                                else{
+                                                  
+                                                  $artist_keys = array_slice($qry, 2, 10);
+                                                  $artist_keys = array_diff($artist_keys, array("NULL"));
+                                                }
                                          if ($_SESSION["search"] != ""){
 
 
-                                                if (count($artist_keys) == 0){
+                                                
+						if (count($artist_keys) == 0){
                                                     print "<center><h1>No recommendations possible!</h1><br><h1>The algorithm could not find collaborations.</h1></center>";
 
                                                 }
@@ -254,3 +256,4 @@ font-family: "Bebas Neue", cursive;
 </body>
 
 </html>
+        ?>
