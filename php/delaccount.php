@@ -30,6 +30,19 @@ $conn = connect('../db/db_credentials.txt');
         $stmt->execute(); 
     }
 
+    $stmt1 = $conn->prepare("SELECT * FROM Bookmarks WHERE username = ?");
+    $stmt1->bind_param("s", $_SESSION['username']);
+    $stmt1->execute();
+
+    $result1 = $stmt1->get_result();
+    $qry1 = $result1 -> fetch_array(MYSQLI_NUM);
+    if (is_null($qry1) == False){
+    $sql1 = "DELETE FROM Bookmarks WHERE username = ?;";
+        $stmt1 = $conn->prepare($sql1);
+        $stmt1->bind_param("s", $_SESSION['username']);
+        $stmt1->execute(); 
+    }
+
 
     $user = $_SESSION['username'];
     $dir = '../data/profile_pics/';

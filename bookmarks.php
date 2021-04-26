@@ -9,8 +9,7 @@ session_start();
 
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php";?>
-
+<?php include "header.php";include "db/connect_to_db.php";?>
 <style>
 #submit{
    width: 500px;
@@ -23,7 +22,32 @@ session_start();
                 <div>
                         <center>
                                 <?php
+                                $conn = connect('db/db_credentials.txt');
+                                $sql = "SELECT * FROM Bookmarks WHERE username = ?;";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("s", $_SESSION['username']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $qry = $result -> fetch_array(MYSQLI_NUM);
 
+                                
+
+
+                                if(is_null($qry) == True){
+                                    print "<h1>No Bookmarks Found</h1>";
+                                }
+
+                                else{
+                                    
+                                    $bookmarks = array_slice($qry, 2, 10);
+                                    $bookmarks = array_diff($bookmarks, array("."));
+                                    print "<h1>Your Bookmarks:</h1>";
+                                    foreach ($bookmarks as $bookmark) {
+                                        print "<h2>$bookmark</h2>";
+                                    }
+                                }
+
+                                /*
                                 $file = 'data/booksmarks.json';
                                 $json = file_get_contents($file) or die('No Open!');
                                 $dict = json_decode($json, true);
@@ -41,7 +65,7 @@ session_start();
 
 						print "<h2>$bookmark</h2>";
 					}
-				}
+				}*/
                                 ?><br><br><br><br>
                         </center>
 
