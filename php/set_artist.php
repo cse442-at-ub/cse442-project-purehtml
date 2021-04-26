@@ -56,8 +56,8 @@ include '../spotify/get_songs.php';
      if($top_match != "")
      {
        $wpsData = file_get_contents("../data/wps.json");
-       $temp = json_decode($wpsData);
-       array_push($temp,$top_match);
+       $temp = json_decode($wpsData,true);
+       array_push($temp[date("m,d,y")],$top_match);
        $jsonforfile = json_encode($temp);
        file_put_contents("../data/wps.json",$jsonforfile);
 
