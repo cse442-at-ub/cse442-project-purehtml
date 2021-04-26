@@ -77,6 +77,12 @@ $conn = connect('../db/db_credentials.txt');
                          $stmt->execute();
                 }
 
+		$stmt = $conn->prepare("SELECT * FROM History WHERE username = ?");
+                $stmt->bind_param("s", $user);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $qry = $result -> fetch_array(MYSQLI_NUM);
+
                 $arr = array_slice($qry, 1, 12);
                 array_shift($arr);
                 $arr[] = $top_match;
