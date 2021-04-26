@@ -36,6 +36,20 @@ session_start();
 
   <?php
 
+  //Code to get images
+  include 'spotify/get_songs.php';
+
+  $credentials = getCredentials();
+  $client_id = $credentials[0];
+  $client_secret = $credentials[1];
+  $token = get_authenicated($client_id, $client_secret);
+
+  //$tracks = get_top_artists(ARTIST, $token);
+  //$id_artist = get_artist_id(ARTIST $tracks);
+  //$id = $id_artist[0];
+
+
+//Code for Stats
   $wpsData = file_get_contents("data/wps.json");
   $temp = json_decode($wpsData,true);
 
@@ -46,6 +60,42 @@ session_start();
 
   else{
   print "<div class='row'>";
+
+
+
+  print "<div class='column'><h2>Top Artist of the Day</h2>";
+  $dateKeys = array_keys($temp);
+  $allArtists=array();
+  $topDayArray = array();
+  foreach($dateKeys as $date)
+  {
+    if($date==date("m,d,y"))
+    {
+        foreach ($temp[$date] as $artist)
+        {
+          array_push($topDayArray,$artist);
+        }
+
+    }
+  }
+  $topCounted = array_count_values($topDayArray);
+  $topSorted = arsort($topCounted);
+  $topArtist = array_keys($topCounted)[0];
+  $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
+  $name = $topArtist;
+  $tracks = get_top_artists($name, $token);
+  $id_artist = get_artist_id($name, $tracks);
+  $id = $id_artist[0];
+  $art_img = get_artist_image($id,$token);
+  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$topArtist'>";
+  $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
+  $artist_string = $artist_string . "</form>";
+  print $artist_string;
+
+  print "</div>";
+
+
+
   print "<div class='column'><h2>Top 10 Most Searched Artists:</h2>";
 
   $dateKeys = array_keys($temp);
@@ -66,36 +116,19 @@ session_start();
   {
         $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
         $name = $artist_keys[$k - 1];
+        $tracks = get_top_artists($name, $token);
+        $id_artist = get_artist_id($name, $tracks);
+        $id = $id_artist[0];
+        $art_img = get_artist_image($id,$token);
         $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$name'>";
+        $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
         $artist_string = $artist_string . "</form>";
         print $artist_string;
 
   }
   print "</div>";
 
-  print "<div class='column'><h2>Top Artist of the Day</h2>";
-  $topDayArray = array();
-  foreach($dateKeys as $date)
-  {
-    if($date==date("m,d,y"))
-    {
-        foreach ($temp[$date] as $artist)
-        {
-          array_push($topDayArray,$artist);
-        }
 
-    }
-  }
-  $topCounted = array_count_values($topDayArray);
-  $topSorted = arsort($topCounted);
-  $topArtist = array_keys($topCounted)[0];
-  $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
-  $name = $artist_keys[$k - 1];
-  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$topArtist'>";
-  $artist_string = $artist_string . "</form>";
-  print $artist_string;
-
-  print "</div>";
 
 
   print "<div class='column'><h2>Top Artist of the Month</h2>";
@@ -118,8 +151,13 @@ session_start();
   $topMSorted = arsort($topMCounted);
   $topMArtist = array_keys($topMCounted)[0];
   $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
-  $name = $artist_keys[$k - 1];
+  $name = $topMArtist;
+  $tracks = get_top_artists($name, $token);
+  $id_artist = get_artist_id($name, $tracks);
+  $id = $id_artist[0];
+  $art_img = get_artist_image($id,$token);
   $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$topMArtist'>";
+  $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
   $artist_string = $artist_string . "</form>";
   print $artist_string;
 
