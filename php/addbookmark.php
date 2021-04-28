@@ -36,7 +36,7 @@ $qry = $result -> fetch_array(MYSQLI_NUM);
 
 $arr = array_slice($qry, 1, 12);
 array_shift($arr);
-$arr[] = $_SESSION["random_title"]. " by ". $_SESSION["search"];
+$arr[] = $_SESSION["random_title"]. " by ". $_SESSION["search"] . "~" . $_SESSION["random_track"];
 $sql = "UPDATE Bookmarks SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE username = ?;";
 
 $stmt = $conn->prepare($sql);

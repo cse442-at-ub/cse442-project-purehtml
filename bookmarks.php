@@ -43,29 +43,14 @@ session_start();
                                     $bookmarks = array_diff($bookmarks, array("."));
                                     print "<h1>Your Bookmarks:</h1>";
                                     foreach ($bookmarks as $bookmark) {
-                                        print "<h2>$bookmark</h2>";
+					$split_bookmark = explode("~", $bookmark);
+					$link = $split_bookmark[1];
+					$link = 'https://open.spotify.com/track/' . $link;
+					$song = $split_bookmark[0];
+                                        print "<a  href = {$link} target='_blank' rel='noopener noreferrer'><h1>{$song}</h1></a>";
                                     }
                                 }
 
-                                /*
-                                $file = 'data/booksmarks.json';
-                                $json = file_get_contents($file) or die('No Open!');
-                                $dict = json_decode($json, true);
-
-
-                                if (array_key_exists($_SESSION['username'], $dict) == False){
-                                        print "<h1>No Bookmarks Found</h1>";
-                                }
-
-                                else{
-                                        print "<h1>Your bookmarks:</h1>";
-                                        $bookmarks = array_reverse($dict[$_SESSION['username']]);
-                                        
-					foreach($bookmarks as $bookmark){
-
-						print "<h2>$bookmark</h2>";
-					}
-				}*/
                                 ?><br><br><br><br>
                         </center>
 
