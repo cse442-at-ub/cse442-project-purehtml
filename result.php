@@ -1,4 +1,3 @@
-
 <?php
 // Start the session
 session_start();
@@ -123,7 +122,6 @@ font-family: "Bebas Neue", cursive;
                                                 $qry = $result -> fetch_array(MYSQLI_NUM);
 
                                                 if (is_null($qry) == True or $qry[2] == "."){
-
                                                       
                                                   $temp_stack = get_adjacency_list($_SESSION['all_tracks'], $_SESSION['search']);
                     
@@ -152,6 +150,15 @@ font-family: "Bebas Neue", cursive;
                                                   while(count($arr_slice) < 10){
                                                     $arr_slice[] = "NULL";
                                                   }
+						  $bad_key = $_SESSION['search'] . ":::" . $_SESSION['search'];
+						  $rmv = array_search($bad_key, $arr_slice);
+						  if ($rmv === False){}
+						  else{
+							$arr_slice[$rmv] = "NULL";
+						}
+					
+						  $artist_keys = $arr_slice;
+						  $artist_keys = array_diff($artist_keys, array("NULL"));
 
                                                   $arr_slice[] = $_SESSION['artist_id'];                              
                                                   $arr_slice[] = $_SESSION['search'];
@@ -160,14 +167,17 @@ font-family: "Bebas Neue", cursive;
                                                                                 
                                                   $stmt->bind_param($types, ...$arr_slice);
                                                   $stmt->execute();
+
+						  
                                                 }
                                                 else{
-                                                  
+						                                                  
                                                   $artist_keys = array_slice($qry, 2, 10);
                                                   $artist_keys = array_diff($artist_keys, array("NULL"));
                                                 }
+                                         
                                          if ($_SESSION["search"] != ""){
-
+						
 
                                                 
 						if (count($artist_keys) == 0){
@@ -257,3 +267,4 @@ font-family: "Bebas Neue", cursive;
 
 </html>
         ?>
+
