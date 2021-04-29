@@ -214,13 +214,14 @@ font-family: "Bebas Neue", cursive;
                                                             }
                                                                 $html = '';
                                                                 /*$totalItemPerLine = 5;
-                                                                $totalItem = 10;
+                                                                $totalItem = 9;
                                                                 if($i % $totalItemPerLine == 0)
                                                                 {
                                                                     $html .= '<div class="row1">'; // OPEN ROW
                                                                 }*/
+								    $l = $i + 1;
 
-                                                                    $html .= '<div class="row">'.'<div class="column"'.'style="min-width: 400px; margin: 0 auto;">'.'<center>'."<img src='{$art_img}' width = '150' height = '150' style = 'border: 5px solid black;'></img>".$artist_string.'<center>'.'</div>';
+                                                                    $html .= '<div class="row">'.'<div class="column"'.'style="min-width: 400px; margin: 0 auto;">'.'<center>'."<h1>#{$l}</h1><img src='{$art_img}' width = '150' height = '150' style = 'border: 5px solid black;'></img>".$artist_string.'<center>'.'</div>';
 
                                                                 /*if($i % $totalItemPerLine == ($totalItemPerLine-1  ))
                                                                 {
