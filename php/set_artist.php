@@ -48,11 +48,13 @@ $conn = connect('../db/db_credentials.txt');
     else{
 	
 	
-                $sql = "SELECT name FROM Artists";
+                $sql = "SELECT name, id FROM Artists";
                 $result = mysqli_query($conn,$sql);
 	$similarity = array();
+	$sim_ids = array();
 	while(null !== ($qry = mysqli_fetch_assoc($result))){
-     		$artist = $qry[0];
+		
+     		$artist = $qry['name'];
 	
 
   		 
@@ -61,13 +63,17 @@ $conn = connect('../db/db_credentials.txt');
             // Returns similarity as an integer (sim) and percentage (perc)
             $sim = similar_text(strtolower($current_artist), strtolower($artist), $perc);
             $similarity[$artist] = $perc;
+	    
+	    $sim_ids[$artist] = $qry['id'];
          
          }
     
     # Returns the id of the maximum similarity.
     $max_perc = max($similarity);
     $most_similar = array_search(max($similarity), $similarity);
+    $best_id = $sim_ids[$most_similar];
      }
+    
      
      // This is just Spotify stuff.
      $credentials = getCredentials();
@@ -78,11 +84,12 @@ $conn = connect('../db/db_credentials.txt');
      $id_artist = get_artist_id($current_artist, $tracks);
      $id_perc = $id_artist[2];
      if ($id_perc >= $max_perc){
-     $top_match = $id_artist[1];
+     	$top_match = $id_artist[1];
+	$id = id_artist[0];
      }
      else{
-	print('Kanye West');
 	$top_match = $most_similar;
+	$id = $best_id;
      }
      // If there's a result for that search.
      if ($top_match != ""){
@@ -126,7 +133,7 @@ $conn = connect('../db/db_credentials.txt');
        }
 
        // Get the stuff to make random better.
-       $id = $id_artist[0];
+       //$id = $id_artist[0];
        $albums = get_all_albums($id, $token);
        $all_tracks = get_all_tracks($albums, $token);
        // Set variables for later.
