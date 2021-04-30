@@ -46,7 +46,29 @@ $conn = connect('../db/db_credentials.txt');
         echo "<script> location.href = '../index.php'; </script>";
     }
     else{
+	
+	
+                $sql = "SELECT name FROM Artists";
+                $result = mysqli_query($conn,$sql);
+	$similarity = array();
+	while(null !== ($qry = mysqli_fetch_assoc($result))){
+     		$artist = $qry[0];
+	
 
+  		 
+       		 foreach($qry as $artist){
+			
+            // Returns similarity as an integer (sim) and percentage (perc)
+            $sim = similar_text(strtolower($current_artist), strtolower($artist), $perc);
+            $similarity[$artist] = $perc;
+         
+         }
+    
+    # Returns the id of the maximum similarity.
+    $max_perc = max($similarity);
+    $most_similar = array_search(max($similarity), $similarity);
+     }
+     
      // This is just Spotify stuff.
      $credentials = getCredentials();
      $client_id = $credentials[0];
@@ -54,8 +76,14 @@ $conn = connect('../db/db_credentials.txt');
      $token = get_authenicated($client_id, $client_secret);
      $tracks = get_top_artists($current_artist, $token);
      $id_artist = get_artist_id($current_artist, $tracks);
+     $id_perc = $id_artist[2];
+     if ($id_perc >= $max_perc){
      $top_match = $id_artist[1];
-
+     }
+     else{
+	print('Kanye West');
+	$top_match = $most_similar;
+     }
      // If there's a result for that search.
      if ($top_match != ""){
        $_SESSION['search'] = $top_match;
