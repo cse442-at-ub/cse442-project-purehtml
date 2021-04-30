@@ -190,7 +190,7 @@ font-family: "Bebas Neue", cursive;
 
                                                 $i = 0;
                                                 
-                                                for($k = 1; $k <= 10; $k++){
+                                                for($k = 1; $k <= 9; $k++){
                                                         
                                                         $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
                                                         $name = $artist_keys[$k - 1];
