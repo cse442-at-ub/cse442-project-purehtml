@@ -85,7 +85,7 @@ $conn = connect('../db/db_credentials.txt');
      $id_perc = $id_artist[2];
      if ($id_perc >= $max_perc){
      	$top_match = $id_artist[1];
-	$id = id_artist[0];
+	$id = $id_artist[0];
      }
      else{
 	$top_match = $most_similar;
