@@ -19,8 +19,26 @@ session_start();
 </style>
 
 <body style="background-color: #77d94c">
+                <div class="row">
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
 
-                <div>
+                        <form action = "userpage.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
+                </div>
+                
+
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <center>
                                 <?php
 				
@@ -56,7 +74,8 @@ session_start();
                                                         $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$history[$k - 1]}'>";
                                                         $artist_string = $artist_string . "</form>";
 
-                                                        print $artist_string;
+
+                                                        print('<h2>' .$artist_string. '</h2>');
 
                                                 }
                                         }
@@ -69,6 +88,7 @@ session_start();
                         </center>
 
                 </div>
+            </div>
 
 
 <br><br><br>

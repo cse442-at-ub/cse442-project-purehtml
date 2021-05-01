@@ -8,7 +8,26 @@ session_start();
 
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
+    <div class="row">
+    <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "userpage.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
+                </div>
+
     <br><br><br>
+    <div class="column" style="min-width: 400px; margin: 0 auto;">
     <form action = "php/changepw.php" method = "post">
 
 
@@ -35,6 +54,8 @@ session_start();
 
                  </center>
     </form>
+  </div>
+</div>
 
 <?php include "footer.php"; ?>
 
