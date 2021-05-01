@@ -80,13 +80,18 @@ font-family: "Bebas Neue", cursive;
 
                                  <?php
                                         $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or print("oh no!");
-                                        $url = get_artist_image($id[0], $_SESSION['token'])["url"] or die("hi");
+                                        $url = get_artist_image($id[0], $_SESSION['token'])["url"];
                                         $_SESSION['img'] = $url;
                                         $_SESSION['artist_id'] = $id[0];
+
+                                        $dir = "data/profile_pics/placeholder.png";
 
                                         if ($url != ""){
                                                 print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
+                                        else{
+                                            print "<img src='{$dir}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
+                                        }        
                                     ?>
                                     </center>
                 </div>
@@ -113,6 +118,8 @@ font-family: "Bebas Neue", cursive;
         
                                     <?php
                                                 $conn = connect('db/db_credentials.txt');
+
+                                                $dir = "data/profile_pics/placeholder.png";
 
                                                 $sql = "SELECT * FROM Artists WHERE name = ?;";
                                                 $stmt = $conn->prepare($sql);
@@ -204,6 +211,10 @@ font-family: "Bebas Neue", cursive;
                                                                 $top_match = $id_artist[1];
 
                                                                 $art_img = get_artist_image($id_artist[0], $_SESSION['token'])["url"];
+
+                                                                if($art_img == ""){
+                                                                  $art_img = $dir;
+                                                                }
 
                                                                  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
                                                                  $artist_string = $artist_string . "</form>";
