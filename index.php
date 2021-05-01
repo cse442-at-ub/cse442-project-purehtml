@@ -32,12 +32,23 @@ $_SESSION["test"] = "Session test!";
                             <center>
 
                                     <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
-                                    <button class="button button1"><b>See What People are Searching!</b></button><br>
+                                    <button class="button button1"><b>Trending Artists</b></button><br>
+
+                            </center>
+	            </form>
+
+		    <form action = "faq.php">
+
+                            <center>
+
+                                    <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                    <button class="button button1"><b>FAQ</b></button><br>
 
                             </center>
 
-
                     </form>
+
+                 
             </div>
             <div class="column" style="min-width: 400px; margin: 0 auto;">
                 <h1>Our Vision:</h1>
