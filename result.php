@@ -79,18 +79,37 @@ font-family: "Bebas Neue", cursive;
                                 ?>
 
                                  <?php
+                                        $conn = connect('db/db_credentials.txt');
+
                                         $id = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']) or print("oh no!");
-                                        $url = get_artist_image($id[0], $_SESSION['token'])["url"];
-                                        $_SESSION['img'] = $url;
+                                        
                                         $_SESSION['artist_id'] = $id[0];
+
+                                        $qry_img = "SELECT img FROM Artists where name = ?;";
+                                        $stmt = $conn->prepare($qry_img);
+                                        $stmt->bind_param("s", $_SESSION['search']);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+                                        $art_img = $result -> fetch_array(MYSQLI_NUM);
+
+                                        $_SESSION['img'] = $art_img[0];
 
                                         $dir = "data/profile_pics/placeholder.png";
 
-                                        if ($url != ""){
-                                                print "<img src='{$url}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
+                                        if ($art_img[0] != NULL){
+                                                print "<img src='{$art_img[0]}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
                                                 }
                                         else{
+                                            
+                                            $art_img[0] = get_artist_image($id[0], $_SESSION['token'])["url"];
+                                            $_SESSION['img'] = $art_img[0];
+
+                                            if($art_img[0] != NULL){
+                                              print "<img src='{$art_img[0]}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
+                                            }
+                                            else{
                                             print "<img src='{$dir}' width = '200' height = '200' style = 'border: 5px solid black;'></img>";
+                                          }
                                         }        
                                     ?>
                                     </center>
@@ -210,10 +229,18 @@ font-family: "Bebas Neue", cursive;
                                                                 $id_artist = get_artist_id($split_name[1], $tracks);
                                                                 $top_match = $id_artist[1];
 
-                                                                $art_img = get_artist_image($id_artist[0], $_SESSION['token'])["url"];
+                                                                //$art_img = get_artist_image($id_artist[0], $_SESSION['token'])["url"];
+                                                                //get_artist_image($id_artist[0], $_SESSION['token'])["url"];
+                                                                $qry_img = "SELECT img FROM Artists where name = ?;";
+                                                                $stmt = $conn->prepare($qry_img);
+                                                                $stmt->bind_param("s", $split_name[1]);
+                                                                $stmt->execute();
+                                                                $result = $stmt->get_result();
+                                                                $art_img = $result -> fetch_array(MYSQLI_NUM);
 
-                                                                if($art_img == ""){
-                                                                  $art_img = $dir;
+
+                                                                if($art_img[0] == NULL){
+                                                                  $art_img[0] = $dir;
                                                                 }
 
                                                                  $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$split_name[1]}'>";
@@ -230,9 +257,9 @@ font-family: "Bebas Neue", cursive;
                                                                 {
                                                                     $html .= '<div class="row1">'; // OPEN ROW
                                                                 }*/
-								    $l = $i + 1;
+								                                                    $l = $i + 1;
 
-                                                                    $html .= '<div class="row">'.'<div class="column"'.'style="min-width: 400px; margin: 0 auto;">'.'<center>'."<h1>#{$l}</h1><img src='{$art_img}' width = '150' height = '150' style = 'border: 5px solid black;'></img>".$artist_string.'<center>'.'</div>';
+                                                                    $html .= '<div class="row">'.'<div class="column"'.'style="min-width: 400px; margin: 0 auto;">'.'<center>'."<h1>#{$l}</h1><img src='{$art_img[0]}' width = '150' height = '150' style = 'border: 5px solid black;'></img>".$artist_string.'<center>'.'</div>';
 
                                                                 /*if($i % $totalItemPerLine == ($totalItemPerLine-1  ))
                                                                 {
