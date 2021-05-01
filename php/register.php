@@ -77,7 +77,8 @@ $conn = connect('../db/db_credentials.txt');
                 add_user($conn, $user, $pass, $email, date("F j, Y"));
         
         	echo "<script>alert('You have been registered.');</script>";
-            
+            echo "<script>location.href = '../existing.php'</script>";
+            exit(0);
         
     	}
     

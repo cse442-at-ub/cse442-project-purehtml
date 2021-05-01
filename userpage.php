@@ -62,7 +62,7 @@ session_start();
                 
      
      <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "php/delaccount.php">
+                        <form action = "deleteacc.php">
                                 <center>
                                         <button class="button button1"><b>Delete User</b></button><br>
                                 </center>      

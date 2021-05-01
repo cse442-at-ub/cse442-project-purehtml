@@ -7,10 +7,15 @@ session_start();
 include "../db/connect_to_db.php";
 
 $conn = connect('../db/db_credentials.txt');
+$user = $_POST['username'];
+$pass = $_POST['password'];
 
 // A boolean check to make sure that the fields have values.
  if (isset($_SESSION['username']))
  {
+    $qry1 = query_username($conn,$user);
+
+    if(is_null($qry1) == False && $qry1[1] == $pass){
 
     $qry = "DELETE FROM Users WHERE username = ?;";
     $stmt = $conn->prepare($qry);
@@ -51,8 +56,14 @@ $conn = connect('../db/db_credentials.txt');
 
     $_SESSION = array();
     $conn->close();
-
+    echo "<script>alert('User has been deleted');</script>";
   }
+  else{
+    echo "<script>alert('Incorrect Credentials inputted');</script>";
+    echo "<script>location.href = '../deleteacc.php'</script>";
+    exit(0);
+  }
+}
   else{
 	 echo "<script>alert('No Username set to delete');</script>";
    echo "<script>location.href = '../index.php'</script>";
