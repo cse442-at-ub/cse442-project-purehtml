@@ -36,7 +36,7 @@ session_start();
   </div>
 
   <?php
-  date_default_timezone_set('America/New_York');
+  date_default_timezone_set('America/New_York');//Needed for date() to run with no errors
 
   //Code to get images
   include 'spotify/get_songs.php';
@@ -45,11 +45,6 @@ session_start();
   $client_id = $credentials[0];
   $client_secret = $credentials[1];
   $token = get_authenicated($client_id, $client_secret);
-
-  //$tracks = get_top_artists(ARTIST, $token);
-  //$id_artist = get_artist_id(ARTIST $tracks);
-  //$id = $id_artist[0];
-
 
 //Code for Stats
   $wpsData = file_get_contents("data/wps.json");
@@ -64,7 +59,8 @@ session_start();
   print "<div class='row'>";
 
 
-
+  //*************************
+  //Top Artist of the Day .. Start of Div Col
   print "<div class='column'><h2>Top Artist of the Day</h2>";
   $dateKeys = array_keys($temp);
   $allArtists=array();
@@ -93,11 +89,16 @@ session_start();
   $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
   $artist_string = $artist_string . "</form></center>";
   print $artist_string;
-
+  //*************************
+  //Artists Searched This Day
+  print "<h2>Artists Searched This Day</h2>";
+  print "<p>".count($topDayArray)."</p>";
+  //End of Div Col
   print "</div>";
 
 
-
+  //*************************
+  //Top 10 Artists .. Start of Div Col
   print "<div class='column'><h2>Top 10 Most Searched Artists:</h2>";
 
   $dateKeys = array_keys($temp);
@@ -128,11 +129,13 @@ session_start();
         print $artist_string;
 
   }
+  //End of Div Col
   print "</div>";
 
 
 
-
+  //*************************
+  //Top Artist of the Month .. Start of Div Col
   print "<div class='column'><h2>Top Artist of the Month</h2>";
   $topMonthArray = array();
   foreach($dateKeys as $date)
@@ -163,9 +166,14 @@ session_start();
   $artist_string = $artist_string . "</form></center>";
   print $artist_string;
 
+  //*************************
+  //Artists Searched This Month
 
+  print "<h2>Artists Searched This Month</h2>";
+  print "<p>".count($topMonthArray)."</p>";
+
+  //End of Div Col
   print "</div>";
-
 
   print "</div>";
   }
