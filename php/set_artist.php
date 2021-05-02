@@ -6,7 +6,7 @@ session_start();
 
 <?php
 
-
+date_default_timezone_set('America/New_York');
 include '../spotify/get_songs.php';
 // Set the working artist.
 
@@ -57,7 +57,19 @@ include '../spotify/get_songs.php';
      {
        $wpsData = file_get_contents("../data/wps.json");
        $temp = json_decode($wpsData,true);
-       array_push($temp[date("m,d,y")],$top_match);
+       //Check if date key has been made already
+       //If made already just push to the array
+       //If no key is made make key and array and add to array
+       if(array_key_exists(date("m,d,y"),$temp))
+       {
+         array_push($temp[date("m,d,y")],$top_match);
+       }else {
+         $temp[date("m,d,y")]=array();
+         array_push($temp[date("m,d,y")],$top_match);
+
+       }
+
+
        $jsonforfile = json_encode($temp);
        file_put_contents("../data/wps.json",$jsonforfile);
 

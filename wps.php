@@ -22,6 +22,7 @@ session_start();
   display: table;
   clear: both;
 }
+#submit{font-family: "Bebas Neue", cursive; width: 100px;}
 </style>
 <?php include "header.php"; ?>
 
@@ -35,6 +36,7 @@ session_start();
   </div>
 
   <?php
+  date_default_timezone_set('America/New_York');
 
   //Code to get images
   include 'spotify/get_songs.php';
@@ -81,7 +83,7 @@ session_start();
   $topCounted = array_count_values($topDayArray);
   $topSorted = arsort($topCounted);
   $topArtist = array_keys($topCounted)[0];
-  $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
+  $base_string = "<center><form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
   $name = $topArtist;
   $tracks = get_top_artists($name, $token);
   $id_artist = get_artist_id($name, $tracks);
@@ -89,7 +91,7 @@ session_start();
   $art_img = get_artist_image($id,$token);
   $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$topArtist'>";
   $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
-  $artist_string = $artist_string . "</form>";
+  $artist_string = $artist_string . "</form></center>";
   print $artist_string;
 
   print "</div>";
@@ -114,15 +116,15 @@ session_start();
 
   for($k = 1; $k <= 10; $k++)
   {
-        $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
+        $base_string = "<center><form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
         $name = $artist_keys[$k - 1];
-        $tracks = get_top_artists($name, $token);
-        $id_artist = get_artist_id($name, $tracks);
-        $id = $id_artist[0];
-        $art_img = get_artist_image($id,$token);
+        //$tracks = get_top_artists($name, $token);
+        //$id_artist = get_artist_id($name, $tracks);
+        //$id = $id_artist[0];
+        //$art_img = get_artist_image($id,$token);
         $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$name'>";
-        $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
-        $artist_string = $artist_string . "</form>";
+        //$artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
+        $artist_string = $artist_string . "</form></center>";
         print $artist_string;
 
   }
@@ -150,7 +152,7 @@ session_start();
   $topMCounted = array_count_values($topMonthArray);
   $topMSorted = arsort($topMCounted);
   $topMArtist = array_keys($topMCounted)[0];
-  $base_string = "<form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
+  $base_string = "<center><form action = 'php/set_artist.php'  id = 'history' method = 'post'>";
   $name = $topMArtist;
   $tracks = get_top_artists($name, $token);
   $id_artist = get_artist_id($name, $tracks);
@@ -158,11 +160,13 @@ session_start();
   $art_img = get_artist_image($id,$token);
   $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '$topMArtist'>";
   $artist_string = $artist_string. "<img src='{$art_img['url']}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
-  $artist_string = $artist_string . "</form>";
+  $artist_string = $artist_string . "</form></center>";
   print $artist_string;
 
 
   print "</div>";
+
+
   print "</div>";
   }
 
