@@ -6,7 +6,7 @@ session_start();
 <html>
 <?php include "header.php"; ?>
 <?php include "php/calculate_statistics.php"; ?>
-<?php include "../spotify/get_songs.php";?>
+<?php include "spotify/get_songs.php";?>
 
 <body style="background-color: #77d94c">
    <div class="row">
@@ -20,12 +20,12 @@ session_start();
 
                         <form action = "result.php">
 
-                                
+
 
                                         <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
                                         <button class="button button1"><b>Back</b></button><br>
 
-                               
+
 
 
                         </form>
@@ -41,23 +41,23 @@ session_start();
           ?>
 
    	 <?php
-              
+
 
                 $id_artist = get_artist_id($_SESSION['search'], $_SESSION['artist_tracks']);
-              
+
                 $info = get_artist_info($id_artist[0], $_SESSION['token']);
-                
-                
+
+
                 $followers = get_followers($info);
                 $collaborations = get_collaborations($_SESSION['all_tracks']);
                 $results = get_song_length($_SESSION['all_tracks']);
-      
+
                 $max_length = max($results);
                 $max_in_hms = gmdate("H:i:s", $max_length);
-      
+
                 $min_length = min($results);
                 $min_in_hms = gmdate("H:i:s", $min_length);
-      
+
                 $number = average_length($results, $_SESSION['all_tracks']);
                 $percentage = percentage_collaborations($_SESSION['all_tracks']);
                 $percentage = round($percentage, 2);

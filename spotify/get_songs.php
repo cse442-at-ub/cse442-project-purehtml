@@ -43,7 +43,7 @@ function get_artist_id($input, $tracks)
     # Returns the id of the maximum similarity.
     $most_similar = array_search(max($similarity), $similarity);
 
-    return array($most_similar, $artists[$most_similar]);
+    return array($most_similar, $artists[$most_similar], max($similarity));
 }
 
 

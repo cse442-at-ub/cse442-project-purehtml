@@ -4,11 +4,10 @@
 session_start();
 ?>
 <?php
-$path = '../data/log.txt';
-$file = fopen($path, "a") or die("cant open");
-$data = file_get_contents($path) or die("cant open");
-$users = explode("\n", $data);
+include "../db/connect_to_db.php";
 
+$conn = connect('../db/db_credentials.txt');
+	
 $user = $_POST['username'];
 $reduced_user = preg_replace("/[^a-zA-Z0-9]+/", "", $user);
 $password = $_POST['password'];
@@ -43,19 +42,11 @@ $bool = ($bool_user and $bool_pass);
 if ($bool == True){
          // Declare a Boolean to see if the user already exists.
          $exists = False;
-         foreach($users as $line) {
-                $current_user = explode(":", $line)[0];
+         $qry = query_username($conn, $user);
 
-                if (strtolower($current_user) == strtolower($user)){
-                 $current_pass = explode(":", $line)[1];
-                 if($current_pass == $password)
-                 {
-                         $exists = True;
-                 }
-
-                }
-
-        }
+         if (is_null($qry) == False){
+		$exists = True;
+         }
 
         if ($exists == False){
 
@@ -66,16 +57,17 @@ if ($bool == True){
 
 
 else{
-	$content=file_get_contents($path);
-	$content_chunks=explode($password, $content);
-	$content=implode($newpassword, $content_chunks);
-	file_put_contents($path, $content);
+	$sql = "UPDATE Users SET password = ? WHERE username = ?;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $newpassword, $user);
+        $stmt->execute() or die('oh no');
 
 	echo "<script>alert('Password changed successfully!');</script>";
 	echo "<script>location.href = '../userpage.php'</script>";
 }
 }
 
+$conn->close();
 ?>
 
 </html>

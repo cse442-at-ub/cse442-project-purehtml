@@ -3,17 +3,12 @@
 session_start();
 ?>
 <?php
+include "../db/connect_to_db.php";
 
-// Set the location of the text file.
-$path = '../data/log.txt';
+$conn = connect('../db/db_credentials.txt');
 
 // A boolean check to make sure that the fields have values.
  if (isset($_POST['username']) && isset($_POST['password'])) {
-
-    // Open the file in write mode.
-    $file = fopen($path, "a") or die("cant open");
-    $data = file_get_contents($path) or die("cant open");
-    $users = explode("\n", $data);
 
     // Declare a single string of both values.
     $user = $_POST['username'];
@@ -29,19 +24,13 @@ $path = '../data/log.txt';
     if ($bool == True){
          // Declare a Boolean to see if the user already exists.
          $exists = False;
-         foreach($users as $line) {
-                $current_user = explode(":", $line)[0];
 
-                if (strtolower($current_user) == strtolower($user)){
-                 $current_pass = explode(":", $line)[1];
-                 if($current_pass == $pass)
-                 {
-                         $exists = True;
-                 }
+         $qry = query_username($conn, $user);
 
-                }
+         if (is_null($qry) == False){
+		$exists = True;
+         }
 
-        }
 
         if ($exists == False){
 
@@ -50,34 +39,21 @@ $path = '../data/log.txt';
         }
 
         else{
+		if ($qry[1] == $pass){
 
-                echo "<script>alert('User exists, logged in.');</script>";
-                 $_SESSION["username"]=$user;
-                 //Bookmark Check and Add
-                  $bookmfile = '../data/booksmarks.json';
-                  $json = file_get_contents($bookmfile) or die('No Open!');
-                  $dict = json_decode($json, true);
-                  if (array_key_exists($user, $dict) == False){
-                         $array = array();
-                          $dict[$user] = array("bookmarks"=>$array);
-                  }
-                  if (array_key_exists("bookmarks",$dict[$user]))
-                  {
-                  $bookmarks = $dict[$user]["bookmarks"];
-                  $_SESSION["bookmarks"] = $bookmarks;
+                	echo "<script>alert('User exists, logged in.');</script>";
+               		 $_SESSION['username'] = $user;
+                }
 
-                  }
-
-                  $new_json = json_encode($dict);
-                  file_put_contents($file, $new_json);
+                else{
+			echo "<script>alert('Wrong password!');</script>";
+                }
         }
+        $conn->close();
     }
     else{
          echo "<script>alert('Username and password  must be alphanumeric.');</script>";
         }
-
-    // Close the file.
-    fclose($file);
 
  }
 
