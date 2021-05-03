@@ -9,7 +9,7 @@ session_start();
 
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php";?>
+<?php include "header.php"; include "db/connect_to_db.php";?>
 
 <style>
 #submit{
@@ -19,23 +19,47 @@ session_start();
 </style>
 
 <body style="background-color: #77d94c">
+                <div class="row">
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
 
-                <div>
+                        <form action = "userpage.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
+                </div>
+                
+
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <center>
                                 <?php
+				
+            			$conn = connect('db/db_credentials.txt');
+                                $sql = "SELECT * FROM History WHERE username = ?;";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("s", $_SESSION['username']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $qry = $result -> fetch_array(MYSQLI_NUM);
 
-                                $file = 'data/history.json';
-                                $json = file_get_contents($file) or die('No Open!');
-                                $dict = json_decode($json, true);
+				
 
 
-                                if (array_key_exists($_SESSION['username'], $dict) == False){
-                                        print("<h1>No Search History Found</h1>");
+                                if(is_null($qry) == True){
+                                    print "<h1>No Search History Found</h1>";
                                 }
 
                                 else{
-                                        $history = array_reverse($dict[$_SESSION['username']]);
-
+                                        $history = array_diff($qry, array("."));
+					array_shift($history);
                                         if(sizeof($history) == 0){
                                                 print("<h1>No Search History Found</h1>");
                                         }
@@ -50,7 +74,8 @@ session_start();
                                                         $artist_string = $base_string . "<input type = 'submit' name = 'artist' id = 'submit'  value = '{$history[$k - 1]}'>";
                                                         $artist_string = $artist_string . "</form>";
 
-                                                        print $artist_string;
+
+                                                        print('<h2>' .$artist_string. '</h2>');
 
                                                 }
                                         }
@@ -63,6 +88,7 @@ session_start();
                         </center>
 
                 </div>
+            </div>
 
 
 <br><br><br>

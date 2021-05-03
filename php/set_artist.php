@@ -10,6 +10,10 @@ date_default_timezone_set('America/New_York');
 include '../spotify/get_songs.php';
 // Set the working artist.
 
+
+include "../db/connect_to_db.php";
+
+$conn = connect('../db/db_credentials.txt');
 // A boolean check to make sure that the fields have values.
 
 
@@ -42,7 +46,35 @@ include '../spotify/get_songs.php';
         echo "<script> location.href = '../index.php'; </script>";
     }
     else{
+	
+	
+                $sql = "SELECT name, id FROM Artists";
+                $result = mysqli_query($conn,$sql);
+	$similarity = array();
+	$sim_ids = array();
+	while(null !== ($qry = mysqli_fetch_assoc($result))){
+		
+     		$artist = $qry['name'];
+	
 
+  		 
+       		 foreach($qry as $artist){
+			
+            // Returns similarity as an integer (sim) and percentage (perc)
+            $sim = similar_text(strtolower($current_artist), strtolower($artist), $perc);
+            $similarity[$artist] = $perc;
+	    
+	    $sim_ids[$artist] = $qry['id'];
+         
+         }
+    
+    # Returns the id of the maximum similarity.
+    $max_perc = max($similarity);
+    $most_similar = array_search(max($similarity), $similarity);
+    $best_id = $sim_ids[$most_similar];
+     }
+    
+     
      // This is just Spotify stuff.
      $credentials = getCredentials();
      $client_id = $credentials[0];
@@ -50,6 +82,7 @@ include '../spotify/get_songs.php';
      $token = get_authenicated($client_id, $client_secret);
      $tracks = get_top_artists($current_artist, $token);
      $id_artist = get_artist_id($current_artist, $tracks);
+<<<<<<< HEAD
      $top_match = $id_artist[1];
 
      //Code for Saving matches for "what people are searching"
@@ -76,6 +109,17 @@ include '../spotify/get_songs.php';
      }
 
 
+=======
+     $id_perc = $id_artist[2];
+     if ($id_perc >= $max_perc){
+     	$top_match = $id_artist[1];
+	$id = $id_artist[0];
+     }
+     else{
+	$top_match = $most_similar;
+	$id = $best_id;
+     }
+>>>>>>> origin/development
      // If there's a result for that search.
      if ($top_match != ""){
        $_SESSION['search'] = $top_match;
@@ -83,27 +127,42 @@ include '../spotify/get_songs.php';
 
        // Is the user logged in?
        if ($user != ""){
-           // MAKE SURE THAT THE FILE HAS {} IN IT IF EMPTY, + CHMOD 777
-           $file = '../data/history.json';
-           $json = file_get_contents($file) or die('No Open!');
-           $dict = json_decode($json, true);
-           // Does the user exists?
-           if (array_key_exists($user, $dict) == False){
-                   $dict[$user] = array();
-           }
-           $array = $dict[$user];
-           $array[] = $top_match;
-           // Get rid of results more than 10 for space constraints.
-           while (count($array) > 10){
-                   array_shift($array);
-           }
-           $dict[$user] = $array;
-           $new_json = json_encode($dict);
-           file_put_contents($file, $new_json);
+  		$stmt = $conn->prepare("SELECT * FROM History WHERE username = ?");
+                $stmt->bind_param("s", $user);
+                $stmt->execute();
+		$result = $stmt->get_result();
+                $qry = $result -> fetch_array(MYSQLI_NUM);
+
+                if (is_null($qry) == True){
+			$sql = "INSERT INTO History (username, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10)
+			VALUES (?, '.', '.', '.', '.', '.', '.', '.', '.', '.', '.');";
+       			 $stmt = $conn->prepare($sql);
+                         $stmt->bind_param("s", $user);
+                         $stmt->execute();
+                }
+
+		$stmt = $conn->prepare("SELECT * FROM History WHERE username = ?");
+                $stmt->bind_param("s", $user);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $qry = $result -> fetch_array(MYSQLI_NUM);
+
+                $arr = array_slice($qry, 1, 12);
+                array_shift($arr);
+                $arr[] = $top_match;
+		$sql = "UPDATE History SET i1 = ?, i2 = ?, i3 = ?, i4 = ?, i5 = ?, i6 = ?, i7 = ?, i8 = ?, i9 = ?, i10 = ? WHERE username = ?;";
+ 		
+		$stmt = $conn->prepare($sql);
+               	$arr[] = $user;
+                $types = str_repeat("s", count($arr)); 
+                
+		$stmt->bind_param($types, ...$arr);
+		$stmt->execute();
+                
        }
 
        // Get the stuff to make random better.
-       $id = $id_artist[0];
+       //$id = $id_artist[0];
        $albums = get_all_albums($id, $token);
        $all_tracks = get_all_tracks($albums, $token);
        // Set variables for later.

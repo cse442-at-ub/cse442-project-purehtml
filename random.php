@@ -25,18 +25,7 @@ session_start();
 
                 </div>
 
-                <div>
-                  <form action="php/addbookmark.php">
-                    <center>
-                        <?php
-                        if(isset($_SESSION['username']))
-                        {
-                          echo "<button class='button'>Bookmark Song</button>";
-                        }
-
-                         ?>
-                    </center>
-                  </form>
+                
 
                 <div class="column" style="min-width: 400px; margin: 0 auto;">
 
@@ -54,12 +43,27 @@ session_start();
 
 
                 </div>
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
         <?php
                 print "<iframe src='https://open.spotify.com/embed/track/{$_SESSION["random_track"]}'
                         width='300' height='380' frameborder='0' style='border: 5px solid black;'
                         allowtransparency='true' allow='encrypted-media'></iframe>";
         ?>
+        <br><br><br><br><br>
+</div>
+<div class="column" style="min-width: 400px; margin: 0 auto;">
+                  <form action="php/addbookmark.php">
+                    <center>
+                        <?php
+                        if(isset($_SESSION['username']))
+                        {
+                          echo "<button class='button button1'>Bookmark Song</button>";
+                        }
 
+                         ?>
+                    </center>
+                  </form>
+              </div>
      </center><br><br><br><br><br>
 
 

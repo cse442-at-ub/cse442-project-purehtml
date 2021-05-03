@@ -9,8 +9,7 @@ session_start();
 
 <!-- Basically all of this was explained in index.html. -->
 
-<?php include "header.php";?>
-
+<?php include "header.php";include "db/connect_to_db.php";?>
 <style>
 #submit{
    width: 500px;
@@ -19,33 +18,62 @@ session_start();
 </style>
 
 <body style="background-color: #77d94c">
+    <div class="row">
 
-                <div>
+    <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "userpage.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
+                </div>
+
+                <div class="column" style="min-width: 400px; margin: 0 auto;">
                         <center>
                                 <?php
+                                $conn = connect('db/db_credentials.txt');
+                                $sql = "SELECT * FROM Bookmarks WHERE username = ?;";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("s", $_SESSION['username']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $qry = $result -> fetch_array(MYSQLI_NUM);
 
-                                $file = 'data/booksmarks.json';
-                                $json = file_get_contents($file) or die('No Open!');
-                                $dict = json_decode($json, true);
+                                
 
 
-                                if (array_key_exists($_SESSION['username'], $dict) == False){
-                                        print "<h1>No Bookmarks Found</h1>";
+                                if(is_null($qry) == True){
+                                    print "<h1>No Bookmarks Found</h1>";
                                 }
 
                                 else{
-                                        print "<h1>Your bookmarks:</h1>";
-                                        $bookmarks = array_reverse($dict[$_SESSION['username']]);
-                                        
-					foreach($bookmarks as $bookmark){
+                                    
+                                    $bookmarks = array_slice($qry, 2, 10);
+                                    $bookmarks = array_diff($bookmarks, array("."));
+                                    print "<h1>Your Bookmarks:</h1>";
+                                    foreach ($bookmarks as $bookmark) {
+					$split_bookmark = explode("~", $bookmark);
+					$link = $split_bookmark[1];
+					$link = 'https://open.spotify.com/track/' . $link;
+					$song = $split_bookmark[0];
+                                        print "<a  href = {$link} target='_blank' rel='noopener noreferrer'><h1>{$song}</h1></a>";
+                                    }
+                                }
 
-						print "<h2>$bookmark</h2>";
-					}
-				}
                                 ?><br><br><br><br>
                         </center>
 
                 </div>
+            </div>
 
 
 <br><br><br>

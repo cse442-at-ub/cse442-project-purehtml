@@ -5,7 +5,7 @@ session_start();
 
 <html>
 
-<?php include "header.php"; ?>
+<?php include "header.php"; include "db/connect_to_db.php";?>
 
 <!-- The body.  Basically, where all of the content goes. -->
 <body style="background-color: #77d94c">
@@ -22,13 +22,24 @@ session_start();
        <?php
          if(isset($_SESSION["username"]))
          {
-             $name = $_SESSION['username'];
-             $dir = "data/profile_pics/" .$name. ".png";
+		
+	     $conn = connect('db/db_credentials.txt');
+             $user = $_SESSION["username"];
+
+             $stmt = $conn->prepare("SELECT date FROM Users WHERE username = ?");
+	     $stmt->bind_param("s", $user);
+	     $stmt->execute();
+
+	     $result = $stmt->get_result();
+	     $qry = $result -> fetch_array(MYSQLI_NUM);		
+             
+             $dir = "data/profile_pics/" .$user. ".png";
              if(file_exists($dir) == false){
                 $dir = "data/profile_pics/placeholder.png";
              }
              print "<img src='{$dir}' width = '150' height = '150' style = 'border: 5px solid black;'></img>";
-             echo "<center><h2>Welcome, $name </h2></center>";
+             echo "<center><h1>Welcome, $user </h1></center>";
+             echo "<center><h2>Member since $qry[0]</h2></center>";
 
          }
 
@@ -51,7 +62,7 @@ session_start();
                 
      
      <div class="column" style="min-width: 400px; margin: 0 auto;">
-                        <form action = "php/delaccount.php">
+                        <form action = "deleteacc.php">
                                 <center>
                                         <button class="button button1"><b>Delete User</b></button><br>
                                 </center>      

@@ -7,15 +7,35 @@ session_start();
 
 <?php include "header.php"; ?>
 <body style="background-color: #77d94c">
-     <div>
+
+    <div class="row">
+
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
+
+                        <form action = "userpage.php">
+
+                                <center>
+
+                                        <!-- Using our special .button class to make the button look a precise way, plus also text centering.  -->
+                                        <button class="button button1"><b>Back</b></button><br>
+
+                                </center>
+
+
+                        </form>
+
+
+                </div>
+
+     <div class="column" style="min-width: 400px; margin: 0 auto;">
           <center>
           <h1>Change Profile Picture</h1>
 
           </center>
 
-     </div>
+    
      
-     <div>
+     
        <center>
        <?php
          if(isset($_SESSION["username"]))
@@ -41,5 +61,6 @@ session_start();
 		</center>
        </center>
    </div>
+ </div>
 </body>
 </html>
