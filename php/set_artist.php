@@ -6,7 +6,7 @@ session_start();
 
 <?php
 
-
+date_default_timezone_set('America/New_York');
 include '../spotify/get_songs.php';
 // Set the working artist.
 
@@ -82,6 +82,34 @@ $conn = connect('../db/db_credentials.txt');
      $token = get_authenicated($client_id, $client_secret);
      $tracks = get_top_artists($current_artist, $token);
      $id_artist = get_artist_id($current_artist, $tracks);
+<<<<<<< HEAD
+     $top_match = $id_artist[1];
+
+     //Code for Saving matches for "what people are searching"
+     if($top_match != "")
+     {
+       $wpsData = file_get_contents("../data/wps.json");
+       $temp = json_decode($wpsData,true);
+       //Check if date key has been made already
+       //If made already just push to the array
+       //If no key is made make key and array and add to array
+       if(array_key_exists(date("m,d,y"),$temp))
+       {
+         array_push($temp[date("m,d,y")],$top_match);
+       }else {
+         $temp[date("m,d,y")]=array();
+         array_push($temp[date("m,d,y")],$top_match);
+
+       }
+
+
+       $jsonforfile = json_encode($temp);
+       file_put_contents("../data/wps.json",$jsonforfile);
+
+     }
+
+
+=======
      $id_perc = $id_artist[2];
      if ($id_perc >= $max_perc){
      	$top_match = $id_artist[1];
@@ -91,6 +119,7 @@ $conn = connect('../db/db_credentials.txt');
 	$top_match = $most_similar;
 	$id = $best_id;
      }
+>>>>>>> origin/development
      // If there's a result for that search.
      if ($top_match != ""){
        $_SESSION['search'] = $top_match;
